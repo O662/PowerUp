@@ -130,9 +130,7 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Simple", new AutoTurnToPegSimple(60, 0.5));
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
-		/*
 		chooser.addDefault("None", new AutoNone());
-		*/
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		// Preferences
