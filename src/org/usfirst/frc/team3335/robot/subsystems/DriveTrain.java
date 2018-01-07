@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -17,6 +16,7 @@ import org.usfirst.frc.team3335.robot.RobotMap;
 import org.usfirst.frc.team3335.robot.RobotPreferences;
 import org.usfirst.frc.team3335.robot.commands.TankDrive;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
@@ -102,20 +102,36 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     }
 
     public void setBrake(boolean brake) {
-    	// TODO how to replace enableBrakeMode???
-    	//frontLeft.enableBrakeMode(brake);
-        //frontRight.enableBrakeMode(brake);
-        //backLeft.enableBrakeMode(brake);
-        //backRight.enableBrakeMode(brake);
+    	// Formerly: frontLeft.enableBrakeMode(brake);
+    	// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
+    	NeutralMode mode = brake ? NeutralMode.Brake : NeutralMode.Coast;
+    	frontLeft.setNeutralMode(mode);
+    	frontRight.setNeutralMode(mode);
+    	backLeft.setNeutralMode(mode);
+    	backRight.setNeutralMode(mode);
     }
-    
+
+    public void setRampRateTime(double secondsFromNeutralToFull) {
+    	// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
+    	// TODO also see section on limiting current rate, both peak and continuous
+    	// TODO which will be useful for climbing motors
+    	// (2, 0) ramps from neutral to full voltage in 2 sec, with no timeout
+    	frontLeft.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	frontRight.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	backLeft.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	backRight.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    }
+
+    @Deprecated
     public void setRampRate(double voltageRampRate){
-        // TODO figure out how to replace setVoltageRampRate
-        // ???frontLeft.set(ControlMode., value);
-        //frontLeft.setVoltageRampRate(voltageRampRate);
-        //frontRight.setVoltageRampRate(voltageRampRate);
-        //backLeft.setVoltageRampRate(voltageRampRate);
-        //backRight.setVoltageRampRate(voltageRampRate);
+    	// Formerly: frontLeft.setVoltageRampRate(voltageRampRate);
+    	//    where voltageRampRate was in volts/sec???
+    	//          or was it in percent voltage / sec ???
+    	//    used 150 as default, and 5 for slow rate during auto
+    	// Assuming volts/sec, then
+    	//     150 V/sec is nominal 12V / 150 V/sec = 0.08 sec
+    	//     5 V/sec is nominal 12V / 5 V/sec = 2.4 sec
+    	setRampRateTime(12.0 / voltageRampRate);
     }
     
     public void setDefaltRampRate(){
