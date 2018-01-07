@@ -41,7 +41,9 @@ public class Robot extends IterativeRobot {
 	// Subsystems
 	/*
 	public static Compressor compressor;
+	*/
 	public static DriveTrain driveTrain;
+	/*
 	public static VisionTest visionTest;
 	public static CameraStream gearPickupCameraStream;
 	public static BallShifter ballShifter;
@@ -69,8 +71,10 @@ public class Robot extends IterativeRobot {
 		/*
 		compressor = new Compressor();
 		subsystemsList.add(compressor);
+		*/
 		driveTrain = new DriveTrain();
 		subsystemsList.add(driveTrain);
+		/*
 		//visionTest = null;
 		visionTest = new VisionTest();
 		subsystemsList.add(visionTest);
@@ -155,9 +159,7 @@ public class Robot extends IterativeRobot {
 		//TODO uncomment to see subsystems on dashboard
 		//addSubsystemsToDashboard(subsystemsList);
 		ArrayList<LoggableSubsystem> tempList = new ArrayList<LoggableSubsystem>();
-		/*
 		tempList.add(driveTrain);
-		*/
 		addSubsystemsToDashboard(tempList);
 	}
 
