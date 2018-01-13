@@ -43,21 +43,21 @@ public class Robot extends IterativeRobot {
 	public static Compressor compressor;
 	*/
 	public static DriveTrain driveTrain;
-	/*
-	public static VisionTest visionTest;
-	public static CameraStream gearPickupCameraStream;
-	public static BallShifter ballShifter;
-	public static BallShooter ballShooter;
-	public static Intake intake;
-	public static Gate gate;
-	public static GearEjector gearEjector;
-	public static GenericDoubleSolenoid gearPickupUpDown;
-	public static GenericDoubleSolenoid gearPickupOpenClose;
-	public static Flapper flapper;
-	public static Climber climber;
-	public static DoubleUltrasonic ultrasonics;
-	public static NavX navx;
-	 */
+
+	public static Vision vision;
+//	public static CameraStream gearPickupCameraStream;
+//	public static BallShifter ballShifter;
+//	public static BallShooter ballShooter;
+//	public static Intake intake;
+//	public static Gate gate;
+//	public static GearEjector gearEjector;
+//	public static GenericDoubleSolenoid gearPickupUpDown;
+//	public static GenericDoubleSolenoid gearPickupOpenClose;
+//	public static Flapper flapper;
+//	public static Climber climber;
+//	public static DoubleUltrasonic ultrasonics;
+//	public static NavX navx;
+
 	//public static Wheel wheel;
 	public static PowerDistributionPanel pdp;
 
@@ -75,10 +75,11 @@ public class Robot extends IterativeRobot {
 		*/
 		driveTrain = new DriveTrain();
 		subsystemsList.add(driveTrain);
-		/*
+
 		//visionTest = null;
-		visionTest = new VisionTest();
-		subsystemsList.add(visionTest);
+		vision = new Vision();
+		subsystemsList.add(vision);
+		/*
 		gearPickupCameraStream = new CameraStream();
 		subsystemsList.add(gearPickupCameraStream);
 		gate = new Gate();
