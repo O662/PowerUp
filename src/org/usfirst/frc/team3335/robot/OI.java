@@ -18,7 +18,7 @@ public class OI {
     public OI() {
         joystick = new Joystick(0);
         joystick2 = new Joystick(1);
-
+/*
         // Joystick 1
         int bDefault = -1;
         int bGateUp = bDefault;

@@ -58,6 +58,7 @@ public class Robot extends IterativeRobot {
 	public static DoubleUltrasonic ultrasonics;
 	public static NavX navx;
 	 */
+	//public static Wheel wheel;
 	public static PowerDistributionPanel pdp;
 
 	/**
@@ -107,6 +108,9 @@ public class Robot extends IterativeRobot {
 		navx = new NavX();
 		subsystemsList.add(navx);
 		*/
+		//2018 CODE
+		//wheel = new Wheel();
+		//subsystemsList.add(wheel);
 
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
