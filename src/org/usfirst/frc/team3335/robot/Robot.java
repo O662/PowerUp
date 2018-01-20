@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 
 	public static Vision vision;
 //	public static CameraStream gearPickupCameraStream;
-//	public static BallShifter ballShifter;
+	public static BallShifter ballShifter;
 //	public static BallShooter ballShooter;
 //	public static Intake intake;
 //	public static Gate gate;
@@ -127,8 +127,10 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(climber);
 		glove = new Glove();
 		subsystemsList.add(glove);
+		ballshifter = new BallShifter();
+		subsystemsList.add(ballshifter);
 		*/
-
+		ballShifter = null;
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
 		//chooser.addObject("Auto Drive Straight 9ft", new AutoPlaceGear(108, 0, 0));
@@ -156,7 +158,10 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
+		chooser.addDefault("Auto Drive Strait", new AutoDriveStraight(132,70));
 		SmartDashboard.putData("Auto Mode", chooser);
+		
+		
 
 		// Preferences
 		Preferences prefs = Preferences.getInstance();
