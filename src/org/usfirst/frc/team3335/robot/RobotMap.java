@@ -74,10 +74,10 @@ public class RobotMap {
 
 	// Mark 3
 	/**/
-	public static final int DRIVE_TRAIN_FRONT_LEFT = 1;
-	public static final int DRIVE_TRAIN_FRONT_RIGHT = 3;
-	public static final int DRIVE_TRAIN_BACK_LEFT = 2;
-	public static final int DRIVE_TRAIN_BACK_RIGHT = 4;
+	public static final int DRIVE_TRAIN_FRONT_LEFT = 5;
+	public static final int DRIVE_TRAIN_FRONT_RIGHT = 2;
+	public static final int DRIVE_TRAIN_BACK_LEFT = 3;
+	public static final int DRIVE_TRAIN_BACK_RIGHT = 1;
     public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_A = 2;//8;//1; //8?
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_B = 3;//9;//0; //9?
