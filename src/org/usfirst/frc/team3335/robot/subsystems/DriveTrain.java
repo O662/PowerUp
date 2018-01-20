@@ -84,7 +84,7 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
         drive = new DifferentialDrive(leftGroup, rightGroup);
 
         // Scale encoder pulses to distance in inches
-        double wheelDiameter = 4.0; // inches
+        double wheelDiameter = 6.0; // inches
         double encoderToShaftRatio = 3; // 3X gear reduction
         double pulsesPerRevolution = 256;
         double stage3Ratio = 50.0 / 34.0;

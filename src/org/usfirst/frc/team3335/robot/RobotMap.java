@@ -107,9 +107,16 @@ public class RobotMap {
 	public static final int GEAR_PICKUP_OPEN_CLOSE_FORWARD_CHANNEL = 2;
 	public static final int GEAR_PICKUP_OPEN_CLOSE_REVERSE_CHANNEL = 3;
 	/**/
+	
 	//2018 code
-	public static final int LAUNCHER_MOTOR = 0;
-	public static final int CLIMBER_MOTOR = 1;
+	public static final int LAUNCHER_MOTOR = 10;
+	public static final int CLIMBER_MOTOR = 11;
+	public static final int ARM_MOTOR_1 = 41;
+	public static final int ARM_MOTOR_2 = 51;
+	//solenoids
+	public static final int GLOVE_FORWARD_CHANNEL = 21;
+	public static final int GLOVE_REVERSE_CHANNEL = 31;
+	
 
 	//Stronghold bot ports
 	/*

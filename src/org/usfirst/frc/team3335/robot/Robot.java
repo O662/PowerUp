@@ -57,8 +57,16 @@ public class Robot extends IterativeRobot {
 //	public static Climber climber;
 //	public static DoubleUltrasonic ultrasonics;
 //	public static NavX navx;
-
-	//public static Wheel wheel;
+	//2018 code
+	/*
+	public static Launcher launcher;
+	public static Glove glove;
+	public static Climber climber;
+	public static Arm arm;
+	*/
+	
+	
+	
 	public static PowerDistributionPanel pdp;
 
 	/**
@@ -110,8 +118,16 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(navx);
 		*/
 		//2018 CODE
-		//wheel = new Wheel();
-		//subsystemsList.add(wheel);
+		/*
+		launcher = new Launcher();
+		subsystemsList.add(launcher);
+		arm = new Arm();
+		subsystemsList.add(arm);
+		climber = new Climber();
+		subsystemsList.add(climber);
+		glove = new Glove();
+		subsystemsList.add(glove);
+		*/
 
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
