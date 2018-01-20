@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 //	public static Flapper flapper;
 //	public static Climber climber;
 //	public static DoubleUltrasonic ultrasonics;
-//	public static NavX navx;
+	public static NavX navx;
 	//2018 code
 	/*
 	public static Launcher launcher;
@@ -114,9 +114,10 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(climber);
 		ultrasonics = new DoubleUltrasonic();
 		subsystemsList.add(ultrasonics);
+		*/
 		navx = new NavX();
 		subsystemsList.add(navx);
-		*/
+		
 		//2018 CODE
 		/*
 		launcher = new Launcher();
