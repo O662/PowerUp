@@ -18,13 +18,16 @@ public class OI {
     public OI() {
         joystick = new Joystick(0);
         joystick2 = new Joystick(1);
-/*
+
         // Joystick 1
         int bDefault = -1;
-        int bGateUp = bDefault;
-        int bGateDown = bDefault;
+        
+       //int bGateUp = bDefault;
+        //int bGateDown = bDefault;
+        
         int bShiftLow = bDefault;
         int bShiftHigh = bDefault;
+        /*
         int bDriveForward = bDefault;
         int bDriveBackward = bDefault;
         int bGearPickupDown = bDefault;
@@ -41,18 +44,18 @@ public class OI {
         //int bIntake = 1; // A
         int bFlapperUp = 1; // A
         int bFlapperDown = 2; // B
-
+*/
         // Joystick 1
-        bGateUp = 3;
-        bGateDown = 2;
+       // bGateUp = 3;
+        //bGateDown = 2;
         bShiftLow = 7;
         bShiftHigh = 6;
-        bDriveForward = 8;
-        bDriveBackward = 9;
-        bGearPickupDown = 3;
-        bGearPickupUp = 2;
-        bGearPickupClose = 4;
-        bGearPickupOpen = 5;
+       // bDriveForward = 8;
+       // bDriveBackward = 9;
+       // bGearPickupDown = 3;
+       // bGearPickupUp = 2;
+       // bGearPickupClose = 4;
+       // bGearPickupOpen = 5;
 
         // Gate
         /*

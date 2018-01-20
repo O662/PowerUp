@@ -9,9 +9,9 @@ public class AutoDriveToScaleTurn extends CommandGroup {
 	
 	public AutoDriveToScaleTurn() {
 		
-		addSequential(new AutoDriveStraight(324,70));
+		addSequential(new AutoDriveStraight(324,0.7));
 		
-		addSequential(new AutoDriveTurnToScale(90,70));
+		addSequential(new AutoDriveTurnToScale(90,0.7));
 		
 	}
 	

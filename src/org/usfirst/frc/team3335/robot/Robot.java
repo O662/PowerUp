@@ -128,10 +128,11 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(climber);
 		glove = new Glove();
 		subsystemsList.add(glove);
-		ballshifter = new BallShifter();
-		subsystemsList.add(ballshifter);
 		*/
-		ballShifter = null;
+		ballShifter = new BallShifter();
+		subsystemsList.add(ballShifter);
+		
+		//ballShifter = null;
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
 		//chooser.addObject("Auto Drive Straight 9ft", new AutoPlaceGear(108, 0, 0));
