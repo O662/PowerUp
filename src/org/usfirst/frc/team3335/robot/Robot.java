@@ -60,11 +60,11 @@ public class Robot extends IterativeRobot {
 	//2018 code
 	/*
 	public static Launcher launcher;
-	public static Glove glove;
+	
 	public static Climber climber;
 	*/
 	public static Arm arm;
-	
+	public static Glove glove;
 	
 	
 	
@@ -122,15 +122,15 @@ public class Robot extends IterativeRobot {
 		//2018 CODE
 		arm = new Arm();
 		subsystemsList.add(arm);
-		
+		glove = new Glove();
+		subsystemsList.add(glove);
 		/*
 		launcher = new Launcher();
 		subsystemsList.add(launcher);
 		
 		climber = new Climber();
 		subsystemsList.add(climber);
-		glove = new Glove();
-		subsystemsList.add(glove);
+		
 		*/
 		ballShifter = new BallShifter();
 		subsystemsList.add(ballShifter);

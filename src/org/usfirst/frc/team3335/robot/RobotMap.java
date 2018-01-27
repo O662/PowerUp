@@ -116,6 +116,9 @@ public class RobotMap {
 	//solenoids
 	public static final int GLOVE_FORWARD_CHANNEL = 21;
 	public static final int GLOVE_REVERSE_CHANNEL = 31;
+	public static final int GLOVE_FORWARD_CHANNEL_2 = 22;
+	public static final int GLOVE_REVERSE_CHANNEL_2 = 32;
+	
 	
 	//Encoders
 	public static final int ARM_ENCODER_RIGHT_A= 1;
