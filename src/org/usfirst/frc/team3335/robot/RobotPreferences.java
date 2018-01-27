@@ -11,6 +11,8 @@ public class RobotPreferences {
     public static final double DRIVE_KP_DEFAULT = 0.01;
     public static final double DRIVE_KI_DEFAULT = 0.001;
     public static final double DRIVE_KD_DEFAULT = 0.0;
+    public static final double DRIVE_ROTATE_MAX_OUTPUT_RANGE_DEFAULT = 0.25;
+
     public static final double VISION_KP_DEFAULT = 0.01; // or 0.015;
     public static final double VISION_KI_DEFAULT = 0.001;
     public static final double VISION_KD_DEFAULT = 0.0;
