@@ -117,6 +117,19 @@ public class RobotMap {
 	public static final int GLOVE_FORWARD_CHANNEL = 21;
 	public static final int GLOVE_REVERSE_CHANNEL = 31;
 	
+	//Encoders
+	public static final int ARM_ENCODER_RIGHT_A= 1;
+	public static final int ARM_ENCODER_RIGHT_B = 2;
+	public static final boolean ARM_ENCODER_RIGHT_REVERSE = false;
+	public static final int ARM_ENCODER_LEFT_A = 0;
+	public static final int ARM_ENCODER_LEFT_B = 3;
+	public static final boolean ARM_ENCODER_LEFT_REVERSE = false;
+	public static final int LAUNCHER_ENCODER_A = 4;
+	public static final int LAUNCHER_ENCODER_B = 5;
+	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
+	
+	
+	
 
 	//Stronghold bot ports
 	/*

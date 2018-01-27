@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutoDriveToScaleTurn extends CommandGroup {
 	
-	public AutoDriveToScaleTurn() {
+	public AutoDriveToScaleTurn(int Angle) {
 		
 		addSequential(new AutoDriveStraight(324,0.7));
 		
-		addSequential(new AutoDriveTurnToScale(90,0.7));
+		addSequential(new AutoDriveTurnToScale(Angle,0.7));
 		
 	}
 	

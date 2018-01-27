@@ -26,6 +26,8 @@ public class AutoDriveStraight extends Command {
 
 	    public AutoDriveStraight(double distance, double speed) {
 	    	this(distance, speed, false, 0, 0);
+	    	//120 inches to start of autoline
+	    	//2 inch tape
 	    }
 	    
 	    public AutoDriveStraight(double distance, double speed, boolean limit, double limitDistance, double limitSpeed) {
