@@ -173,6 +173,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Prefs: Drive Kp", prefs.getDouble("Drive Kp", RobotPreferences.DRIVE_KP_DEFAULT));
 		SmartDashboard.putNumber("Prefs: Drive Ki", prefs.getDouble("Drive Ki", RobotPreferences.DRIVE_KI_DEFAULT));
 		SmartDashboard.putNumber("Prefs: Drive Kd", prefs.getDouble("Drive Kd", RobotPreferences.DRIVE_KD_DEFAULT));
+		SmartDashboard.putNumber("Prefs: Drive Rotate Max Output Range", prefs.getDouble("Drive Rotate Max Output Range", RobotPreferences.DRIVE_ROTATE_MAX_OUTPUT_RANGE_DEFAULT));
 		SmartDashboard.putNumber("Prefs: Vision Kp", prefs.getDouble("Vision Kp", RobotPreferences.VISION_KP_DEFAULT));
 		SmartDashboard.putNumber("Prefs: Vision Ki", prefs.getDouble("Vision Ki", RobotPreferences.VISION_KI_DEFAULT));
 		SmartDashboard.putNumber("Prefs: Vision Kd", prefs.getDouble("Vision Kd", RobotPreferences.VISION_KD_DEFAULT));
