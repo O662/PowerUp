@@ -64,8 +64,8 @@ public class AutoDriveStraightNavx extends Command {
 	    		//finishDriveDistUltras = finishDriveDistanceUltrasonics(36);
 	    	//}
 	        //Robot.driveTrain.drive(speed, speed);
-	    	double rotateRate = .1;
-	    	double rotate = -Math.signum(Robot.navx.getYaw())*rotateRate;
+	    	double rotateRate = .3;
+	    	double rotate = /*-*/Math.signum(Robot.navx.getYaw())*rotateRate;
 	    	Robot.driveTrain.driveArcade(speed, rotate, false);
 	    	
 	    }

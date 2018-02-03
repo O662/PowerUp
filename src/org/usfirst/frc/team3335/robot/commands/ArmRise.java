@@ -1,4 +1,6 @@
+/*
 package org.usfirst.frc.team3335.robot.commands;
+
 
 import org.usfirst.frc.team3335.robot.Robot;
 import org.usfirst.frc.team3335.robot.RobotPreferences;
@@ -66,4 +68,4 @@ public class ArmRise extends Command {
 
 }
 
-
+*/

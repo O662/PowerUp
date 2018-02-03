@@ -15,13 +15,13 @@ private DoubleSolenoid.Value val;
 	 * @param f true = falpperDown;//flase = flapperUP
 	 */
 	public Hand(boolean f) {
-        requires(Robot.glove);
+       // requires(Robot.glove);
         val = f ? Value.kForward : Value.kReverse;
     }
 
     @Override
     protected void initialize() {
-        Robot.glove.switchPos(val);
+      //  Robot.glove.switchPos(val);
     }
 
 	@Override

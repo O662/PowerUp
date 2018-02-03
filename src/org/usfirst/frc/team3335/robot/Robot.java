@@ -63,8 +63,8 @@ public class Robot extends IterativeRobot {
 	
 	public static Climber climber;
 	*/
-	public static Arm arm;
-	public static Glove glove;
+	//public static Arm arm;
+	//public static Glove glove;
 	
 	public static DoubleUltrasonic doubleUltrasonic;
 	
@@ -122,10 +122,10 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(navx);
 		
 		//2018 CODE
-		arm = new Arm();
-		subsystemsList.add(arm);
-		glove = new Glove();
-		subsystemsList.add(glove);
+		//arm = new Arm();
+		//subsystemsList.add(arm);
+		//glove = new Glove();
+		//subsystemsList.add(glove);
 		/*
 		launcher = new Launcher();
 		subsystemsList.add(launcher);
@@ -168,8 +168,10 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
-		chooser.addDefault("Auto Drive Strait", new AutoDriveStraight(132,70));
+		chooser.addDefault("Auto Drive Strait", new AutoDriveStraight(84,.3));
 		SmartDashboard.putData("Auto Mode", chooser);
+		chooser.addDefault("Auto Drive Strait NAVX", new AutoDriveStraight(84, .3));
+		chooser.addDefault("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(84,.3));
 		
 		
 

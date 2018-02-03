@@ -144,7 +144,7 @@ public class AutoDriveStraightNavxPID extends Command {
 		public void pidWrite(double output) {
 			//myRobot.drive(output, 0);
 			//Robot.driveTrain.drive(output, 0);
-			rotateRate = output;
+			rotateRate = -output;
 		}
 	}
 
