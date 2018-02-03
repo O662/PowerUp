@@ -2,6 +2,7 @@ package org.usfirst.frc.team3335.robot.subsystems;
 
 import org.usfirst.frc.team3335.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -20,6 +21,7 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 		LauncherMotor = new WPI_TalonSRX(RobotMap.LAUNCHER_MOTOR);
 		launcherEncoder = new Encoder(RobotMap.LAUNCHER_ENCODER_A, RobotMap.LAUNCHER_ENCODER_B,
         RobotMap.LAUNCHER_ENCODER_REVERSE, EncodingType.k4X);
+		LauncherMotor.setNeutralMode(NeutralMode.Brake);
 	}
 
 	
