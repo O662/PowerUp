@@ -1,20 +1,20 @@
 package org.usfirst.frc.team3335.robot.subsystems.vision;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.HashMap;
 
-import org.opencv.core.*;
-import org.opencv.core.Core.*;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.*;
-import org.opencv.objdetect.*;
+import edu.wpi.first.wpilibj.vision.VisionPipeline;
+
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfInt;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 /**
 * GripPipeline class.
@@ -23,10 +23,11 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
-public class GripPipeline {
+public class GripPipelineSteamy implements VisionPipeline {
 
 	//Outputs
-	private Mat rgbThresholdOutput = new Mat();
+	private Mat hslThresholdOutput = new Mat();
+	private Mat blurOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
 
@@ -37,44 +38,115 @@ public class GripPipeline {
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
-	public void process(Mat source0) {
-		// Step RGB_Threshold0:
-		Mat rgbThresholdInput = source0;
-		double[] rgbThresholdRed = {94.01978417266189, 255.0};
-		double[] rgbThresholdGreen = {194.91906474820144, 255.0};
-		double[] rgbThresholdBlue = {152.49550359712228, 255.0};
-		rgbThreshold(rgbThresholdInput, rgbThresholdRed, rgbThresholdGreen, rgbThresholdBlue, rgbThresholdOutput);
-
+	@Override	public void process(Mat source0) {
+		// Step HSL_Threshold0:
+		Mat hslThresholdInput = source0;
+		double[] hslThresholdHue = {44.92637417901698, 118.25019808164708};
+		double[] hslThresholdSaturation = {108.26011930602262, 254.7169452729091};
+		double[] hslThresholdLuminance = {118.09327571085834, 253.84866743049534};
+		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
+		
+		Mat blurInput = hslThresholdOutput;
+		BlurType blurType = BlurType.get("Median Filter");
+		double blurRadius = 2.7027027027027026;
+		blur(blurInput, blurType, blurRadius, blurOutput);
+		
 		// Step Find_Contours0:
-		Mat findContoursInput = rgbThresholdOutput;
+		Mat findContoursInput = blurOutput;
 		boolean findContoursExternalOnly = false;
 		findContours(findContoursInput, findContoursExternalOnly, findContoursOutput);
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 50.0;
-		double filterContoursMinPerimeter = 20.0;
-		double filterContoursMinWidth = 20.0;
-		double filterContoursMaxWidth = 1000.0;
-		double filterContoursMinHeight = 300.0;
-		double filterContoursMaxHeight = 1000.0;
-		double[] filterContoursSolidity = {0, 100};
-		double filterContoursMaxVertices = 1000000.0;
-		double filterContoursMinVertices = 0.0;
-		double filterContoursMinRatio = 0.0;
-		double filterContoursMaxRatio = 1000.0;
+		double filterContoursMinArea = 0.0;
+		double filterContoursMinPerimeter = 0.0;
+		double filterContoursMinWidth = 0.0;
+		double filterContoursMaxWidth = 1000000.0;
+		double filterContoursMinHeight = 0.0;
+		double filterContoursMaxHeight = 100000.0;
+		//double[] filterContoursSolidity = {55.755397827505206, 100.0};
+		double[] filterContoursSolidity = {0.0, 100.0};
+		double filterContoursMaxVertices = 3000.0;
+		double filterContoursMinVertices = 4.0;
+		double filterContoursMinRatio = 0.1;//0.3;
+		double filterContoursMaxRatio = 1.0; //0.6;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 	}
 
 	/**
-	 * This method is a generated getter for the output of a RGB_Threshold.
-	 * @return Mat output from RGB_Threshold.
+	 * This method is a generated getter for the output of a HSL_Threshold.
+	 * @return Mat output from HSL_Threshold.
 	 */
-	public Mat rgbThresholdOutput() {
-		return rgbThresholdOutput;
+	public Mat hslThresholdOutput() {
+		return hslThresholdOutput;
 	}
 
+	/**
+	   * An indication of which type of filter to use for a blur. Choices are BOX,
+	   * GAUSSIAN, MEDIAN, and BILATERAL
+	   */
+	  enum BlurType {
+	    BOX("Box Blur"), GAUSSIAN("Gaussian Blur"), MEDIAN("Median Filter"), BILATERAL("Bilateral Filter");
+
+	    private final String label;
+
+	    BlurType(String label) {
+	      this.label = label;
+	    }
+
+	    public static BlurType get(String type) {
+	      if (BILATERAL.label.equals(type)) {
+	        return BILATERAL;
+	      } else if (GAUSSIAN.label.equals(type)) {
+	        return GAUSSIAN;
+	      } else if (MEDIAN.label.equals(type)) {
+	        return MEDIAN;
+	      } else {
+	        return BOX;
+	      }
+	    }
+
+	    @Override
+	    public String toString() {
+	      return this.label;
+	    }
+	  }
+
+	  /**
+	   * Softens an image using one of several filters.
+	   *
+	   * @param input
+	   *          The image on which to perform the blur.
+	   * @param type
+	   *          The blurType to perform.
+	   * @param doubleRadius
+	   *          The radius for the blur.
+	   * @param output
+	   *          The image in which to store the output.
+	   */
+	  private void blur(Mat input, BlurType type, double doubleRadius, Mat output) {
+	    int radius = (int) (doubleRadius + 0.5);
+	    int kernelSize;
+	    switch (type) {
+	      case BOX:
+	        kernelSize = 2 * radius + 1;
+	        Imgproc.blur(input, output, new Size(kernelSize, kernelSize));
+	        break;
+	      case GAUSSIAN:
+	        kernelSize = 6 * radius + 1;
+	        Imgproc.GaussianBlur(input, output, new Size(kernelSize, kernelSize), radius);
+	        break;
+	      case MEDIAN:
+	        kernelSize = 2 * radius + 1;
+	        Imgproc.medianBlur(input, output, kernelSize);
+	        break;
+	      case BILATERAL:
+	        Imgproc.bilateralFilter(input, output, -1, radius, radius);
+	        break;
+	    }
+	  }
+	  
 	/**
 	 * This method is a generated getter for the output of a Find_Contours.
 	 * @return ArrayList<MatOfPoint> output from Find_Contours.
@@ -93,18 +165,19 @@ public class GripPipeline {
 
 
 	/**
-	 * Segment an image based on color ranges.
-	 * @param input The image on which to perform the RGB threshold.
-	 * @param red The min and max red.
-	 * @param green The min and max green.
-	 * @param blue The min and max blue.
+	 * Segment an image based on hue, saturation, and luminance ranges.
+	 *
+	 * @param input The image on which to perform the HSL threshold.
+	 * @param hue The min and max hue
+	 * @param sat The min and max saturation
+	 * @param lum The min and max luminance
 	 * @param output The image in which to store the output.
 	 */
-	private void rgbThreshold(Mat input, double[] red, double[] green, double[] blue,
+	private void hslThreshold(Mat input, double[] hue, double[] sat, double[] lum,
 		Mat out) {
-		Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2RGB);
-		Core.inRange(out, new Scalar(red[0], green[0], blue[0]),
-			new Scalar(red[1], green[1], blue[1]), out);
+		Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HLS);
+		Core.inRange(out, new Scalar(hue[0], lum[0], sat[0]),
+			new Scalar(hue[1], lum[1], sat[1]), out);
 	}
 
 	/**

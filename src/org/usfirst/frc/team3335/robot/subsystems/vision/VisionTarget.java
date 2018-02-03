@@ -67,7 +67,7 @@ public class VisionTarget extends Subsystem implements LoggableSubsystem, PIDSou
 
 		CvSource cs= CameraServer.getInstance().putVideo("name", IMG_WIDTH, IMG_HEIGHT);
 
-		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+		visionThread = new VisionThread(camera, new GripPipelineSteamy(), pipeline -> {
 			Mat IMG_MOD = pipeline.hslThresholdOutput();
 	        if (!pipeline.filterContoursOutput().isEmpty()) {
 	            //Rect recCombine = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
