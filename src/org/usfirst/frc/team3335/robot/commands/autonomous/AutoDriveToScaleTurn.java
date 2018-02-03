@@ -13,6 +13,8 @@ public class AutoDriveToScaleTurn extends CommandGroup {
 		
 		addSequential(new AutoDriveTurnToScale(Angle,0.7));
 		
+		addSequential(new AutoBackToWall());
+		
 	}
 	
 	

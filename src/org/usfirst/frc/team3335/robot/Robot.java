@@ -66,6 +66,8 @@ public class Robot extends IterativeRobot {
 	public static Arm arm;
 	public static Glove glove;
 	
+	public static DoubleUltrasonic doubleUltrasonic;
+	
 	
 	
 	public static PowerDistributionPanel pdp;
@@ -134,6 +136,9 @@ public class Robot extends IterativeRobot {
 		*/
 		ballShifter = new BallShifter();
 		subsystemsList.add(ballShifter);
+		
+		doubleUltrasonic = new DoubleUltrasonic();
+		subsystemsList.add(doubleUltrasonic);
 		
 		//ballShifter = null;
 		// Autonomous
