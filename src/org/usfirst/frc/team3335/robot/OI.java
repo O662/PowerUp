@@ -56,6 +56,10 @@ public class OI {
        // bGearPickupUp = 2;
        // bGearPickupClose = 4;
        // bGearPickupOpen = 5;
+        
+        //2018 controls
+        //bGrabCube = 3
+        //bReleaseCube = 2
 
         // Gate
         /*
@@ -82,12 +86,12 @@ public class OI {
         */
 
         // Ball Shifter
-        /*
+        
         JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
         ballShiftHigh.whenPressed(new BallShiftHigh());
         JoystickButton ballShiftLow = addButton(getJoystick(), bShiftLow, "Ball Shifter Low");
         ballShiftLow.whenPressed(new BallShiftLow());
-        */
+        
 
         // Rope climber
         /*
@@ -136,6 +140,13 @@ public class OI {
 		SmartDashboard.putData("AutoTurnToPeg", new AutoTurnToPeg());
 		SmartDashboard.putData("AutoSteerDriveToPeg", new AutoSteerDriveToPeg(60, 0.7, 9));
 		*/
+        
+        //2018
+        
+        /*
+         * JoystickButton Glove = addButton(getJoystick(), bGrabCube, "Arms Closed");
+         * 
+         */
     }
 
     private JoystickButton addButton(Joystick joystick, int buttonNumber, String key) {
