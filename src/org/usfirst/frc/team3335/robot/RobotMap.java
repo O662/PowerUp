@@ -74,10 +74,12 @@ public class RobotMap {
 
 	// Mark 3
 	/**/
-	public static final int DRIVE_TRAIN_FRONT_LEFT = 5;
-	public static final int DRIVE_TRAIN_FRONT_RIGHT = 2;
-	public static final int DRIVE_TRAIN_BACK_LEFT = 3;
-	public static final int DRIVE_TRAIN_BACK_RIGHT = 1;
+	public static final int DRIVE_MOTOR_RIGHT1 = 1;
+	public static final int DRIVE_MOTOR_RIGHT2 = 2;
+	public static final int DRIVE_MOTOR_RIGHT3 = 3;
+	public static final int DRIVE_MOTOR_LEFT1 = 4;
+	public static final int DRIVE_MOTOR_LEFT2 = 5;
+	public static final int DRIVE_MOTOR_LEFT3 = 6;
     public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_A = 2;//8;//1; //8?
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_B = 3;//9;//0; //9?
@@ -87,8 +89,8 @@ public class RobotMap {
 	public static final boolean DRIVE_TRAIN_ENCODER_RIGHT_REVERSE = true;
 	public static final int CLIMBING_MOTOR = 7;
 	public static final int CLIMBING_MOTOR2 = 8;
-	public static final int INTAKE_MOTOR = 5;
-	public static final int BALL_SHOOTER_MOTOR = 6;
+	//public static final int INTAKE_MOTOR = 5;
+	//public static final int BALL_SHOOTER_MOTOR = 6;
 	public static final int ANALOG_ULTRASONIC_LEFT = 0;
 	public static final int ANALOG_ULTRASONIC_RIGHT = 1;
 	public static final int RELAY_CHANNEL = 0;

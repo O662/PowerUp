@@ -28,7 +28,8 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 
     //get the cantalons at http://www.ctr-electronics.com/downloads/installers/CTRE%20Toolsuite%20v4.4.1.9-nonadmin.zip for windows,
     //http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.9.zip for other
-	private WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
+	private WPI_TalonSRX motorLeft1, motorLeft2, motorLeft3;
+	private WPI_TalonSRX motorRight1, motorRight2, motorRight3;
     private DifferentialDrive drive;
     private Encoder leftEncoder;
     private Encoder rightEncoder;
@@ -60,20 +61,20 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 
     public DriveTrain() {
         super();
-        frontLeft = new WPI_TalonSRX(RobotMap.DRIVE_TRAIN_FRONT_LEFT);
+        motorLeft1 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_LEFT1);
+        motorLeft2 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_LEFT2);
+        motorLeft3 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_LEFT3);
         //TalonSRX frontLeftTalon = new TalonSRX(RobotMap.DRIVE_TRAIN_FRONT_LEFT);
         //SpeedController frontLeftTalonSC = frontLeftTalon.getWPILIB_SpeedController();
-        frontRight = new WPI_TalonSRX(RobotMap.DRIVE_TRAIN_FRONT_RIGHT);
-        backLeft = new WPI_TalonSRX(RobotMap.DRIVE_TRAIN_BACK_LEFT);
-        backRight = new WPI_TalonSRX(RobotMap.DRIVE_TRAIN_BACK_RIGHT);
-        SpeedControllerGroup leftGroup = new SpeedControllerGroup(frontLeft, backLeft);
-        SpeedControllerGroup rightGroup = new SpeedControllerGroup(frontRight, backRight);
+        motorRight1 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_RIGHT1);
+        motorRight2 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_RIGHT2);
+        motorRight3 = new WPI_TalonSRX(RobotMap.DRIVE_MOTOR_RIGHT3);
+        SpeedControllerGroup leftGroup = new SpeedControllerGroup(motorLeft1, motorLeft2, motorLeft3);
+        SpeedControllerGroup rightGroup = new SpeedControllerGroup(motorRight1, motorRight2, motorRight3);
 
-        frontLeft.set(0);
-        frontRight.set(0);
-        backLeft.set(0);
-        backRight.set(0);
-        
+        leftGroup.set(0);
+        rightGroup.set(0);
+
         double voltageRampRate = voltageRampRateDefault;//20;
         setRampRate(voltageRampRate);
         
@@ -105,10 +106,13 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     	// Formerly: frontLeft.enableBrakeMode(brake);
     	// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
     	NeutralMode mode = brake ? NeutralMode.Brake : NeutralMode.Coast;
-    	frontLeft.setNeutralMode(mode);
-    	frontRight.setNeutralMode(mode);
-    	backLeft.setNeutralMode(mode);
-    	backRight.setNeutralMode(mode);
+
+    	motorLeft1.setNeutralMode(mode);
+    	motorLeft2.setNeutralMode(mode);
+    	motorLeft3.setNeutralMode(mode);
+    	motorRight1.setNeutralMode(mode);
+    	motorRight2.setNeutralMode(mode);
+    	motorRight3.setNeutralMode(mode);
     }
 
     public void setRampRateTime(double secondsFromNeutralToFull) {
@@ -116,10 +120,12 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     	// TODO also see section on limiting current rate, both peak and continuous
     	// TODO which will be useful for climbing motors
     	// (2, 0) ramps from neutral to full voltage in 2 sec, with no timeout
-    	frontLeft.configOpenloopRamp(secondsFromNeutralToFull, 0);
-    	frontRight.configOpenloopRamp(secondsFromNeutralToFull, 0);
-    	backLeft.configOpenloopRamp(secondsFromNeutralToFull, 0);
-    	backRight.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorLeft1.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorLeft2.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorLeft3.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorRight1.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorRight2.configOpenloopRamp(secondsFromNeutralToFull, 0);
+    	motorRight3.configOpenloopRamp(secondsFromNeutralToFull, 0);
     }
 
     @Deprecated
@@ -255,14 +261,18 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     	SmartDashboard.putNumber("DriveTrain: left velocity", leftEncoder.getRate());
     	SmartDashboard.putNumber("DriveTrain: right distance", rightEncoder.getDistance());
     	SmartDashboard.putNumber("DriveTrain: right velocity", rightEncoder.getRate());
-    	SmartDashboard.putNumber("DriveTrain: front right current", frontRight.getOutputCurrent());
-    	SmartDashboard.putNumber("DriveTrain: front right current pdp", Robot.pdp.getCurrent(12));
-    	SmartDashboard.putNumber("DriveTrain: front left  current", frontLeft.getOutputCurrent());
-    	SmartDashboard.putNumber("DriveTrain: front left  current pdp", Robot.pdp.getCurrent(10));
-    	SmartDashboard.putNumber("DriveTrain: back  right current", backRight.getOutputCurrent());
-    	SmartDashboard.putNumber("DriveTrain: back  right current pdp", Robot.pdp.getCurrent(13));
-    	SmartDashboard.putNumber("DriveTrain: back  left  current", backLeft.getOutputCurrent());
-    	SmartDashboard.putNumber("DriveTrain: back  left  current pdp", Robot.pdp.getCurrent(11));
+    	SmartDashboard.putNumber("DriveTrain: left1 current", motorLeft1.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left1 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: left2 current", motorLeft2.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left2 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: left3 current", motorLeft3.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left3 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right1 current", motorRight1.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right1 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right2 current", motorRight2.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right2 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right3 current", motorRight3.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right3 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
     }
 
 	@Override
