@@ -21,12 +21,11 @@ public class OI {
 
         // Joystick 1
         int bDefault = -1;
-        
-       //int bGateUp = bDefault;
-        //int bGateDown = bDefault;
-        
-        int bShiftLow = bDefault;
-        int bShiftHigh = bDefault;
+
+        int bLaunchCube = 3;
+        int bShiftLow = 7;
+        int bShiftHigh = 6;
+
         /*
         int bDriveForward = bDefault;
         int bDriveBackward = bDefault;
@@ -48,8 +47,6 @@ public class OI {
         // Joystick 1
        // bGateUp = 3;
         //bGateDown = 2;
-        bShiftLow = 7;
-        bShiftHigh = 6;
        // bDriveForward = 8;
        // bDriveBackward = 9;
        // bGearPickupDown = 3;
@@ -85,8 +82,12 @@ public class OI {
         driveBackward.whenPressed(new SetDirection(false));
         */
 
+        // Launcher
+        JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
+        launchCube.whenPressed(new LaunchCube(true));
+        launchCube.whenReleased(new LaunchCube(false));
+
         // Ball Shifter
-        
         JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
         ballShiftHigh.whenPressed(new BallShiftHigh());
         JoystickButton ballShiftLow = addButton(getJoystick(), bShiftLow, "Ball Shifter Low");

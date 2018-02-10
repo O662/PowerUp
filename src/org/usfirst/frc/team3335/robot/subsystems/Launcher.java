@@ -17,7 +17,7 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 	double pulsesPerRevolution = 256;
 	double encoderToShaftRatio = 3;
 	double stage3Ratio = 50.0 / 34.0;
-	
+
 	public Launcher() {
 		launcherMotorRight = new WPI_TalonSRX(RobotMap.LAUNCHER_RIGHT_MOTOR);
 		launcherMotorLeft = new WPI_TalonSRX(RobotMap.LAUNCHER_LEFT_MOTOR);
@@ -29,7 +29,6 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 		launcherMotorLeft.setInverted(true);
 	}
 
-	
     public void initDefaultCommand() {
     }
 
@@ -42,8 +41,6 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
     	launcherMotorRight.set(0);
     	launcherMotorLeft.set(0);
     }
-
-
 
 	@Override
 	public void log() {

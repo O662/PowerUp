@@ -58,11 +58,8 @@ public class Robot extends IterativeRobot {
 //	public static DoubleUltrasonic ultrasonics;
 	public static NavX navx;
 	//2018 code
-	/*
 	public static Launcher launcher;
-	
-	public static Climber climber;
-	*/
+	//public static Climber climber;
 	//public static Arm arm;
 	//public static Glove glove;
 	
