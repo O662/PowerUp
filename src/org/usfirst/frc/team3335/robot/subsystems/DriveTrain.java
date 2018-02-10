@@ -193,11 +193,12 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     	} 
     	else {
     		int sign = direction;
+    		int turnSign = -1;
     		if (joystick.getRawAxis(1) <= 0) sign = -direction;
     		if (Math.abs(joystick.getRawAxis(1))>trainingSpeedMax)
     			driveArcadePrivate(sign*trainingSpeedMax, map(/*direction * */ joystick.getRawAxis(0)));
     		else
-    			driveArcadePrivate(map(direction *joystick.getRawAxis(1)), map(/*direction * */ joystick.getRawAxis(0)));
+    			driveArcadePrivate(map(direction *joystick.getRawAxis(1)), turnSign * map(/*direction * */ joystick.getRawAxis(0)));
     	}
     }
 

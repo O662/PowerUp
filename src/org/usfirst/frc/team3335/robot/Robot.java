@@ -123,14 +123,13 @@ public class Robot extends IterativeRobot {
 		//subsystemsList.add(arm);
 		//glove = new Glove();
 		//subsystemsList.add(glove);
-		/*
+
 		launcher = new Launcher();
 		subsystemsList.add(launcher);
 		
-		climber = new Climber();
-		subsystemsList.add(climber);
+		//climber = new Climber();
+		//subsystemsList.add(climber);
 		
-		*/
 		ballShifter = new BallShifter();
 		subsystemsList.add(ballShifter);
 		

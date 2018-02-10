@@ -33,8 +33,9 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
     }
 
     public void turn() {
-    	launcherMotorRight.set(1);
-    	launcherMotorLeft.set(1);
+    	double voltage = 1;
+    	launcherMotorRight.set(voltage);
+    	launcherMotorLeft.set(voltage);
     }
 
     public void stop() {

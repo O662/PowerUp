@@ -94,13 +94,13 @@ public class RobotMap {
 	/** Left drive MiniCIM motor */
 	public static final int DRIVE_MOTOR_LEFT3 = 2; // PDP 1
 	/** Right arm bag motor */
-	public static final int ARM_RIGHT_MOTOR = 5; // PDP 4
+	public static final int ARM_RIGHT_MOTOR = 15; //5; // PDP 4
 	/** Left arm bag motor */
-	public static final int ARM_LEFT_MOTOR = 6; // PDP 5
+	public static final int ARM_LEFT_MOTOR = 16; //6; // PDP 5
 	/** Right launcher/trigger CIM motor */
-	public static final int LAUNCHER_RIGHT_MOTOR = 9; // PDP ??
+	public static final int LAUNCHER_RIGHT_MOTOR = 5; //9; // PDP ??
 	/** Left launcher/trigger CIM motor */
-	public static final int LAUNCHER_LEFT_MOTOR = 10; // PDP ??
+	public static final int LAUNCHER_LEFT_MOTOR = 6; //10; // PDP ??
 	/** Right climber 775 motor */
 	public static final int CLIMBER_RIGHT_MOTOR = 11; // PDP ??
 	/** Left climber 775 motor */
