@@ -261,18 +261,18 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
     	SmartDashboard.putNumber("DriveTrain: left velocity", leftEncoder.getRate());
     	SmartDashboard.putNumber("DriveTrain: right distance", rightEncoder.getDistance());
     	SmartDashboard.putNumber("DriveTrain: right velocity", rightEncoder.getRate());
-    	SmartDashboard.putNumber("DriveTrain: left1 current", motorLeft1.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: left1 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
-    	SmartDashboard.putNumber("DriveTrain: left2 current", motorLeft2.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: left2 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
-    	SmartDashboard.putNumber("DriveTrain: left3 current", motorLeft3.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: left3 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
-    	SmartDashboard.putNumber("DriveTrain: right1 current", motorRight1.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: right1 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
-    	SmartDashboard.putNumber("DriveTrain: right2 current", motorRight2.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: right2 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
-    	SmartDashboard.putNumber("DriveTrain: right3 current", motorRight3.getOutputCurrent());
-    	//SmartDashboard.putNumber("DriveTrain: right3 current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: left1 (CIM) current", motorLeft1.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left1 (CIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: left2 (MiniCIM) current", motorLeft2.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left2 (MiniCIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: left3 (MiniCIM) current", motorLeft3.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: left3 (MiniCIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right1 (CIM) current", motorRight1.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right1 (CIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right2 (MiniCIM) current", motorRight2.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right2 (MiniCIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
+    	SmartDashboard.putNumber("DriveTrain: right3 (MiniCIM) current", motorRight3.getOutputCurrent());
+    	//SmartDashboard.putNumber("DriveTrain: right3 (MiniCIM) current pdp", Robot.pdp.getCurrent(12)); // TODO fix channel
     }
 
 	@Override

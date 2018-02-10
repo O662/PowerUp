@@ -11,17 +11,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Launcher extends Subsystem implements LoggableSubsystem {
 	//this subsystem at the moment employs a motor to lower the launcher over a spring but is subject to change
-	private WPI_TalonSRX LauncherMotor;
+	private WPI_TalonSRX launcherMotorRight;
+	private WPI_TalonSRX launcherMotorLeft;
 	private Encoder launcherEncoder;
 	double pulsesPerRevolution = 256;
 	double encoderToShaftRatio = 3;
 	double stage3Ratio = 50.0 / 34.0;
 	
 	public Launcher() {
-		LauncherMotor = new WPI_TalonSRX(RobotMap.LAUNCHER_MOTOR);
+		launcherMotorRight = new WPI_TalonSRX(RobotMap.LAUNCHER_RIGHT_MOTOR);
+		launcherMotorLeft = new WPI_TalonSRX(RobotMap.LAUNCHER_LEFT_MOTOR);
 		launcherEncoder = new Encoder(RobotMap.LAUNCHER_ENCODER_A, RobotMap.LAUNCHER_ENCODER_B,
         RobotMap.LAUNCHER_ENCODER_REVERSE, EncodingType.k4X);
-		LauncherMotor.setNeutralMode(NeutralMode.Brake);
+		launcherMotorRight.setNeutralMode(NeutralMode.Brake);
+		launcherMotorLeft.setNeutralMode(NeutralMode.Brake);
+		// Motors turn in opposite direction.  Must flip polarity of one.
+		launcherMotorLeft.setInverted(true);
 	}
 
 	
@@ -29,11 +34,13 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
     }
 
     public void turn() {
-    	LauncherMotor.set(1);
+    	launcherMotorRight.set(1);
+    	launcherMotorLeft.set(1);
     }
 
     public void stop() {
-    	LauncherMotor.set(0);
+    	launcherMotorRight.set(0);
+    	launcherMotorLeft.set(0);
     }
 
 
