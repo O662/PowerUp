@@ -74,7 +74,13 @@ public class RobotMap {
 
 	// Mark 2
 	/**/
-	// Motors
+	// Miscellaneous
+    public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
+	public static final int ANALOG_ULTRASONIC_LEFT = 0;
+	public static final int ANALOG_ULTRASONIC_RIGHT = 1;
+	public static final int RELAY_CHANNEL = 0;
+
+    // Motors
 	/** Right drive CIM motor */
 	public static final int DRIVE_MOTOR_RIGHT1 = 4; // PDP 3
 	/** Right drive MiniCIM motor */
@@ -87,13 +93,6 @@ public class RobotMap {
 	public static final int DRIVE_MOTOR_LEFT2 = 1; // PDP 0
 	/** Left drive MiniCIM motor */
 	public static final int DRIVE_MOTOR_LEFT3 = 2; // PDP 1
-    public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
-	public static final int DRIVE_TRAIN_ENCODER_LEFT_A = 2;//8;//1; //8?
-	public static final int DRIVE_TRAIN_ENCODER_LEFT_B = 3;//9;//0; //9?
-	public static final boolean DRIVE_TRAIN_ENCODER_LEFT_REVERSE = false;
-	public static final int DRIVE_TRAIN_ENCODER_RIGHT_A = 0;//3;//2; //3?
-	public static final int DRIVE_TRAIN_ENCODER_RIGHT_B = 1;//4;//3; //4?
-	public static final boolean DRIVE_TRAIN_ENCODER_RIGHT_REVERSE = true;
 	/** Right arm bag motor */
 	public static final int ARM_RIGHT_MOTOR = 5; // PDP 4
 	/** Left arm bag motor */
@@ -102,34 +101,26 @@ public class RobotMap {
 	public static final int LAUNCHER_RIGHT_MOTOR = 9; // PDP ??
 	/** Left launcher/trigger CIM motor */
 	public static final int LAUNCHER_LEFT_MOTOR = 10; // PDP ??
-	public static final int CLIMBER_RIGHT_MOTOR = 117; // PDP ??
-	public static final int CLIMBER_LEFT_MOTOR = 118; // PDP ??
-	public static final int ANALOG_ULTRASONIC_LEFT = 0;
-	public static final int ANALOG_ULTRASONIC_RIGHT = 1;
-	public static final int RELAY_CHANNEL = 0;
-	// PCM 0
-	public static final int FLAPPER_FORWARD_CHANNEL = 5;
-	public static final int FLAPPER_REVERSE_CHANNEL = 4;
+	/** Right climber 775 motor */
+	public static final int CLIMBER_RIGHT_MOTOR = 11; // PDP ??
+	/** Left climber 775 motor */
+	public static final int CLIMBER_LEFT_MOTOR = 12; // PDP ??
+
+	// Solenoids: PCM 0
 	public static final int BALL_SHIFTER_FORWARD_CHANNEL = 0;
 	public static final int BALL_SHIFTER_REVERSE_CHANNEL = 1;
-	public static final int GATE_FORWARD_CHANNEL = 3;
-	public static final int GATE_REVERSE_CHANNEL = 2;
-	public static final int GEAR_EJECTOR_FORWARD_CHANNEL = 7;
-	public static final int GEAR_EJECTOR_REVERSE_CHANNEL = 6;
-	// PCM 1
-	public static final int GEAR_PICKUP_UP_DOWN_FORWARD_CHANNEL = 0;
-	public static final int GEAR_PICKUP_UP_DOWN_REVERSE_CHANNEL = 1;
-	public static final int GEAR_PICKUP_OPEN_CLOSE_FORWARD_CHANNEL = 2;
-	public static final int GEAR_PICKUP_OPEN_CLOSE_REVERSE_CHANNEL = 3;
-	/**/
-
-	// Solenoids
 	public static final int GLOVE_FORWARD_CHANNEL = 21;
 	public static final int GLOVE_REVERSE_CHANNEL = 31;
 	public static final int GLOVE_FORWARD_CHANNEL_2 = 22;
 	public static final int GLOVE_REVERSE_CHANNEL_2 = 32;
 
 	// Encoders
+	public static final int DRIVE_TRAIN_ENCODER_RIGHT_A = 0;//3;//2; //3?
+	public static final int DRIVE_TRAIN_ENCODER_RIGHT_B = 1;//4;//3; //4?
+	public static final boolean DRIVE_TRAIN_ENCODER_RIGHT_REVERSE = true;
+	public static final int DRIVE_TRAIN_ENCODER_LEFT_A = 2;//8;//1; //8?
+	public static final int DRIVE_TRAIN_ENCODER_LEFT_B = 3;//9;//0; //9?
+	public static final boolean DRIVE_TRAIN_ENCODER_LEFT_REVERSE = false;
 	public static final int ARM_ENCODER_RIGHT_A= 1;
 	public static final int ARM_ENCODER_RIGHT_B = 2;
 	public static final boolean ARM_ENCODER_RIGHT_REVERSE = false;
@@ -139,4 +130,5 @@ public class RobotMap {
 	public static final int LAUNCHER_ENCODER_A = 4;
 	public static final int LAUNCHER_ENCODER_B = 5;
 	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
+	/**/
 }
