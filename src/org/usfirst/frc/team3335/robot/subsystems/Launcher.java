@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3335.robot.subsystems;
 
+import org.usfirst.frc.team3335.robot.Robot;
 import org.usfirst.frc.team3335.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -8,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Launcher extends Subsystem implements LoggableSubsystem {
 	//this subsystem at the moment employs a motor to lower the launcher over a spring but is subject to change
@@ -23,10 +25,10 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 		launcherMotorLeft = new WPI_TalonSRX(RobotMap.LAUNCHER_LEFT_MOTOR);
 		launcherEncoder = new Encoder(RobotMap.LAUNCHER_ENCODER_A, RobotMap.LAUNCHER_ENCODER_B,
         RobotMap.LAUNCHER_ENCODER_REVERSE, EncodingType.k4X);
-		launcherMotorRight.setNeutralMode(NeutralMode.Brake);
-		launcherMotorLeft.setNeutralMode(NeutralMode.Brake);
+		launcherMotorRight.setNeutralMode(NeutralMode.Coast/*Brake*/);
+		launcherMotorLeft.setNeutralMode(NeutralMode.Coast/*Brake*/);
 		// Motors turn in opposite direction.  Must flip polarity of one.
-		launcherMotorLeft.setInverted(true);
+		launcherMotorRight.setInverted(true);
 	}
 
     public void initDefaultCommand() {
@@ -45,8 +47,10 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 
 	@Override
 	public void log() {
-		// TODO Auto-generated method stub
-		
+    	SmartDashboard.putNumber("Launcher: right current", launcherMotorRight.getOutputCurrent());
+    	SmartDashboard.putNumber("Launcher: right current pdp", Robot.pdp.getCurrent(13));
+		SmartDashboard.putNumber("Launcher: left current", launcherMotorLeft.getOutputCurrent());
+		SmartDashboard.putNumber("Launcher: left current pdp", Robot.pdp.getCurrent(12));
 	}
 }
 	

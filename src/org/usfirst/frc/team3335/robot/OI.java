@@ -146,6 +146,9 @@ public class OI {
         
         /*
          * JoystickButton Glove = addButton(getJoystick(), bGrabCube, "Arms Closed");
+         * Glove.whenPressed(new Hand(true));
+         * Glove.whenPressed(new Hand(false));
+         * 
          * 
          */
     }
