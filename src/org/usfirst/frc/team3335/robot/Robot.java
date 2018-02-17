@@ -60,13 +60,11 @@ public class Robot extends IterativeRobot {
 	//2018 code
 	public static Launcher launcher;
 	//public static Climber climber;
-	//public static Arm arm;
-	//public static Glove glove;
-	
+	public static Arm arm;
+	public static Glove glove;
+
 	public static DoubleUltrasonic doubleUltrasonic;
-	
-	
-	
+
 	public static PowerDistributionPanel pdp;
 
 	/**
@@ -119,10 +117,10 @@ public class Robot extends IterativeRobot {
 		subsystemsList.add(navx);
 		
 		//2018 CODE
-		//arm = new Arm();
-		//subsystemsList.add(arm);
-		//glove = new Glove();
-		//subsystemsList.add(glove);
+		arm = new Arm();
+		subsystemsList.add(arm);
+		glove = new Glove();
+		subsystemsList.add(glove);
 
 		launcher = new Launcher();
 		subsystemsList.add(launcher);

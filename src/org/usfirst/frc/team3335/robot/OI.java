@@ -23,6 +23,8 @@ public class OI {
         int bDefault = -1;
 
         int bLaunchCube = 3;
+        int bMoveArmDown = 4;
+        int bMoveArmUp = 5;
         int bShiftLow = 7;
         int bShiftHigh = 6;
 
@@ -81,6 +83,15 @@ public class OI {
         JoystickButton driveBackward = addButton(getJoystick(), bDriveBackward, "Drive Backward");
         driveBackward.whenPressed(new SetDirection(false));
         */
+
+        // Arm
+        double armSpeed = 0.3;
+        JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
+        moveArmUp.whenPressed(new ArmMove(armSpeed));
+        moveArmUp.whenReleased(new ArmMove(0));
+        JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
+        moveArmDown.whenPressed(new ArmMove(-armSpeed));
+        moveArmDown.whenReleased(new ArmMove(0));
 
         // Launcher
         JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");

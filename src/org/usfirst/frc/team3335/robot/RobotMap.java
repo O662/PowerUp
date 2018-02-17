@@ -82,29 +82,29 @@ public class RobotMap {
 
     // Motors
 	/** Right drive CIM motor */
-	public static final int DRIVE_MOTOR_RIGHT1 = 4; // PDP 3
+	public static final int MOTOR_DRIVE_RIGHT1 = 4;
 	/** Right drive MiniCIM motor */
-	public static final int DRIVE_MOTOR_RIGHT2 = 7; // PDP 14
+	public static final int MOTOR_DRIVE_RIGHT2 = 7;
 	/** Right drive MiniCIM motor */
-	public static final int DRIVE_MOTOR_RIGHT3 = 8; // PDP 15
+	public static final int MOTOR_DRIVE_RIGHT3 = 8;
 	/** Left drive CIM motor */
-	public static final int DRIVE_MOTOR_LEFT1 = 3; // PDP 2
+	public static final int MOTOR_DRIVE_LEFT1 = 3;
 	/** Left drive MiniCIM motor */
-	public static final int DRIVE_MOTOR_LEFT2 = 1; // PDP 0
+	public static final int MOTOR_DRIVE_LEFT2 = 1;
 	/** Left drive MiniCIM motor */
-	public static final int DRIVE_MOTOR_LEFT3 = 2; // PDP 1
+	public static final int MOTOR_DRIVE_LEFT3 = 2;
 	/** Right arm bag motor */
-	public static final int ARM_RIGHT_MOTOR = 5; // PDP 4
+	public static final int ARM_RIGHT_MOTOR = 5;
 	/** Left arm bag motor */
-	public static final int ARM_LEFT_MOTOR = 6; // PDP 5
+	public static final int ARM_LEFT_MOTOR = 6;
 	/** Right launcher/trigger CIM motor */
-	public static final int LAUNCHER_RIGHT_MOTOR = 9; // PDP 13
+	public static final int LAUNCHER_RIGHT_MOTOR = 9;
 	/** Left launcher/trigger CIM motor */
-	public static final int LAUNCHER_LEFT_MOTOR = 10; // PDP 12
+	public static final int LAUNCHER_LEFT_MOTOR = 10;
 	/** Right climber 775 motor */
-	public static final int CLIMBER_RIGHT_MOTOR = 11; // PDP 11
+	public static final int CLIMBER_RIGHT_MOTOR = 11;
 	/** Left climber 775 motor */
-	public static final int CLIMBER_LEFT_MOTOR = 12; // PDP 10
+	public static final int CLIMBER_LEFT_MOTOR = 12;
 
 	// Solenoids: PCM 0
 	public static final int BALL_SHIFTER_FORWARD_CHANNEL = 0;
@@ -121,14 +121,29 @@ public class RobotMap {
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_A = 2;//8;//1; //8?
 	public static final int DRIVE_TRAIN_ENCODER_LEFT_B = 3;//9;//0; //9?
 	public static final boolean DRIVE_TRAIN_ENCODER_LEFT_REVERSE = false;
-	public static final int ARM_ENCODER_RIGHT_A= 1;
-	public static final int ARM_ENCODER_RIGHT_B = 2;
+	public static final int ARM_ENCODER_RIGHT_A= 21;
+	public static final int ARM_ENCODER_RIGHT_B = 22;
 	public static final boolean ARM_ENCODER_RIGHT_REVERSE = false;
-	public static final int ARM_ENCODER_LEFT_A = 0;
-	public static final int ARM_ENCODER_LEFT_B = 3;
+	public static final int ARM_ENCODER_LEFT_A = 20;
+	public static final int ARM_ENCODER_LEFT_B = 23;
 	public static final boolean ARM_ENCODER_LEFT_REVERSE = false;
 	public static final int LAUNCHER_ENCODER_A = 4;
 	public static final int LAUNCHER_ENCODER_B = 5;
 	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
+
+	// PDP channels for motors on Mark 2 and Mark 3
+	public static final boolean isMark3 = true; // = false for Mark 2
+	public static final int PDP_MOTOR_DRIVE_RIGHT1 = isMark3 ? 0 : 3;
+	public static final int PDP_MOTOR_DRIVE_RIGHT2 = isMark3 ? 1 : 14;
+	public static final int PDP_MOTOR_DRIVE_RIGHT3 = isMark3 ? 2 : 15;
+	public static final int PDP_MOTOR_DRIVE_LEFT1 = isMark3 ? 13 : 2;
+	public static final int PDP_MOTOR_DRIVE_LEFT2 = isMark3 ? 15 : 0;
+	public static final int PDP_MOTOR_DRIVE_LEFT3 = isMark3 ? 14 : 1;
+	public static final int PDP_MOTOR_ARM_RIGHT = isMark3 ? 7 : 4;
+	public static final int PDP_MOTOR_ARM_LEFT = isMark3 ? 8 : 5;
+	public static final int PDP_MOTOR_LAUNCHER_RIGHT = isMark3 ? 12 : 13;
+	public static final int PDP_MOTOR_LAUNCHER_LEFT = isMark3 ? 3 : 12;
+	public static final int PDP_MOTOR_CLIMBER_RIGHT = isMark3 ? 9 : 11;
+	public static final int PDP_MOTOR_CLIMBER_LEFT = isMark3 ? 6 : 10;
 	/**/
 }

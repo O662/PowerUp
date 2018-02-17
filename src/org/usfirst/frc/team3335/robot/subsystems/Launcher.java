@@ -28,7 +28,7 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 		launcherMotorRight.setNeutralMode(NeutralMode.Coast/*Brake*/);
 		launcherMotorLeft.setNeutralMode(NeutralMode.Coast/*Brake*/);
 		// Motors turn in opposite direction.  Must flip polarity of one.
-		launcherMotorRight.setInverted(true);
+		launcherMotorLeft.setInverted(true);
 	}
 
     public void initDefaultCommand() {

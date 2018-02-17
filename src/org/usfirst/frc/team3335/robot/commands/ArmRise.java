@@ -1,4 +1,3 @@
-/*
 package org.usfirst.frc.team3335.robot.commands;
 
 
@@ -13,7 +12,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ArmRise extends Command {
-	
+
 	boolean finished;
 	private static Preferences prefs = Preferences.getInstance();
 	private static final double kP = prefs.getDouble("Vision Kp", RobotPreferences.VISION_KP_DEFAULT);
@@ -22,30 +21,30 @@ public class ArmRise extends Command {
 	private final double maxOutputRange = prefs.getDouble("Vision Max Output Range", RobotPreferences.VISION_MAX_OUTPUT_RANGE_DEFAULT);
 	private double rotateRate;
 	// Setpoint angle
-		private double setPointAngle;
+	private double setPointAngle;
 	// tolerance in degrees
-		private static final double kToleranceDegrees = 1.0;
-		private PIDController turnController;
-	
+	private static final double kToleranceDegrees = 1.0;
+	private PIDController turnController;
+
 	public ArmRise () {
 		requires(Robot.arm);
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
-	
+
 	public void initialize() {
 		turnController = new PIDController(kP,kI,kD,Robot.arm,new MyPidOutput());
 		turnController.setInputRange(-180, 180);
-        turnController.setOutputRange(-maxOutputRange, maxOutputRange);
-        turnController.setAbsoluteTolerance(kToleranceDegrees);
-        turnController.setContinuous(true);
-        turnController.setSetpoint(90);
-		
-		
-		
+		turnController.setOutputRange(-maxOutputRange, maxOutputRange);
+		turnController.setAbsoluteTolerance(kToleranceDegrees);
+		turnController.setContinuous(true);
+		turnController.setSetpoint(90);
+
+
+
 	}
 	public void Execute() {
 		turnController.enable();
@@ -56,16 +55,14 @@ public class ArmRise extends Command {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public class MyPidOutput implements PIDOutput {
-	@Override
-	public void pidWrite(double output) {
-		//myRobot.drive(output, 0);
-		//Robot.driveTrain.drive(output, 0);
-		rotateRate = output;
+		@Override
+		public void pidWrite(double output) {
+			//myRobot.drive(output, 0);
+			//Robot.driveTrain.drive(output, 0);
+			rotateRate = output;
+		}
 	}
-}
 
 }
-
-*/

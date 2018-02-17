@@ -2,6 +2,7 @@ package org.usfirst.frc.team3335.robot.subsystems;
 
 import org.usfirst.frc.team3335.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -25,6 +26,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 
 	public Arm() {
 		motorRight = new WPI_TalonSRX(RobotMap.ARM_RIGHT_MOTOR);
+		motorRight.setInverted(true);
 		motorLeft = new WPI_TalonSRX(RobotMap.ARM_LEFT_MOTOR); 
 		leftEncoder = new Encoder(RobotMap.ARM_ENCODER_LEFT_A, RobotMap.ARM_ENCODER_LEFT_B,
 				RobotMap.ARM_ENCODER_LEFT_REVERSE, EncodingType.k4X);
@@ -37,6 +39,11 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	public void moveArm(double speed) {
 		motorRight.set(speed);
 		motorLeft.set(speed);
+	}
+
+	public void stop() {
+		motorRight.set(0);
+		motorLeft.set(0);
 	}
 
 	@Override
@@ -62,6 +69,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 
 	@Override
 	public void log() {
+		//motorRight.set(ControlMode.Position, value);
     	//SmartDashboard.putNumber("Arm: distance", getDistance());
     	SmartDashboard.putNumber("Arm: right distance", rightEncoder.getDistance());
     	//SmartDashboard.putNumber("Arm: right velocity", rightEncoder.getRate());
