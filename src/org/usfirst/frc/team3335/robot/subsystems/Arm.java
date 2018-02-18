@@ -89,7 +89,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 //		_tal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 //		_tal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		SmartDashboard.putNumber("Arm: right position", motorRight.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Arm:  left position", motorLeft.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Arm: left position", motorLeft.getSelectedSensorPosition(0));
 
 //		/* Output value to SmartDashboard */
 //		SmartDashboard.putNumber("Right Sensor position", Hardware.rightMaster.getSelectedSensorPosition(0));
