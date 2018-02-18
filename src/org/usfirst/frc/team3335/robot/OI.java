@@ -22,11 +22,14 @@ public class OI {
         // Joystick 1
         int bDefault = -1;
 
+        int bLaunchCubeReverse = 2;
         int bLaunchCube = 3;
         int bMoveArmDown = 4;
         int bMoveArmUp = 5;
         int bShiftLow = 7;
         int bShiftHigh = 6;
+        int bCloseHand = 10;
+        int bOpenHand = 11;
 
         /*
         int bDriveForward = bDefault;
@@ -97,6 +100,9 @@ public class OI {
         JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
         launchCube.whenPressed(new LaunchCube(true));
         launchCube.whenReleased(new LaunchCube(false));
+        JoystickButton launchCubeReverse = addButton(getJoystick(), bLaunchCubeReverse, "Launch Cube Reverse");
+        launchCubeReverse.whenPressed(new LaunchCube(true, true));
+        launchCubeReverse.whenReleased(new LaunchCube(false));
 
         // Ball Shifter
         JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
@@ -104,6 +110,11 @@ public class OI {
         JoystickButton ballShiftLow = addButton(getJoystick(), bShiftLow, "Ball Shifter Low");
         ballShiftLow.whenPressed(new BallShiftLow());
         
+        // Ball Shifter
+        JoystickButton closeHand = addButton(getJoystick(), bCloseHand, "Close Hand");
+        closeHand.whenPressed(new Hand(false));
+        JoystickButton openHand = addButton(getJoystick(), bOpenHand, "Open Hand");
+        openHand.whenPressed(new Hand(true));
 
         // Rope climber
         /*

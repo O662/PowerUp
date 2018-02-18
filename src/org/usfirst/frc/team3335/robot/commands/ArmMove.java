@@ -21,11 +21,14 @@ public class ArmMove extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		if (speed < 0) {
+			return Robot.arm.isSwitchClosed();
+		}
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		//Robot.arm.stop();
+		Robot.arm.stop();
 	}
 }

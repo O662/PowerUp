@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +24,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	//double distancePerPulse = Math.PI * wheelDiameter / (encoderToShaftRatio * pulsesPerRevolution);
 	//distancePerPulse /= stage3Ratio;
 	private PIDSourceType pidSourceType = PIDSourceType.kDisplacement;
+	private DigitalInput limitSwitch;
 
 	public Arm() {
 		motorRight = new WPI_TalonSRX(RobotMap.ARM_RIGHT_MOTOR);
@@ -34,6 +36,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		rightEncoder = new Encoder(RobotMap.ARM_ENCODER_RIGHT_A, RobotMap.ARM_ENCODER_RIGHT_B,
 				RobotMap.ARM_ENCODER_RIGHT_REVERSE, EncodingType.k4X);
 		rightEncoder.reset();
+		limitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
 	}
 
 	public void moveArm(double speed) {
@@ -44,6 +47,10 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	public void stop() {
 		motorRight.set(0);
 		motorLeft.set(0);
+	}
+
+	public boolean isSwitchClosed() {
+		return limitSwitch.get();
 	}
 
 	@Override
@@ -77,5 +84,6 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
     	//SmartDashboard.putNumber("Arm: left velocity", leftEncoder.getRate());
     	SmartDashboard.putNumber("Arm: right motor current", motorRight.getOutputCurrent());
     	SmartDashboard.putNumber("Arm: left motor current", motorLeft.getOutputCurrent());
+    	SmartDashboard.putBoolean("Arm: limit switch", limitSwitch.get());
 	}
 }

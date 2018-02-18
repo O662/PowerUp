@@ -7,27 +7,26 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Hand extends Command {
-	
-private DoubleSolenoid.Value val;
-	
+
+	private DoubleSolenoid.Value val;
+
 	/**
 	 * constructor
-	 * @param f true = falpperDown;//flase = flapperUP
+	 * @param open true = hands open, false = hands close
 	 */
-	public Hand(boolean f) {
-       // requires(Robot.glove);
-        val = f ? Value.kForward : Value.kReverse;
-    }
+	public Hand(boolean open) {
+		requires(Robot.glove);
+		val = open ? Value.kReverse : Value.kForward;
+	}
 
-    @Override
-    protected void initialize() {
-      //  Robot.glove.switchPos(val);
-    }
+	@Override
+	protected void initialize() {
+		Robot.glove.switchPos(val);
+	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

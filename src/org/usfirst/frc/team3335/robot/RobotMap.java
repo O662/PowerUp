@@ -109,10 +109,10 @@ public class RobotMap {
 	// Solenoids: PCM 0
 	public static final int BALL_SHIFTER_FORWARD_CHANNEL = 0;
 	public static final int BALL_SHIFTER_REVERSE_CHANNEL = 1;
-	public static final int GLOVE_FORWARD_CHANNEL = 21;
-	public static final int GLOVE_REVERSE_CHANNEL = 31;
-	public static final int GLOVE_FORWARD_CHANNEL_2 = 22;
-	public static final int GLOVE_REVERSE_CHANNEL_2 = 32;
+	public static final int GLOVE_FORWARD_CHANNEL = 2;
+	public static final int GLOVE_REVERSE_CHANNEL = 3;
+	//public static final int GLOVE_FORWARD_CHANNEL_2 = 4;
+	//public static final int GLOVE_REVERSE_CHANNEL_2 = 5;
 
 	// Encoders
 	public static final int DRIVE_TRAIN_ENCODER_RIGHT_A = 0;//3;//2; //3?
@@ -130,6 +130,7 @@ public class RobotMap {
 	public static final int LAUNCHER_ENCODER_A = 4;
 	public static final int LAUNCHER_ENCODER_B = 5;
 	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
+	public static final int ARM_LIMIT_SWITCH = 9;
 
 	// PDP channels for motors on Mark 2 and Mark 3
 	public static final boolean isMark3 = true; // = false for Mark 2
