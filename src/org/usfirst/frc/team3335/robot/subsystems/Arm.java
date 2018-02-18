@@ -76,6 +76,25 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 
 	@Override
 	public void log() {
+
+		/* Setup sensors to check status, can also be used for phasing */
+//		Hardware.rightMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+//		Hardware.rightMaster.setSensorPhase(false);
+//		Hardware.leftMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+//		Hardware.leftMaster.setSensorPhase(false);
+		motorRight.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		motorRight.setSensorPhase(false);
+		motorLeft.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		motorLeft.setSensorPhase(false);
+//		_tal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+//		_tal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		SmartDashboard.putNumber("Arm: right position", motorRight.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Arm:  left position", motorLeft.getSelectedSensorPosition(0));
+
+//		/* Output value to SmartDashboard */
+//		SmartDashboard.putNumber("Right Sensor position", Hardware.rightMaster.getSelectedSensorPosition(0));
+//		SmartDashboard.putNumber("Left Sensor Velocity", Hardware.leftMaster.getSelectedSensorVelocity(0));
+
 		//motorRight.set(ControlMode.Position, value);
     	//SmartDashboard.putNumber("Arm: distance", getDistance());
     	SmartDashboard.putNumber("Arm: right distance", rightEncoder.getDistance());
