@@ -30,8 +30,7 @@ public class OI {
         int bShiftHigh = 6;
         int bCloseHand = 10;
         int bOpenHand = 11;
-        int bToggleHand = 0;
-        boolean handState = false;
+        int bToggleHand = 1;
         boolean useToggle = true;
 
         /*
@@ -114,17 +113,16 @@ public class OI {
         ballShiftLow.whenPressed(new BallShiftLow());
         
         // Hand
-        if (useToggle ) {
+        //if (useToggle ) {
         	JoystickButton toggleHand = addButton(getJoystick(), bToggleHand, "Toggle Hand");
-        	toggleHand.whenPressed(new Hand(handState));
-        	handState = !handState;
-        }
-        else {
+        	toggleHand.whenPressed(new HandToggle());
+        //}
+        //else {
         	JoystickButton closeHand = addButton(getJoystick(), bCloseHand, "Close Hand");
         	closeHand.whenPressed(new Hand(false));
         	JoystickButton openHand = addButton(getJoystick(), bOpenHand, "Open Hand");
         	openHand.whenPressed(new Hand(true));
-        }
+        //}
 
         // Rope climber
         /*

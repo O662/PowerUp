@@ -10,6 +10,7 @@ public class Glove extends Subsystem implements LoggableSubsystem {
 	//this is the grabber for the end of the arms and will employ two cylanders deploying at once
 	private DoubleSolenoid solenoid1;
 	//private DoubleSolenoid solenoid2;
+	public boolean handState = true;
 	
 	public Glove() {
 		solenoid1 = new DoubleSolenoid(RobotMap.GLOVE_FORWARD_CHANNEL, RobotMap.GLOVE_REVERSE_CHANNEL);
