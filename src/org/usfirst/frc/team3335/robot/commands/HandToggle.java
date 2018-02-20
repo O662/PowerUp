@@ -18,7 +18,8 @@ public class HandToggle extends Command{
 
 	@Override
 	protected void initialize() {
-		Robot.glove.switchPos(val);
+		//Robot.glove.switchPos(val);
+		Robot.glove.toggle();
 	}
 
 	@Override
