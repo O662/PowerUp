@@ -14,13 +14,20 @@ public class Glove extends Subsystem implements LoggableSubsystem {
 	public Glove() {
 		solenoid1 = new DoubleSolenoid(RobotMap.GLOVE_FORWARD_CHANNEL, RobotMap.GLOVE_REVERSE_CHANNEL);
 		//solenoid2 = new DoubleSolenoid(RobotMap.GLOVE_FORWARD_CHANNEL_2, RobotMap.GLOVE_REVERSE_CHANNEL_2);
-		solenoid1.set(Value.kReverse);
-		//solenoid2.set(Value.kReverse);
+		open();
 	}
 
-	public void switchPos(DoubleSolenoid.Value val) {
+	protected void switchPos(Value val) {
 		solenoid1.set(val);
 		//solenoid2.set(val);
+	}
+
+	public void open() {
+		switchPos(Value.kReverse);
+	}
+
+	public void close() {
+		switchPos(Value.kForward);
 	}
 
 	public void toggle() {

@@ -59,7 +59,7 @@ public class VisionTarget extends Subsystem implements LoggableSubsystem, PIDSou
 		//UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 		camera.setBrightness(0);
-//		camera.setExposureManual(100);
+		//camera.setExposureManual(100);
 		camera.setExposureAuto();
 		//camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
 		//camera2.setBrightness(0);
@@ -99,8 +99,6 @@ public class VisionTarget extends Subsystem implements LoggableSubsystem, PIDSou
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
 	}
 	
 	/*public void processImage() {

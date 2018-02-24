@@ -22,6 +22,14 @@ public class BallShifter extends Subsystem implements LoggableSubsystem{
 		return solenoid.get();
 	}
 
+	public void shiftHigh() {
+		setSolenoidValue(DoubleSolenoid.Value.kForward);
+	}
+
+	public void shiftLow() {
+		setSolenoidValue(DoubleSolenoid.Value.kReverse);
+	}
+
 	@Override
 	protected void initDefaultCommand() {
 	}

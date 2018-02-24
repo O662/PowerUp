@@ -19,5 +19,4 @@ public class HandToggle extends Command{
 	protected boolean isFinished() {
 		return true;
 	}
-
 }

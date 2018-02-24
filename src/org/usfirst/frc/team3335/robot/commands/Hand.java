@@ -2,13 +2,11 @@ package org.usfirst.frc.team3335.robot.commands;
 
 import org.usfirst.frc.team3335.robot.Robot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Hand extends Command {
 
-	private DoubleSolenoid.Value val;
+	private final boolean open;
 
 	/**
 	 * constructor
@@ -16,17 +14,20 @@ public class Hand extends Command {
 	 */
 	public Hand(boolean open) {
 		requires(Robot.glove);
-		val = open ? Value.kReverse : Value.kForward;
+		this.open = open;
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.glove.switchPos(val);
+		if (open) {
+			Robot.glove.open();
+		} else {
+			Robot.glove.close();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
 		return true;
 	}
-
 }

@@ -10,15 +10,10 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Preferences;
 
 
-
-
-
-
-
 public class ArmLower extends Command {
 
 	boolean finished;
-	private static Preferences prefs = Preferences.getInstance();
+	private static final Preferences prefs = Preferences.getInstance();
 	private static final double kP = prefs.getDouble("Vision Kp", RobotPreferences.VISION_KP_DEFAULT);
 	private static final double kI = prefs.getDouble("Vision Ki", RobotPreferences.VISION_KI_DEFAULT);
 	private static final double kD = prefs.getDouble("Vision Kd", RobotPreferences.VISION_KD_DEFAULT);
@@ -32,7 +27,6 @@ public class ArmLower extends Command {
 
 	public ArmLower() {
 		requires(Robot.arm);
-
 	}
 
 	public void initialize() {
@@ -42,15 +36,11 @@ public class ArmLower extends Command {
 		turnController.setAbsoluteTolerance(kToleranceDegrees);
 		turnController.setContinuous(true);
 		turnController.setSetpoint(90);
-
-
-
 	}
+
 	public void Execute() {
 		turnController.enable();
 	}
-
-
 
 	public class MyPidOutput implements PIDOutput {
 		@Override
@@ -61,11 +51,8 @@ public class ArmLower extends Command {
 		}
 	}
 
-
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 }
