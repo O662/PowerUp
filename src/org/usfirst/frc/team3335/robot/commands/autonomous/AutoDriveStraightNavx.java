@@ -98,7 +98,7 @@ public class AutoDriveStraightNavx extends Command {
     @Override
     protected void end() {
         Robot.driveTrain.drive(0, 0);
-		Robot.driveTrain.setBrake(false);
+		//Robot.driveTrain.setBrake(false);
     }
 
     // Called when another command which requires one or more of the same

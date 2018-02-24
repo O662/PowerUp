@@ -263,8 +263,10 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 		SmartDashboard.putNumber("DriveTrain: distance", getDistance());
 		SmartDashboard.putNumber("DriveTrain: left distance", leftEncoder.getDistance());
 		SmartDashboard.putNumber("DriveTrain: left velocity", leftEncoder.getRate());
+		SmartDashboard.putNumber("DriveTrain: left raw", leftEncoder.getRaw());
 		SmartDashboard.putNumber("DriveTrain: right distance", rightEncoder.getDistance());
 		SmartDashboard.putNumber("DriveTrain: right velocity", rightEncoder.getRate());
+		SmartDashboard.putNumber("DriveTrain: right raw", rightEncoder.getRaw());
 		SmartDashboard.putNumber("DriveTrain: left1 (CIM) current", motorLeft1.getOutputCurrent());
 		SmartDashboard.putNumber("DriveTrain: left1 (CIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_LEFT1));
 		SmartDashboard.putNumber("DriveTrain: left2 (MiniCIM) current", motorLeft2.getOutputCurrent());

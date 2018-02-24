@@ -19,7 +19,7 @@ public class RobotMap {
 
 	
 	// Mark 2 and Mark 3
-	public static final boolean isMark3 = true; // = false for Mark 2
+	public static final boolean isMark3 = false; // = true for Mark 3; false for Mark 2
 
 	// Miscellaneous
     public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;

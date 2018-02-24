@@ -125,10 +125,12 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
-		chooser.addDefault("Auto Drive Straight", new AutoDriveStraight(84,.3));
+		double distance = 36;
+		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(distance,.3));
 		SmartDashboard.putData("Auto Mode", chooser);
-		chooser.addDefault("Auto Drive Straight NAVX", new AutoDriveStraight(84, .3));
-		chooser.addDefault("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(84,.3));
+		chooser.addObject("Auto Drive Straight NAVX", new AutoDriveStraightNavx(distance, .3));
+		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance,.3));
+		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90,.5));
 
 
 		// Preferences

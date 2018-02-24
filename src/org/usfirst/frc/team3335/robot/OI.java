@@ -45,7 +45,7 @@ public class OI {
 		// Joystick 1
 
 		// Arm
-		double armSpeed = 0.3;
+		double armSpeed = 0.4;
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
 		moveArmUp.whenPressed(new ArmMove(armSpeed));
 		moveArmUp.whenReleased(new ArmMove(0));
