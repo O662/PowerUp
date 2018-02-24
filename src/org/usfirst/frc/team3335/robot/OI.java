@@ -12,120 +12,85 @@ import org.usfirst.frc.team3335.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    private Joystick joystick;
-    private Joystick joystick2;
+	private Joystick joystick;
+	private Joystick joystick2;
 
-    public OI() {
-        joystick = new Joystick(0);
-        joystick2 = new Joystick(1);
+	public OI() {
+		joystick = new Joystick(0);
+		joystick2 = new Joystick(1);
 
-        // Joystick 1
-        int bDefault = -1;
+		// Joystick 1
+		//int bDefault = -1;
+		int bLaunchCubeReverse = 2;
+		int bLaunchCube = 3;
+		int bMoveArmDown = 5;//4;
+		int bMoveArmUp = 4;//5;
+		int bShiftLow = 7;
+		int bShiftHigh = 6;
+		int bCloseHand = 10;
+		int bOpenHand = 11;
+		int bToggleHand = 1;
+		//boolean useToggle = true;
+		//bDriveForward = 8;
+		//bDriveBackward = 9;
 
-        int bLaunchCubeReverse = 2;
-        int bLaunchCube = 3;
-        int bMoveArmDown = 5;//4;
-        int bMoveArmUp = 4;//5;
-        int bShiftLow = 7;
-        int bShiftHigh = 6;
-        int bCloseHand = 10;
-        int bOpenHand = 11;
-        int bToggleHand = 1;
-        boolean useToggle = true;
-
-        /*
-        int bDriveForward = bDefault;
-        int bDriveBackward = bDefault;
-        int bGearPickupDown = bDefault;
-        int bGearPickupUp = bDefault;
-        int bGearPickupClose = bDefault;
-        int bGearPickupOpen = bDefault;
-
+		/*
         // Joystick 2
         int bClimberUpSlow = 5; // Left Button
         int bClimberUpFast = 6; // Right Button
         int bClimberDownSlow = 7; // "Back"
         int bClimberDownFast = 8; // "Start"
-        //int bShooter = 3; // X
-        //int bIntake = 1; // A
-        int bFlapperUp = 1; // A
-        int bFlapperDown = 2; // B
-*/
-        // Joystick 1
-       // bGateUp = 3;
-        //bGateDown = 2;
-       // bDriveForward = 8;
-       // bDriveBackward = 9;
-       // bGearPickupDown = 3;
-       // bGearPickupUp = 2;
-       // bGearPickupClose = 4;
-       // bGearPickupOpen = 5;
-        
-        //2018 controls
-        //bGrabCube = 3
-        //bReleaseCube = 2
+		*/
 
-        // Gate
-        /*
-        JoystickButton gateControlUp = addButton(getJoystick(), bGateUp, "Gate Up");
-        gateControlUp.whenPressed(new GearControl(true));
-        JoystickButton gateControlDown = addButton(getJoystick(), bGateDown, "Gate Down");
-        gateControlDown.whenPressed(new GearControl(false));
-        */
+		// Joystick 1
 
-        // Flapper
-        /*
-        JoystickButton flapperUp = addButton(getJoystick2(), bFlapperUp, "Flapper Up");
-        flapperUp.whenPressed(new FlapperControl(false));
-        JoystickButton flapperDown = addButton(getJoystick2(), bFlapperDown, "Flapper Down");
-        flapperDown.whenPressed(new FlapperControl(true));
-        */
+		// Arm
+		double armSpeed = 0.3;
+		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
+		moveArmUp.whenPressed(new ArmMove(armSpeed));
+		moveArmUp.whenReleased(new ArmMove(0));
+		JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
+		moveArmDown.whenPressed(new ArmMove(-armSpeed));
+		moveArmDown.whenReleased(new ArmMove(0));
 
-        // Drive Mode: Front is Forward vs Back is Forward
-        /*
+		// Launcher
+		JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
+		launchCube.whenPressed(new LaunchCube(true));
+		launchCube.whenReleased(new LaunchCube(false));
+		JoystickButton launchCubeReverse = addButton(getJoystick(), bLaunchCubeReverse, "Launch Cube Reverse");
+		launchCubeReverse.whenPressed(new LaunchCube(true, true));
+		launchCubeReverse.whenReleased(new LaunchCube(false));
+
+		// Ball Shifter
+		JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
+		ballShiftHigh.whenPressed(new BallShiftHigh());
+		JoystickButton ballShiftLow = addButton(getJoystick(), bShiftLow, "Ball Shifter Low");
+		ballShiftLow.whenPressed(new BallShiftLow());
+
+		// Hand
+		//if (useToggle ) {
+		JoystickButton toggleHand = addButton(getJoystick(), bToggleHand, "Toggle Hand");
+		toggleHand.whenPressed(new HandToggle());
+		//}
+		//else {
+		JoystickButton closeHand = addButton(getJoystick(), bCloseHand, "Close Hand");
+		closeHand.whenPressed(new Hand(false));
+		JoystickButton openHand = addButton(getJoystick(), bOpenHand, "Open Hand");
+		openHand.whenPressed(new Hand(true));
+		//}
+
+		// Drive Mode: Front is Forward vs Back is Forward
+		/*
         JoystickButton driveForward = addButton(getJoystick(), bDriveForward, "Drive Forward");
         driveForward.whenPressed(new SetDirection(true));
         JoystickButton driveBackward = addButton(getJoystick(), bDriveBackward, "Drive Backward");
         driveBackward.whenPressed(new SetDirection(false));
-        */
+		*/
 
-        // Arm
-        double armSpeed = 0.3;
-        JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
-        moveArmUp.whenPressed(new ArmMove(armSpeed));
-        moveArmUp.whenReleased(new ArmMove(0));
-        JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
-        moveArmDown.whenPressed(new ArmMove(-armSpeed));
-        moveArmDown.whenReleased(new ArmMove(0));
+		// Joystick 2
 
-        // Launcher
-        JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
-        launchCube.whenPressed(new LaunchCube(true));
-        launchCube.whenReleased(new LaunchCube(false));
-        JoystickButton launchCubeReverse = addButton(getJoystick(), bLaunchCubeReverse, "Launch Cube Reverse");
-        launchCubeReverse.whenPressed(new LaunchCube(true, true));
-        launchCubeReverse.whenReleased(new LaunchCube(false));
-
-        // Ball Shifter
-        JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
-        ballShiftHigh.whenPressed(new BallShiftHigh());
-        JoystickButton ballShiftLow = addButton(getJoystick(), bShiftLow, "Ball Shifter Low");
-        ballShiftLow.whenPressed(new BallShiftLow());
-        
-        // Hand
-        //if (useToggle ) {
-        	JoystickButton toggleHand = addButton(getJoystick(), bToggleHand, "Toggle Hand");
-        	toggleHand.whenPressed(new HandToggle());
-        //}
-        //else {
-        	JoystickButton closeHand = addButton(getJoystick(), bCloseHand, "Close Hand");
-        	closeHand.whenPressed(new Hand(false));
-        	JoystickButton openHand = addButton(getJoystick(), bOpenHand, "Open Hand");
-        	openHand.whenPressed(new Hand(true));
-        //}
-
-        // Rope climber
-        /*
+		// Rope climber
+		/*
         JoystickButton climbUpSlow = addButton(getJoystick2(), bClimberUpSlow, "Rope Climber Up Slow");
         climbUpSlow.whenPressed(new Climb(false, 0.5));
         climbUpSlow.whenReleased(new Climb(true, 0));
@@ -138,63 +103,27 @@ public class OI {
         JoystickButton climbDownFast = addButton(getJoystick2(), bClimberDownFast, "Rope Climber Down Fast");
         climbDownFast.whenPressed(new Climb(false, -1));
         climbDownFast.whenReleased(new Climb(true, 0));
-        */
+		*/
 
-        // Gear pickup
-        /*
-        JoystickButton gearPickupDown = addButton(getJoystick(), bGearPickupDown, "Gear Pickup Down");
-        gearPickupDown.whenPressed(new GearPickupUpDownControl(false));
-        JoystickButton gearPickupUp = addButton(getJoystick(), bGearPickupUp, "Gear Pickup Up");
-        gearPickupUp.whenPressed(new GearPickupUpDownControl(true));
-        JoystickButton gearPickupClose = addButton(getJoystick(), bGearPickupClose, "Gear Pickup Close");
-        gearPickupClose.whenPressed(new GearPickupOpenCloseControl(false));
-        JoystickButton gearPickupOpen = addButton(getJoystick(), bGearPickupOpen, "Gear Pickup Open");
-        gearPickupOpen.whenPressed(new GearPickupOpenCloseControl(true));
-        */
-
-        // Shooter
-        /*
-        JoystickButton shootBalls = addButton(getJoystick2(), bShooter, "Shoot Balls");
-        shootBalls.whenPressed(new ShootBalls(false, -1));
-        shootBalls.whenReleased(new ShootBalls(true, 0));
-        */
-
-        // Intake
-        /*
-        JoystickButton intake = addButton(getJoystick2(), bIntake, "Intake On");
-        intake.whenPressed(new IntakeBalls(false, -0.5));
-        intake.whenReleased(new IntakeBalls(true, 0));
-        */
-
-        // Additional commands to add to dashboard
-        /*
+		// Additional commands to add to dashboard
+		/*
 		SmartDashboard.putData("AutoTurnToPeg", new AutoTurnToPeg());
 		SmartDashboard.putData("AutoSteerDriveToPeg", new AutoSteerDriveToPeg(60, 0.7, 9));
 		*/
-        
-        //2018
-        
-        /*
-         * JoystickButton Glove = addButton(getJoystick(), bGrabCube, "Arms Closed");
-         * Glove.whenPressed(new Hand(true));
-         * Glove.whenPressed(new Hand(false));
-         * 
-         * 
-         */
-    }
+	}
 
-    private JoystickButton addButton(Joystick joystick, int buttonNumber, String key) {
-        JoystickButton button = new JoystickButton(joystick, buttonNumber);
-        //TODO uncomment to see commands on dashboard
-        //SmartDashboard.putData(key, button);
-        return button;
-    }
+	private JoystickButton addButton(Joystick joystick, int buttonNumber, String key) {
+		JoystickButton button = new JoystickButton(joystick, buttonNumber);
+		//TODO uncomment to see commands on dashboard
+		//SmartDashboard.putData(key, button);
+		return button;
+	}
 
-    public Joystick getJoystick() {
-        return joystick;
-    }
+	public Joystick getJoystick() {
+		return joystick;
+	}
 
-    public Joystick getJoystick2() {
-      return joystick2;
-    }
+	public Joystick getJoystick2() {
+		return joystick2;
+	}
 }

@@ -39,30 +39,16 @@ public class Robot extends IterativeRobot {
 	private ArrayList<LoggableSubsystem> subsystemsList = new ArrayList<LoggableSubsystem>();
 
 	// Subsystems
-	/*
-	public static Compressor compressor;
-	*/
+	//public static Compressor compressor;
 	public static DriveTrain driveTrain;
-
 	public static Vision vision;
-//	public static CameraStream gearPickupCameraStream;
+	//public static CameraStream gearPickupCameraStream;
 	public static BallShifter ballShifter;
-//	public static BallShooter ballShooter;
-//	public static Intake intake;
-//	public static Gate gate;
-//	public static GearEjector gearEjector;
-//	public static GenericDoubleSolenoid gearPickupUpDown;
-//	public static GenericDoubleSolenoid gearPickupOpenClose;
-//	public static Flapper flapper;
-//	public static Climber climber;
-//	public static DoubleUltrasonic ultrasonics;
-	public static NavX navx;
-	//2018 code
-	public static Launcher launcher;
 	//public static Climber climber;
+	public static NavX navx;
+	public static Launcher launcher;
 	public static Arm arm;
 	public static Glove glove;
-
 	public static DoubleUltrasonic doubleUltrasonic;
 
 	public static PowerDistributionPanel pdp;
@@ -75,66 +61,43 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// Instantiate subsystems and add to subsystem list (e.g., for logging to dashboard)
 		pdp = new PowerDistributionPanel();
-		/*
-		compressor = new Compressor();
-		subsystemsList.add(compressor);
-		*/
+
+		//compressor = new Compressor();
+		//subsystemsList.add(compressor);
+
 		driveTrain = new DriveTrain();
 		subsystemsList.add(driveTrain);
 
-		//visionTest = null;
 		vision = new Vision();
 		subsystemsList.add(vision);
-		/*
-		gearPickupCameraStream = new CameraStream();
-		subsystemsList.add(gearPickupCameraStream);
-		gate = new Gate();
-		subsystemsList.add(gate);
-		gearEjector = new GearEjector();
-		subsystemsList.add(gearEjector);
-		flapper = new Flapper();
-		subsystemsList.add(flapper);
-		ballShifter = new BallShifter();
-		subsystemsList.add(ballShifter);
-		// Gear Pickup
-		gearPickupUpDown = new GenericDoubleSolenoid(1, RobotMap.GEAR_PICKUP_UP_DOWN_FORWARD_CHANNEL,
-				RobotMap.GEAR_PICKUP_UP_DOWN_REVERSE_CHANNEL);
-		subsystemsList.add(gearPickupUpDown);
-		gearPickupOpenClose = new GenericDoubleSolenoid(1, RobotMap.GEAR_PICKUP_OPEN_CLOSE_FORWARD_CHANNEL,
-				RobotMap.GEAR_PICKUP_OPEN_CLOSE_REVERSE_CHANNEL);
-		subsystemsList.add(gearPickupOpenClose);
+		//vision = null;
 
-		ballShooter = new BallShooter();
-		subsystemsList.add(ballShooter);
-		intake = new Intake();
-		subsystemsList.add(intake);
-		climber = new Climber();
-		subsystemsList.add(climber);
-		ultrasonics = new DoubleUltrasonic();
-		subsystemsList.add(ultrasonics);
-		*/
+		//gearPickupCameraStream = new CameraStream();
+		//subsystemsList.add(gearPickupCameraStream);
+
+		//climber = new Climber();
+		//subsystemsList.add(climber);
+
 		navx = new NavX();
 		subsystemsList.add(navx);
 		
-		//2018 CODE
 		arm = new Arm();
 		subsystemsList.add(arm);
+
 		glove = new Glove();
 		subsystemsList.add(glove);
 
 		launcher = new Launcher();
 		subsystemsList.add(launcher);
 		
-		//climber = new Climber();
-		//subsystemsList.add(climber);
-		
 		ballShifter = new BallShifter();
 		subsystemsList.add(ballShifter);
-		
+		//ballShifter = null;
+
 		doubleUltrasonic = new DoubleUltrasonic();
 		subsystemsList.add(doubleUltrasonic);
-		
-		//ballShifter = null;
+
+
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
 		//chooser.addObject("Auto Drive Straight 9ft", new AutoPlaceGear(108, 0, 0));
@@ -162,12 +125,11 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
-		chooser.addDefault("Auto Drive Strait", new AutoDriveStraight(84,.3));
+		chooser.addDefault("Auto Drive Straight", new AutoDriveStraight(84,.3));
 		SmartDashboard.putData("Auto Mode", chooser);
-		chooser.addDefault("Auto Drive Strait NAVX", new AutoDriveStraight(84, .3));
+		chooser.addDefault("Auto Drive Straight NAVX", new AutoDriveStraight(84, .3));
 		chooser.addDefault("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(84,.3));
-		
-		
+
 
 		// Preferences
 		Preferences prefs = Preferences.getInstance();
@@ -203,7 +165,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override
