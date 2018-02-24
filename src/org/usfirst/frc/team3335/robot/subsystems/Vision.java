@@ -12,16 +12,13 @@ public class Vision extends Subsystem implements LoggableSubsystem {
 		Relay relay = new Relay(RobotMap.RELAY_CHANNEL,Direction.kForward);
 		relay.set(Relay.Value.kOn);
 	}
+
 	@Override
 	public void log() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

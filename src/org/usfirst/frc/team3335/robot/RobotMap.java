@@ -127,9 +127,9 @@ public class RobotMap {
 	public static final int ARM_ENCODER_LEFT_A = 20;
 	public static final int ARM_ENCODER_LEFT_B = 23;
 	public static final boolean ARM_ENCODER_LEFT_REVERSE = false;
-	public static final int LAUNCHER_ENCODER_A = 4;
-	public static final int LAUNCHER_ENCODER_B = 5;
-	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
+	//public static final int LAUNCHER_ENCODER_A = 4;
+	//public static final int LAUNCHER_ENCODER_B = 5;
+	//public static final boolean LAUNCHER_ENCODER_REVERSE = false;
 	public static final int ARM_LIMIT_SWITCH = 9;
 
 	// PDP channels for motors on Mark 2 and Mark 3
