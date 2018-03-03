@@ -64,7 +64,7 @@ public class AutoDriveTurnToScale extends Command {
     protected void execute() {
     	double speed = Math.signum(setPointAngle) * rotateRate;
         //Robot.driveTrain.drive(speed, -speed);  //Mark 1
-    	Robot.driveTrain.driveArcade(0, speed, false); //Mark 2
+    	Robot.driveTrain.driveArcade(0, -speed, false); //Mark 2
     }
 
     // Make this return true when this Command no longer needs to run execute()

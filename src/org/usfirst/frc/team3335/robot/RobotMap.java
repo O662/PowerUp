@@ -23,8 +23,8 @@ public class RobotMap {
 
 	// Miscellaneous
     public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
-	public static final int ANALOG_ULTRASONIC_LEFT = 0;
-	public static final int ANALOG_ULTRASONIC_RIGHT = 1;
+	public static final int ANALOG_ULTRASONIC_BACK_LEFT = 0;
+	public static final int ANALOG_ULTRASONIC_BACK_RIGHT = 1;
 	public static final int RELAY_CHANNEL = 0;
 
     // Motors
@@ -56,6 +56,7 @@ public class RobotMap {
 	// Solenoids: PCM 0
 	public static final int BALL_SHIFTER_FORWARD_CHANNEL = 0;
 	public static final int BALL_SHIFTER_REVERSE_CHANNEL = 1;
+	public static final int GLOVE_PCM_MODULE = 1;
 	public static final int GLOVE_FORWARD_CHANNEL = 2;
 	public static final int GLOVE_REVERSE_CHANNEL = 3;
 	//public static final int GLOVE_FORWARD_CHANNEL_2 = 4;
@@ -68,6 +69,12 @@ public class RobotMap {
 	public static final int LAUNCHER_CENTER_REVERSE_CHANNEL = 3; 
 	public static final int LAUNCHER_RIGHT_FORWARD_CHANNEL = 4;
 	public static final int LAUNCHER_RIGHT_REVERSE_CHANNEL = 5;
+	public static final int LAUNCHER_FORWARD_CHANNEL = 2;
+	public static final int LAUNCHER_FORWARD_CHANNEL_2 = 4;
+	public static final int LAUNCHER_FORWARD_CHANNEL_3 = 6;
+	public static final int LAUNCHER_REVERSE_CHANNEL = 3;
+	public static final int LAUNCHER_REVERSE_CHANNEL_2 = 5;
+	public static final int LAUNCHER_REVERSE_CHANNEL_3 = 7;
 	
 
 	// Encoders
@@ -86,7 +93,9 @@ public class RobotMap {
 	public static final int LAUNCHER_ENCODER_A = 4;
 	public static final int LAUNCHER_ENCODER_B = 5;
 	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
-	public static final int ARM_LIMIT_SWITCH = 9;
+	// TODO put 2 switches on arm
+	public static final int ARM_LIMIT_SWITCH_RIGHT = 8; // right
+	public static final int ARM_LIMIT_SWITCH = 9; // left
 
 	// PDP channels for motors on Mark 2 and Mark 3
 	public static final int PDP_MOTOR_DRIVE_RIGHT1 = isMark3 ? 0 : 3;

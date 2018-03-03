@@ -12,7 +12,7 @@ public class Glove extends Subsystem implements LoggableSubsystem {
 	//private DoubleSolenoid solenoid2;
 
 	public Glove() {
-		solenoid1 = new DoubleSolenoid(RobotMap.GLOVE_FORWARD_CHANNEL, RobotMap.GLOVE_REVERSE_CHANNEL);
+		solenoid1 = new DoubleSolenoid(RobotMap.GLOVE_PCM_MODULE, RobotMap.GLOVE_FORWARD_CHANNEL, RobotMap.GLOVE_REVERSE_CHANNEL);
 		//solenoid2 = new DoubleSolenoid(RobotMap.GLOVE_FORWARD_CHANNEL_2, RobotMap.GLOVE_REVERSE_CHANNEL_2);
 		open();
 	}

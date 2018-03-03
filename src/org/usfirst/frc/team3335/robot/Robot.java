@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import org.usfirst.frc.team3335.robot.commands.autonomous.*;
 import org.usfirst.frc.team3335.robot.subsystems.*;
+import org.usfirst.frc.team3335.robot.subsystems.vision.VisionTarget;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,11 +43,13 @@ public class Robot extends IterativeRobot {
 	//public static Compressor compressor;
 	public static DriveTrain driveTrain;
 	public static Vision vision;
+	public static VisionTarget visionTarget;
 	//public static CameraStream gearPickupCameraStream;
 	public static BallShifter ballShifter;
 	//public static Climber climber;
 	public static NavX navx;
 	public static Launcher launcher;
+	public static PneumaticLauncher pneumaticLauncher;
 	public static Arm arm;
 	public static Glove glove;
 	public static DoubleUltrasonic doubleUltrasonic;
@@ -68,8 +71,12 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		subsystemsList.add(driveTrain);
 
-		vision = new Vision();
-		subsystemsList.add(vision);
+		//vision = new Vision();
+		//subsystemsList.add(vision);
+		vision = null;
+
+		visionTarget = new VisionTarget();
+		subsystemsList.add(visionTarget);
 		//vision = null;
 
 		//gearPickupCameraStream = new CameraStream();
@@ -89,6 +96,9 @@ public class Robot extends IterativeRobot {
 
 		launcher = new Launcher();
 		subsystemsList.add(launcher);
+		
+		pneumaticLauncher = new PneumaticLauncher();
+		subsystemsList.add(pneumaticLauncher);
 		
 		ballShifter = new BallShifter();
 		subsystemsList.add(ballShifter);
@@ -126,11 +136,12 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
 		double distance = 36;
-		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(distance,.3));
+		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(distance, 0.3));
 		SmartDashboard.putData("Auto Mode", chooser);
-		chooser.addObject("Auto Drive Straight NAVX", new AutoDriveStraightNavx(distance, .3));
-		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance,.3));
-		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90,.5));
+		chooser.addObject("Auto Drive Straight NAVX", new AutoDriveStraightNavx(distance, 0.3));
+		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance, 0.3));
+		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90, 0.4));
+		chooser.addObject("Auto Drive To Scale and Turn", new AutoDriveToScaleTurn(distance, 0.5, 90.0, 0.5));
 
 
 		// Preferences

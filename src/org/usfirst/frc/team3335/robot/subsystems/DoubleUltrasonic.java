@@ -12,8 +12,8 @@ public class DoubleUltrasonic extends Subsystem implements LoggableSubsystem{
 	private final AnalogInput ultrasonicRight;
 
 	public DoubleUltrasonic() {
-		ultrasonicLeft = new AnalogInput(RobotMap.ANALOG_ULTRASONIC_LEFT);
-		ultrasonicRight = new AnalogInput(RobotMap.ANALOG_ULTRASONIC_RIGHT);
+		ultrasonicLeft = new AnalogInput(RobotMap.ANALOG_ULTRASONIC_BACK_LEFT);
+		ultrasonicRight = new AnalogInput(RobotMap.ANALOG_ULTRASONIC_BACK_RIGHT);
 	}
 
 	public double getDistanceLeft() {

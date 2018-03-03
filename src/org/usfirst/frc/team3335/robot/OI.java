@@ -30,6 +30,7 @@ public class OI {
 		int bCloseHand = 10;
 		int bOpenHand = 11;
 		int bToggleHand = 1;
+		int bPneumaticLaunchCube = 8;
 		//boolean useToggle = true;
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
@@ -60,7 +61,9 @@ public class OI {
 		JoystickButton launchCubeReverse = addButton(getJoystick(), bLaunchCubeReverse, "Launch Cube Reverse");
 		launchCubeReverse.whenPressed(new LaunchCube(true, true));
 		launchCubeReverse.whenReleased(new LaunchCube(false));
-
+		JoystickButton pneumaticLaunchCube = addButton(getJoystick(), bPneumaticLaunchCube, "Pneumatic Launch Cube");
+		pneumaticLaunchCube.whenPressed(new PneumaticLaunchCube());
+				
 		// Ball Shifter
 		JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
 		ballShiftHigh.whenPressed(new BallShiftHigh());
