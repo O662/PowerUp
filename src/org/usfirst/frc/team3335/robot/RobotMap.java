@@ -25,7 +25,7 @@ public class RobotMap {
     public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
 	public static final int ANALOG_ULTRASONIC_BACK_LEFT = 0;
 	public static final int ANALOG_ULTRASONIC_BACK_RIGHT = 1;
-	public static final int RELAY_CHANNEL = 0;
+	//public static final int RELAY_CHANNEL = 0; // PCM module for light ring instead
 
     // Motors
 	/** Right drive CIM motor */
@@ -63,7 +63,7 @@ public class RobotMap {
 	//public static final int GLOVE_FORWARD_CHANNEL_2 = 4;
 	//public static final int GLOVE_REVERSE_CHANNEL_2 = 5;
 	public static final int LIGHT_RING_PCM_MODULE = 0;
-	public static final int LIGHT_RING_CHANNEL = 4; // TODO not implemented yet
+	public static final int LIGHT_RING_CHANNEL = 4;
 
 	//Solenoids:PCM 1
 	public static final int LAUNCHER_PCM_MODULE = 1;

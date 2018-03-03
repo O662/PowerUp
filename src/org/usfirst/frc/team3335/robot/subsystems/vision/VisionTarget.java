@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -92,8 +93,10 @@ public class VisionTarget extends Subsystem implements LoggableSubsystem, PIDSou
 	    });
 
 	    visionThread.start();
-	    Relay relay = new Relay(RobotMap.RELAY_CHANNEL, Direction.kForward);
-	    relay.set(Relay.Value.kOn);
+	    //Relay relay = new Relay(RobotMap.RELAY_CHANNEL, Direction.kForward);
+	    //relay.set(Relay.Value.kOn);
+		Solenoid solenoid = new Solenoid(RobotMap.LIGHT_RING_PCM_MODULE, RobotMap.LIGHT_RING_CHANNEL);
+		solenoid.set(true);
 	    //this.processImage();
 	}
 
