@@ -128,7 +128,7 @@ public class AutoDriveStraightNavxPID extends Command {
 	@Override
 	protected void end() {
 		Robot.driveTrain.drive(0, 0);
-		Robot.driveTrain.setBrake(false);
+		//Robot.driveTrain.setBrake(false);
 		turnController.disable();
 	}
 

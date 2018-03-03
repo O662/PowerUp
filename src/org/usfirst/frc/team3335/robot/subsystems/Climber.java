@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climber extends Subsystem implements LoggableSubsystem {
 	//this subsystem is used for the climber and employs a single motor that is used extend the climber
 	//in order for it to reach up and grab the bar
-	private WPI_TalonSRX climberMotorRight;
-	private WPI_TalonSRX climberMotorLeft;
+	private final WPI_TalonSRX climberMotorRight;
+	private final WPI_TalonSRX climberMotorLeft;
    
     public Climber() {
     	climberMotorRight = new WPI_TalonSRX(RobotMap.CLIMBER_RIGHT_MOTOR);

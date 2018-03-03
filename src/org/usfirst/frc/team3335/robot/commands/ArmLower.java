@@ -50,8 +50,6 @@ public class ArmLower extends Command {
 		turnController.enable();
 	}
 
-
-
 	public class MyPidOutput implements PIDOutput {
 		@Override
 		public void pidWrite(double output) {
