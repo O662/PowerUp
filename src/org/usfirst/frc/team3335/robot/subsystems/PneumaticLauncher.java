@@ -13,9 +13,9 @@ public class PneumaticLauncher extends Subsystem implements LoggableSubsystem{
 	private final DoubleSolenoid solenoid3;
 
 	public PneumaticLauncher() {
-		solenoid1 = new DoubleSolenoid(RobotMap.LAUNCHER_LEFT_FORWARD_CHANNEL, RobotMap.LAUNCHER_LEFT_REVERSE_CHANNEL);
-		solenoid2 = new DoubleSolenoid(RobotMap.LAUNCHER_CENTER_FORWARD_CHANNEL, RobotMap.LAUNCHER_CENTER_REVERSE_CHANNEL);
-		solenoid3 = new DoubleSolenoid(RobotMap.LAUNCHER_RIGHT_FORWARD_CHANNEL, RobotMap.LAUNCHER_RIGHT_REVERSE_CHANNEL);
+		solenoid1 = new DoubleSolenoid(RobotMap.LAUNCHER_PCM_MODULE, RobotMap.LAUNCHER_LEFT_FORWARD_CHANNEL, RobotMap.LAUNCHER_LEFT_REVERSE_CHANNEL);
+		solenoid2 = new DoubleSolenoid(RobotMap.LAUNCHER_PCM_MODULE, RobotMap.LAUNCHER_CENTER_FORWARD_CHANNEL, RobotMap.LAUNCHER_CENTER_REVERSE_CHANNEL);
+		solenoid3 = new DoubleSolenoid(RobotMap.LAUNCHER_PCM_MODULE, RobotMap.LAUNCHER_RIGHT_FORWARD_CHANNEL, RobotMap.LAUNCHER_RIGHT_REVERSE_CHANNEL);
 		close();
 	}
 
