@@ -18,7 +18,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	//activate simultaneously to bring the arm down 
 	private final WPI_TalonSRX motorRight, motorLeft;
 	private final Encoder leftEncoder, rightEncoder;
-	private final DigitalInput limitSwitch;
+	private final DigitalInput leftLimitSwitch, rightLimitSwitch;
 	// TODO fix for 2018 encoders
 	//private final double pulsesPerRevolution = 256;
 	//private final double encoderToShaftRatio = 3;
@@ -37,7 +37,8 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		rightEncoder = new Encoder(RobotMap.ARM_ENCODER_RIGHT_A, RobotMap.ARM_ENCODER_RIGHT_B,
 				RobotMap.ARM_ENCODER_RIGHT_REVERSE, EncodingType.k4X);
 		rightEncoder.reset();
-		limitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
+		leftLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH_LEFT);
+		rightLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH_RIGHT);
 
 		/* Setup sensors to check status, can also be used for phasing */
 		//Hardware.rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
@@ -63,7 +64,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	}
 
 	public boolean isSwitchClosed() {
-		return limitSwitch.get();
+		return leftLimitSwitch.get() || rightLimitSwitch.get();
 	}
 
 	@Override
@@ -104,6 +105,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		//SmartDashboard.putNumber("Arm: left velocity", leftEncoder.getRate());
 		SmartDashboard.putNumber("Arm: right motor current", motorRight.getOutputCurrent());
 		SmartDashboard.putNumber("Arm: left motor current", motorLeft.getOutputCurrent());
-		SmartDashboard.putBoolean("Arm: limit switch", limitSwitch.get());
+		SmartDashboard.putBoolean("Arm: left limit switch", leftLimitSwitch.get());
+		SmartDashboard.putBoolean("Arm: right limit switch", rightLimitSwitch.get());
 	}
 }

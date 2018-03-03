@@ -54,28 +54,31 @@ public class RobotMap {
 	public static final int CLIMBER_LEFT_MOTOR = 12;
 
 	// Solenoids: PCM 0
+	public static final int BALL_SHIFTER_PCM_MODULE = 0;
 	public static final int BALL_SHIFTER_FORWARD_CHANNEL = 0;
 	public static final int BALL_SHIFTER_REVERSE_CHANNEL = 1;
-	public static final int GLOVE_PCM_MODULE = 1;
+	public static final int GLOVE_PCM_MODULE = 0;
 	public static final int GLOVE_FORWARD_CHANNEL = 2;
 	public static final int GLOVE_REVERSE_CHANNEL = 3;
 	//public static final int GLOVE_FORWARD_CHANNEL_2 = 4;
 	//public static final int GLOVE_REVERSE_CHANNEL_2 = 5;
-	
+	public static final int LIGHT_RING_PCM_MODULE = 0;
+	public static final int LIGHT_RING_CHANNEL = 4; // TODO not implemented yet
+
 	//Solenoids:PCM 1
+	public static final int LAUNCHER_PCM_MODULE = 1;
 	public static final int LAUNCHER_LEFT_FORWARD_CHANNEL = 0;
 	public static final int LAUNCHER_LEFT_REVERSE_CHANNEL = 1;
 	public static final int LAUNCHER_CENTER_FORWARD_CHANNEL = 2;
 	public static final int LAUNCHER_CENTER_REVERSE_CHANNEL = 3; 
 	public static final int LAUNCHER_RIGHT_FORWARD_CHANNEL = 4;
 	public static final int LAUNCHER_RIGHT_REVERSE_CHANNEL = 5;
-	public static final int LAUNCHER_FORWARD_CHANNEL = 2;
-	public static final int LAUNCHER_FORWARD_CHANNEL_2 = 4;
-	public static final int LAUNCHER_FORWARD_CHANNEL_3 = 6;
-	public static final int LAUNCHER_REVERSE_CHANNEL = 3;
-	public static final int LAUNCHER_REVERSE_CHANNEL_2 = 5;
-	public static final int LAUNCHER_REVERSE_CHANNEL_3 = 7;
-	
+	//public static final int LAUNCHER_FORWARD_CHANNEL = 2;
+	//public static final int LAUNCHER_FORWARD_CHANNEL_2 = 4;
+	//public static final int LAUNCHER_FORWARD_CHANNEL_3 = 6;
+	//public static final int LAUNCHER_REVERSE_CHANNEL = 3;
+	//public static final int LAUNCHER_REVERSE_CHANNEL_2 = 5;
+	//public static final int LAUNCHER_REVERSE_CHANNEL_3 = 7;
 
 	// Encoders
 	public static final int DRIVE_TRAIN_ENCODER_RIGHT_A = 0;//3;//2; //3?
@@ -93,9 +96,8 @@ public class RobotMap {
 	public static final int LAUNCHER_ENCODER_A = 4;
 	public static final int LAUNCHER_ENCODER_B = 5;
 	public static final boolean LAUNCHER_ENCODER_REVERSE = false;
-	// TODO put 2 switches on arm
-	public static final int ARM_LIMIT_SWITCH_RIGHT = 8; // right
-	public static final int ARM_LIMIT_SWITCH = 9; // left
+	public static final int ARM_LIMIT_SWITCH_RIGHT = 8;
+	public static final int ARM_LIMIT_SWITCH_LEFT = 9;
 
 	// PDP channels for motors on Mark 2 and Mark 3
 	public static final int PDP_MOTOR_DRIVE_RIGHT1 = isMark3 ? 0 : 3;

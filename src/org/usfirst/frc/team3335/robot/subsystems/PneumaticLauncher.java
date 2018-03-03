@@ -11,21 +11,20 @@ public class PneumaticLauncher extends Subsystem implements LoggableSubsystem{
 	private final DoubleSolenoid solenoid1;
 	private final DoubleSolenoid solenoid2;
 	private final DoubleSolenoid solenoid3;
-	
-	
+
 	public PneumaticLauncher() {
-		solenoid1 = new DoubleSolenoid(RobotMap.LAUNCHER_FORWARD_CHANNEL, RobotMap.LAUNCHER_REVERSE_CHANNEL);
-		solenoid2 = new DoubleSolenoid(RobotMap.LAUNCHER_FORWARD_CHANNEL_2, RobotMap.LAUNCHER_REVERSE_CHANNEL_2);
-		solenoid3 = new DoubleSolenoid(RobotMap.LAUNCHER_FORWARD_CHANNEL_3, RobotMap.LAUNCHER_REVERSE_CHANNEL_3);
+		solenoid1 = new DoubleSolenoid(RobotMap.LAUNCHER_LEFT_FORWARD_CHANNEL, RobotMap.LAUNCHER_LEFT_REVERSE_CHANNEL);
+		solenoid2 = new DoubleSolenoid(RobotMap.LAUNCHER_CENTER_FORWARD_CHANNEL, RobotMap.LAUNCHER_CENTER_REVERSE_CHANNEL);
+		solenoid3 = new DoubleSolenoid(RobotMap.LAUNCHER_RIGHT_FORWARD_CHANNEL, RobotMap.LAUNCHER_RIGHT_REVERSE_CHANNEL);
 		close();
 	}
-	
+
 	public void open() {
 		solenoid1.set(Value.kForward);
 		solenoid2.set(Value.kForward);
 		solenoid3.set(Value.kForward);
 	}
-	
+
 	public void close() {
 		solenoid1.set(Value.kReverse);
 		solenoid2.set(Value.kReverse);
@@ -35,13 +34,11 @@ public class PneumaticLauncher extends Subsystem implements LoggableSubsystem{
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void log() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
