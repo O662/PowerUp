@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3335.robot.commands.autonomous;
 
+import org.usfirst.frc.team3335.robot.commands.PneumaticLaunchCube;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -14,11 +16,13 @@ public class AutoDecideRight extends CommandGroup {
 		char theirSwitch = gameData.charAt(2);
 		if(ourSwitch == 'R')
 		{
-			//Autonomus to drive strait and place cube in switch
+			//robot goes to switch and places cube
+			addSequential(new AutoDriveStraightPlaceCube());
 		} 
 		else if(Scale == 'R') { 
 			//robot drives to and turns to scale
 			addSequential(new AutoDriveToScaleTurn(90));
+			addSequential(new PneumaticLaunchCube());
 		}
 		else {
 			//robot drives across autoline
