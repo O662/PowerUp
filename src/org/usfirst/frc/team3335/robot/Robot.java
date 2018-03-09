@@ -142,6 +142,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance, 0.3));
 		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90, 0.4));
 		chooser.addObject("Auto Drive To Scale and Turn", new AutoDriveToScaleTurn(distance, 0.5, 90.0, 0.5));
+		chooser.addObject("Auto Decide Left", new AutoDecideLeft());
+		chooser.addObject("Auto Decide middle", new AutoDecideMiddle());
+		chooser.addObject("Auto Decide Right", new AutoDecideRight());
 
 
 		// Preferences
