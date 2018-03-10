@@ -16,16 +16,20 @@ public class AutoDecideLeft extends CommandGroup {
 		if(ourSwitch == 'L')
 		{
 			//robot goes to switch and places cube
+			
+			//will need vision
 			addSequential(new AutoDriveStraightPlaceCube());
 		} 
+		/*
 		else if(Scale == 'L') { 
 			//robot drives to and turns to scale
 			addSequential(new AutoDriveToScaleTurn(-90));
 			addSequential(new PneumaticLaunchCube());
 		}
+		*/
 		else {
 			//robot drives across autoline
-			addSequential(new AutoDriveStraight(140,.7));
+			addSequential(new AutoDriveStraight(80,.3));
 		}
 		
 	}

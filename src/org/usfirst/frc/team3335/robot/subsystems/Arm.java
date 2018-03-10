@@ -3,6 +3,7 @@ package org.usfirst.frc.team3335.robot.subsystems;
 import org.usfirst.frc.team3335.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -51,11 +52,16 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		motorLeft.setSensorPhase(false);
 		//_tal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		//_tal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		motorRight.setNeutralMode(NeutralMode.Brake);
+		motorLeft.setNeutralMode(NeutralMode.Brake);
 	}
 
 	public void moveArm(double speed) {
 		motorRight.set(speed);
 		motorLeft.set(speed);
+		if(isSwitchClosed()) {
+			ResetArmPosition();
+		}
 	}
 
 	public void stop() {
@@ -66,7 +72,13 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	public boolean isSwitchClosed() {
 		return leftLimitSwitch.get() || rightLimitSwitch.get();
 	}
-
+	
+	public void ResetArmPosition() {
+		//leftEncoder.reset();
+		//rightEncoder.reset();
+		motorRight.setSelectedSensorPosition(0, 0, 0);
+		motorLeft.setSelectedSensorPosition(0, 0, 0);
+	}
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
 		pidSourceType = pidSource;
@@ -92,7 +104,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	public void log() {
 		SmartDashboard.putNumber("Arm: right position", motorRight.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Arm: left position", motorLeft.getSelectedSensorPosition(0));
-
+		
 		/* Output value to SmartDashboard */
 		//SmartDashboard.putNumber("Right Sensor position", Hardware.rightMaster.getSelectedSensorPosition(0));
 		//SmartDashboard.putNumber("Left Sensor Velocity", Hardware.leftMaster.getSelectedSensorVelocity(0));

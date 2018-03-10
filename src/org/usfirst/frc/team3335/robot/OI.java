@@ -56,10 +56,11 @@ public class OI {
 		int bCloseHand = 10;
 		int bOpenHand = 11;
 		int bToggleHand = 1;
-		int bPneumaticLaunchCube = 2;//3;//8;
+		int bPneumaticLaunchCube = 3;//8;
 		//boolean useToggle = true;
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
+		//pov controls
 		int dMoveArmUp = 0;
 		int dMoveArmDown = 4;
 		int bSmallLauncher = 5;

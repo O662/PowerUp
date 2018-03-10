@@ -94,8 +94,9 @@ public class Robot extends IterativeRobot {
 		glove = new Glove();
 		subsystemsList.add(glove);
 
-		launcher = new Launcher();
-		subsystemsList.add(launcher);
+		launcher = null;
+		//launcher = new Launcher();
+		//subsystemsList.add(launcher);
 		
 		pneumaticLauncher = new PneumaticLauncher();
 		subsystemsList.add(pneumaticLauncher);
