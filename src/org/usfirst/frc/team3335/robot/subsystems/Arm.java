@@ -27,6 +27,10 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	//double distancePerPulse = Math.PI * wheelDiameter / (encoderToShaftRatio * pulsesPerRevolution);
 	//distancePerPulse /= stage3Ratio;
 	private PIDSourceType pidSourceType = PIDSourceType.kDisplacement;
+	int gearRatio = 125;
+	double ticksPerDeg = 4096.0 / 360;
+	double encoderscalar = gearRatio * ticksPerDeg;
+	
 
 	public Arm() {
 		motorRight = new WPI_TalonSRX(RobotMap.ARM_RIGHT_MOTOR);
@@ -70,7 +74,11 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	}
 
 	public boolean isSwitchClosed() {
-		return leftLimitSwitch.get() || rightLimitSwitch.get();
+		boolean closed = leftLimitSwitch.get() || rightLimitSwitch.get();
+		if(closed) {
+			ResetArmPosition();
+		}
+		return closed;
 	}
 	
 	public void ResetArmPosition() {
@@ -78,6 +86,16 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		//rightEncoder.reset();
 		motorRight.setSelectedSensorPosition(0, 0, 0);
 		motorLeft.setSelectedSensorPosition(0, 0, 0);
+	}
+	
+	public double getRightPosition() {
+		return motorRight.getSelectedSensorPosition(0) /  encoderscalar;
+		
+	}
+	public double getLeftPosition() {
+		
+		return  motorLeft.getSelectedSensorPosition(0) / encoderscalar;
+		
 	}
 	@Override
 	public void setPIDSourceType(PIDSourceType pidSource) {
@@ -102,8 +120,8 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 
 	@Override
 	public void log() {
-		SmartDashboard.putNumber("Arm: right position", motorRight.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Arm: left position", motorLeft.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Arm: right position", getRightPosition());
+		SmartDashboard.putNumber("Arm: left position", getLeftPosition());
 		
 		/* Output value to SmartDashboard */
 		//SmartDashboard.putNumber("Right Sensor position", Hardware.rightMaster.getSelectedSensorPosition(0));
