@@ -72,7 +72,7 @@ public class RobotMap {
 	public static final int LAUNCHER_CENTER_FORWARD_CHANNEL = 2;
 	public static final int LAUNCHER_CENTER_REVERSE_CHANNEL = 3; 
 	public static final int LAUNCHER_RIGHT_FORWARD_CHANNEL = 4;
-	public static final int LAUNCHER_RIGHT_REVERSE_CHANNEL = 5;
+	public static final int LAUNCHER_RIGHT_REVERSE_CHANNEL = 7;//5;
 	//public static final int LAUNCHER_FORWARD_CHANNEL = 2;
 	//public static final int LAUNCHER_FORWARD_CHANNEL_2 = 4;
 	//public static final int LAUNCHER_FORWARD_CHANNEL_3 = 6;

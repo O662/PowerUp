@@ -6,14 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ExtendCubeLauncher extends Command {
 
-	public ExtendCubeLauncher() {
+	private boolean small;
+	public ExtendCubeLauncher(boolean small) {
 		requires(Robot.pneumaticLauncher);
+		this.small = small;
 		
 	}
 	
 	@Override
 	protected void initialize() {
-		Robot.pneumaticLauncher.open();
+		Robot.pneumaticLauncher.open(small);
 	}
 
 

@@ -3,6 +3,7 @@ package org.usfirst.frc.team3335.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 import org.usfirst.frc.team3335.robot.commands.*;
 //import org.usfirst.frc.team3335.robot.commands.autonomous.*;
@@ -14,6 +15,31 @@ import org.usfirst.frc.team3335.robot.commands.*;
 public class OI {
 	private Joystick joystick;
 	private Joystick joystick2;
+	
+	
+	//Small class to handle POV like triggers
+	private class POVTrigger extends Trigger{
+		/*
+		 * Positions
+		 * 		7	0	1
+		 * 		6	-1	2
+		 * 		5	4	3
+		 * 		
+		 */
+		private int degrees;
+		private Joystick joy;
+		//Make sure to call using -1 through 7, else all dies...
+		public POVTrigger(Joystick joy, int position) {
+			degrees = position*45;
+			this.joy = joy;
+		}
+
+		@Override
+		public boolean get() {
+			// TODO Auto-generated method stub
+			return joy.getPOV(0)==degrees;
+		}
+	}
 
 	public OI() {
 		joystick = new Joystick(0);
@@ -26,14 +52,18 @@ public class OI {
 		int bMoveArmDown = 5;//4;
 		int bMoveArmUp = 4;//5;
 		int bShiftLow = 7;
-		int bShiftHigh = 6;
+		int bShiftHigh = 8;//6;
 		int bCloseHand = 10;
 		int bOpenHand = 11;
 		int bToggleHand = 1;
-		int bPneumaticLaunchCube = 3;//8;
+		int bPneumaticLaunchCube = 2;//3;//8;
 		//boolean useToggle = true;
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
+		int dMoveArmUp = 0;
+		int dMoveArmDown = 4;
+		int bSmallLauncher = 5;
+		
 
 		/*
         // Joystick 2
@@ -46,13 +76,25 @@ public class OI {
 		// Joystick 1
 
 		// Arm
-		double armSpeed = 0.4;
+		double armSpeed = .6;
+		
+		/*
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
 		moveArmUp.whenPressed(new ArmMove(armSpeed));
 		moveArmUp.whenReleased(new ArmMove(0));
 		JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
 		moveArmDown.whenPressed(new ArmMove(-armSpeed));
 		moveArmDown.whenReleased(new ArmMove(0));
+		*/
+		
+		// D-Pad Arm
+		//JoystickButton moveDArmUp = addButton()
+		Trigger moveDArmUp = new POVTrigger(joystick, dMoveArmUp);
+		moveDArmUp.whenActive(new ArmMove(armSpeed));
+		moveDArmUp.whenInactive(new ArmMove(0));
+		Trigger moveDArmDown = new POVTrigger(joystick, dMoveArmDown);
+		moveDArmDown.whenActive(new ArmMove(-armSpeed));
+		moveDArmDown.whenInactive(new ArmMove(0));
 
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
@@ -63,7 +105,10 @@ public class OI {
 		//launchCubeReverse.whenReleased(new LaunchCube(false));
 		JoystickButton pneumaticLaunchCube = addButton(getJoystick(), bPneumaticLaunchCube, "Pneumatic Launch Cube");
 		pneumaticLaunchCube.whenPressed(new PneumaticLaunchCube());
-
+		JoystickButton  pneumaticSmallLaunch = addButton(getJoystick(), bSmallLauncher, "Pneumatic Small Launch Cube");
+		pneumaticSmallLaunch.whenPressed(new PneumaticSmallLaunchCube());
+		
+		
 		// Ball Shifter
 		JoystickButton ballShiftHigh = addButton(getJoystick(), bShiftHigh, "Ball Shifter High");
 		ballShiftHigh.whenPressed(new BallShiftHigh());
