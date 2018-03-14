@@ -1,0 +1,19 @@
+package org.usfirst.frc.team3335.robot.commands;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+public class PlaceCubeInSwitch extends CommandGroup {
+
+	public PlaceCubeInSwitch() {
+		this("PlaceCubeInSwitch");
+	}
+
+	public PlaceCubeInSwitch(String name) {
+		super(name);
+		addSequential(new Hand(false));
+		addSequential(new ArmMoveToPosition(70,-.3));
+		addSequential(new Hand(true));
+		addSequential(new ArmMoveBack(180,.3));
+	}
+
+}
