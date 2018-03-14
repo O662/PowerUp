@@ -56,7 +56,8 @@ public class OI {
 		int bCloseHand = 10;
 		int bOpenHand = 11;
 		int bToggleHand = 1;
-		int bPneumaticLaunchCube = 3;//8;
+		int bPlaceCubeSwitch = 2;
+		int bPneumaticLaunchCube = 6;//3;//8;
 		//boolean useToggle = true;
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
@@ -127,6 +128,10 @@ public class OI {
 		JoystickButton openHand = addButton(getJoystick(), bOpenHand, "Open Hand");
 		openHand.whenPressed(new Hand(true));
 		//}
+
+		// Place Cube in Switch
+		JoystickButton placeCubeSwitch = addButton(getJoystick(), bPlaceCubeSwitch, "Place Cube in Switch");
+		placeCubeSwitch.whenPressed(new PlaceCubeInSwitch());
 
 		// Drive Mode: Front is Forward vs Back is Forward
 		/*

@@ -26,6 +26,10 @@ public class ArmMove extends Command {
 	@Override
 	protected boolean isFinished() {
 		
+		if (Robot.arm.getRightPosition() > 180) {
+			return true;
+		}
+		
 		if (speed < 0) {
 			return Robot.arm.isSwitchClosed();
 		}

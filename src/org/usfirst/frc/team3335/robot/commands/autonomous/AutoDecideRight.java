@@ -2,6 +2,7 @@ package org.usfirst.frc.team3335.robot.commands.autonomous;
 
 
 import org.usfirst.frc.team3335.robot.commands.ArmMoveToPosition;
+import org.usfirst.frc.team3335.robot.commands.Hand;
 import org.usfirst.frc.team3335.robot.commands.PneumaticLaunchCube;
 import org.usfirst.frc.team3335.robot.commands.PneumaticSmallLaunchCube;
 
@@ -27,10 +28,11 @@ public class AutoDecideRight extends CommandGroup {
 			//addSequential(new AutoDriveStraightPlaceCube());
 			
 			//if not straight on 
-			addSequential(new AutoDriveStraight(165,.3));
-			addSequential(new AutoDriveTurnToScale(-90,.5));
+			addSequential(new AutoDriveStraight(153,.3));
+			addSequential(new AutoDriveTurnToScale(-80,.5));
 			addSequential(new AutoDriveToSwitch());
-			addSequential(new ArmMoveToPosition(100,-.2));
+			addSequential(new Hand(true));
+			addSequential(new ArmMoveToPosition(70,-.2));
 			addSequential(new PneumaticSmallLaunchCube());
 			
 		} 
