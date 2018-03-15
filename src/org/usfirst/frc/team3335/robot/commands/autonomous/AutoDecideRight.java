@@ -41,13 +41,15 @@ public class AutoDecideRight extends CommandGroup {
 		
 		
 		
-		/*
+		
 		if(Scale == 'R') { 
 			//robot drives to and turns to scale
+			addSequential(new AutoDriveStraight(300,.3));
 			addSequential(new AutoDriveToScaleTurn(90));
+			addSequential(new AutoBackToWall());
 			addSequential(new PneumaticLaunchCube());
 		}
-		*/
+		
 		else {
 			//robot drives across autoline
 			addSequential(new AutoDriveStraight(80,.3));

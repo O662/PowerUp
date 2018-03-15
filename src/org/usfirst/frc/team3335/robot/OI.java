@@ -62,8 +62,8 @@ public class OI {
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
 		//pov controls
-		int dMoveArmUp = 0;
-		int dMoveArmDown = 4;
+		//int dMoveArmUp = 0;
+		//int dMoveArmDown = 4;
 		int bSmallLauncher = 5;
 		
 
@@ -80,24 +80,25 @@ public class OI {
 		// Arm
 		double armSpeed = .6;
 		
-		/*
+		
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
 		moveArmUp.whenPressed(new ArmMove(armSpeed));
 		moveArmUp.whenReleased(new ArmMove(0));
 		JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
 		moveArmDown.whenPressed(new ArmMove(-armSpeed));
 		moveArmDown.whenReleased(new ArmMove(0));
-		*/
+		
 		
 		// D-Pad Arm
 		//JoystickButton moveDArmUp = addButton()
+		/*
 		Trigger moveDArmUp = new POVTrigger(joystick, dMoveArmUp);
 		moveDArmUp.whenActive(new ArmMove(armSpeed));
 		moveDArmUp.whenInactive(new ArmMove(0));
 		Trigger moveDArmDown = new POVTrigger(joystick, dMoveArmDown);
 		moveDArmDown.whenActive(new ArmMove(-armSpeed));
 		moveDArmDown.whenInactive(new ArmMove(0));
-
+*/
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
 		//launchCube.whenPressed(new LaunchCube(true));
