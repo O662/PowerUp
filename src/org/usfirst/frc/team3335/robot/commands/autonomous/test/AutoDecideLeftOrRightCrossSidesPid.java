@@ -44,6 +44,10 @@ public class AutoDecideLeftOrRightCrossSidesPid extends CommandGroup {
 			setPointAngle = -90;
 		}
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null || gameData.isEmpty() || gameData.length() < 3) {
+			return;
+		}
+
 		char ourSwitch = gameData.charAt(0);
 		char ourScale = gameData.charAt(1);
 		//char theirSwitch = gameData.charAt(2);
@@ -80,7 +84,12 @@ public class AutoDecideLeftOrRightCrossSidesPid extends CommandGroup {
 			addSequential(new PneumaticLaunchCube());
 		} else {
 			//robot drives across autoline
-			addSequential(new AutoDriveStraightNavxPID(80, 0.3));
+			double distanceStart = 18 * 12 /* just a guess */ - 36 /*robot + bumpers?*/;
+			double distanceAcross = 14 * 12 /* just a guess */;
+			addSequential(new AutoDriveStraightNavxPID(distanceStart, 0.3));
+			addSequential(new AutoDriveTurnToScale(turnAngle, 0.5));
+			addSequential(new AutoDriveAtAngleNavxPID(distanceAcross, 0.3, setPointAngle));
+			addSequential(new AutoDriveTurnToScale(turnAngle, 0.5));
 		}
 	}
 }

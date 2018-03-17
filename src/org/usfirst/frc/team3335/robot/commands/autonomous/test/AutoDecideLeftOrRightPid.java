@@ -43,6 +43,9 @@ public class AutoDecideLeftOrRightPid extends CommandGroup {
 			setPointAngle = -90;
 		}
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null || gameData.isEmpty() || gameData.length() < 3) {
+			return;
+		}
 		char ourSwitch = gameData.charAt(0);
 		//char Scale = gameData.charAt(1);
 		//char theirSwitch = gameData.charAt(2);
