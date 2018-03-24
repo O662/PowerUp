@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDriveStraightLowerArms extends CommandGroup {
 
 	public AutoDriveStraightLowerArms() {
-		addSequential(new ArmMove(-.2),2);
-		addSequential(new ArmMoveBack(150,.2),2);
-		addSequential(new AutoDriveStraight(110,.3));
+		double armSpeed = 0.3;
+		addSequential(new ArmMove(-armSpeed),2);
+		addSequential(new ArmMoveBack(150,armSpeed),2);
+		addSequential(new AutoDriveStraight(110,.5));
 	}
 
 }

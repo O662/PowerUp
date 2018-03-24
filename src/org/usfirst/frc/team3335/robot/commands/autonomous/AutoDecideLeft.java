@@ -29,18 +29,19 @@ public class AutoDecideLeft extends CommandGroup {
 			//will need vision
 			//if straight on
 			//addSequential(new AutoDriveStraightPlaceCube());
-			
+			double armSpeed = 0.3;
 			//if not straight on 
-			addSequential(new ArmMove(-.2),2);
-			addSequential(new ArmMoveBack(150,.2),2);
-			addSequential(new AutoDriveStraight(153,.3));
-			addSequential(new AutoDriveTurnToScale(80,.5));
+			addSequential(new ArmMove(-armSpeed),2);
+			addSequential(new ArmMoveBack(150,armSpeed),2);
+			addSequential(new AutoDriveStraight(148,.5,true,30,.25));
+			addSequential(new AutoDriveTurnToScale(75,.5));
 			addSequential(new AutoDriveToSwitch());
 			addSequential(new Hand(true));
-			addSequential(new ArmMoveToPosition(70,-.2),2);
+			addSequential(new ArmMoveToPosition(70,-armSpeed),2);
 			addSequential(new PneumaticSmallestLaunchCube());
 		} 
 		
+		/*
 		else if(Scale == 'L') { 
 			//robot drives to and turns to scale
 			addSequential(new AutoDriveStraight(300,.3));
@@ -48,6 +49,7 @@ public class AutoDecideLeft extends CommandGroup {
 			addSequential(new AutoBackToWall());
 			addSequential(new PneumaticLaunchCube());
 		}
+		*/
 		
 		else {
 			//robot drives across autoline

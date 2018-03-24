@@ -31,15 +31,15 @@ public class AutoDecideRight extends CommandGroup {
 			//robot goes to switch and places cube
 			//if strait on
 			//addSequential(new AutoDriveStraightPlaceCube());
-			
+			double armSpeed = 0.3;
 			//if not straight on 
-			addSequential(new ArmMove(-.2),2);
-			addSequential(new ArmMoveBack(150,.2),2);
-			addSequential(new AutoDriveStraight(153,.3));
-			addSequential(new AutoDriveTurnToScale(-80,.5));
+			addSequential(new ArmMove(-armSpeed),2);
+			addSequential(new ArmMoveBack(150,armSpeed),2);
+			addSequential(new AutoDriveStraight(1,.5,true,30,.25));
+			addSequential(new AutoDriveTurnToScale(-75,.5));
 			addSequential(new AutoDriveToSwitch());
 			addSequential(new Hand(true));
-			addSequential(new ArmMoveToPosition(70,-.2));
+			addSequential(new ArmMoveToPosition(70,-armSpeed));
 			addSequential(new PneumaticSmallestLaunchCube());
 			
 		} 
@@ -48,7 +48,7 @@ public class AutoDecideRight extends CommandGroup {
 		
 		
 		
-		
+		/*
 		if(Scale == 'R') { 
 			//robot drives to and turns to scale
 			addSequential(new AutoDriveStraight(300,.3));
@@ -57,6 +57,7 @@ public class AutoDecideRight extends CommandGroup {
 			addSequential(new PneumaticLaunchCube());
 		}
 		
+		*/
 		else {
 			//robot drives across autoline
 			addSequential(new ArmMove(-.2),2);

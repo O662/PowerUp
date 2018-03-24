@@ -49,8 +49,8 @@ public class OI {
 		//int bDefault = -1;
 		//int bLaunchCubeReverse = 2;
 		//int bLaunchCube = 3;
-		int bMoveArmDown = 5;//4;
-		int bMoveArmUp = 4;//5;
+		//int bMoveArmDown = 5;//4;
+		// bMoveArmUp = 4;//5;
 		int bShiftLow = 7;
 		int bShiftHigh = 8;//6;
 		int bCloseHand = 10;
@@ -58,49 +58,59 @@ public class OI {
 		int bToggleHand = 1;
 		int bPlaceCubeSwitch = 2;
 		int bPneumaticLaunchCube = 6;//3;//8;
+		int bSmallLauncher = 5;
 		//boolean useToggle = true;
 		//bDriveForward = 8;
 		//bDriveBackward = 9;
 		//pov controls
-		//int dMoveArmUp = 0;
-		//int dMoveArmDown = 4;
-		int bSmallLauncher = 5;
-		int bRaiseLauncher = 9;
-		int bLowerLauncher = 12;
+		int dMoveArmUp = 0;
+		int dMoveArmDown = 4;
+		int bRaiseLauncher = 10;
+		int bLowerLauncher = 11;
 		
 
-		/*
+		
         // Joystick 2
-        int bClimberUpSlow = 5; // Left Button
-        int bClimberUpFast = 6; // Right Button
-        int bClimberDownSlow = 7; // "Back"
-        int bClimberDownFast = 8; // "Start"
-		*/
+        int bArmRollersIn = 2;
+        int bArmRollersOut = 3;
+		int bSmallestLauncher = 6;
 
 		// Joystick 1
 
 		// Arm
 		double armSpeed = .4;
+		double intakeSpeed = .3;
 		
-		
+		/*
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
 		moveArmUp.whenPressed(new ArmMove(armSpeed));
 		moveArmUp.whenReleased(new ArmMove(0));
 		JoystickButton moveArmDown = addButton(getJoystick(), bMoveArmDown, "Move Arm Down");
 		moveArmDown.whenPressed(new ArmMove(-armSpeed));
 		moveArmDown.whenReleased(new ArmMove(0));
-		
+		*/
 		
 		// D-Pad Arm
 		//JoystickButton moveDArmUp = addButton()
-		/*
+		
 		Trigger moveDArmUp = new POVTrigger(joystick, dMoveArmUp);
 		moveDArmUp.whenActive(new ArmMove(armSpeed));
 		moveDArmUp.whenInactive(new ArmMove(0));
 		Trigger moveDArmDown = new POVTrigger(joystick, dMoveArmDown);
 		moveDArmDown.whenActive(new ArmMove(-armSpeed));
 		moveDArmDown.whenInactive(new ArmMove(0));
-*/
+		
+		
+		
+		//Arm Intake
+		JoystickButton ArmIntake = addButton(getJoystick2(), bArmRollersIn, "Arm Intake In");
+		ArmIntake.whenPressed(new IntakeCube(intakeSpeed,true));
+		ArmIntake.whenReleased(new IntakeCube(0,false));
+		JoystickButton ArmOuttake = addButton(getJoystick2(), bArmRollersOut, "Arm Intake In");
+		ArmOuttake.whenPressed(new IntakeCube(-intakeSpeed,true));
+		ArmOuttake.whenReleased(new IntakeCube(0,false));
+		
+
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
 		//launchCube.whenPressed(new LaunchCube(true));
@@ -109,14 +119,16 @@ public class OI {
 		//launchCubeReverse.whenPressed(new LaunchCube(true, true));
 		//launchCubeReverse.whenReleased(new LaunchCube(false));
 		JoystickButton pneumaticLaunchCube = addButton(getJoystick(), bPneumaticLaunchCube, "Pneumatic Launch Cube");
-		pneumaticLaunchCube.whenPressed(new PneumaticLaunchCube());
+		pneumaticLaunchCube.whenPressed(new LaunchCubeBig());
 		JoystickButton  pneumaticSmallLaunch = addButton(getJoystick(), bSmallLauncher, "Pneumatic Small Launch Cube");
-		pneumaticSmallLaunch.whenPressed(new PneumaticSmallLaunchCube());
+		pneumaticSmallLaunch.whenPressed(new LaunchCubeMiddle());
+		JoystickButton  pneumaticSmallestLaunch = addButton(getJoystick2(), bSmallestLauncher, "Pneumatic Small Launch Cube");
+		pneumaticSmallestLaunch.whenPressed(new LaunchCubeSmall());
 		
 		//raise and lower launcher
-		JoystickButton RaiseLauncher = addButton(getJoystick(), bRaiseLauncher, "Raise Launcher");
+		JoystickButton RaiseLauncher = addButton(getJoystick2(), bRaiseLauncher, "Raise Launcher");
 		RaiseLauncher.whenPressed(new ExtendCubeLauncher(false));
-		JoystickButton LowerLauncher = addButton(getJoystick(), bLowerLauncher, "Lower Launcher");
+		JoystickButton LowerLauncher = addButton(getJoystick2(), bLowerLauncher, "Lower Launcher");
 		LowerLauncher.whenPressed(new RetractCubeLauncher());
 		
 		

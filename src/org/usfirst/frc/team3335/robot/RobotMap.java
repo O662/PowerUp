@@ -45,12 +45,12 @@ public class RobotMap {
 	public static final int ARM_RIGHT_MOTOR = 5;
 	/** Left arm bag motor */
 	public static final int ARM_LEFT_MOTOR = 6;
+	/**right arm intake bag motor**/
+	public static final int ARM_INTAKE_RIGHT_MOTOR = 9;
+	/**left arm intake bag motor**/
+	public static final int ARM_INTAKE_LEFT_MOTOR = 10;
 	
-	public static final int CLIMBER_MOTOR = 9;
-	/** Right launcher/trigger CIM motor */
-	public static final int LAUNCHER_RIGHT_MOTOR = 9;
-	/** Left launcher/trigger CIM motor */
-	public static final int LAUNCHER_LEFT_MOTOR = 10;
+	//public static final int CLIMBER_MOTOR = 9;
 	/** Right climber 775 motor */
 	public static final int CLIMBER_RIGHT_MOTOR = 11;
 	/** Left climber 775 motor */

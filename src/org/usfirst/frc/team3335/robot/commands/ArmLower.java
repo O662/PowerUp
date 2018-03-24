@@ -10,11 +10,6 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Preferences;
 
 
-
-
-
-
-
 public class ArmLower extends Command {
 
 	boolean finished;

@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3335.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
@@ -57,12 +58,12 @@ public class Robot extends IterativeRobot {
 	public static BallShifter ballShifter;
 	//public static Climber climber;
 	public static NavX navx;
-	public static Launcher launcher;
 	public static PneumaticLauncher pneumaticLauncher;
 	public static Arm arm;
 	public static Glove glove;
 	public static DoubleUltrasonic doubleUltrasonic;
 	public static SingleUltrasonic singleUltrasonic;
+	public static ArmIntake armIntake;
 
 	public static PowerDistributionPanel pdp;
 
@@ -103,10 +104,6 @@ public class Robot extends IterativeRobot {
 
 		glove = new Glove();
 		subsystemsList.add(glove);
-
-		launcher = null;
-		//launcher = new Launcher();
-		//subsystemsList.add(launcher);
 		
 		pneumaticLauncher = new PneumaticLauncher();
 		subsystemsList.add(pneumaticLauncher);
@@ -117,6 +114,9 @@ public class Robot extends IterativeRobot {
 
 		doubleUltrasonic = new DoubleUltrasonic();
 		subsystemsList.add(doubleUltrasonic);
+		
+		armIntake = new ArmIntake();
+		subsystemsList.add(armIntake);
 
 		//singleUltrasonic = new SingleUltrasonic();
 		//subsystemsList.add(singleUltrasonic);
@@ -224,6 +224,26 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		int counter = 0;
+		while(true) {
+			counter++;
+			if (isGameDataValid()) {
+				break;
+			} else {
+				DriverStation.reportWarning("Game data not valid, retry #" + counter, false);
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			if (counter > 100) {
+				break;
+			}
+		}
+		
 		autonomousCommand = chooser.getSelected();
 
 		
@@ -312,5 +332,22 @@ public class Robot extends IterativeRobot {
 				SmartDashboard.putData((Subsystem) subsystem);
 			}
 		}
+	}
+	
+	private boolean isGameDataValid() {
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null || gameData.isEmpty() || gameData.length() < 3) {
+			return false;
+		}
+		for(int i=0; i<3;i++) {
+			char letter = gameData.charAt(i);
+			if (!(letter == 'R' || letter == 'L')) {
+				return false;
+			}
+			
+			
+		}
+		return true;
 	}
 }
