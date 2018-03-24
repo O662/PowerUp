@@ -11,7 +11,7 @@ public class AutoDriveToSwitch extends CommandGroup {
 	public AutoDriveToSwitch() {
 		requires(Robot.doubleUltrasonic);
 		
-		double distance = Robot.doubleUltrasonic.getDistanceLeft()-10;
+		double distance = Robot.doubleUltrasonic.getDistanceFront()-10;
 		addSequential(new AutoDriveStraight(distance,.3));
 		// TODO Auto-generated constructor stub
 	}

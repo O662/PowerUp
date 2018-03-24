@@ -65,6 +65,8 @@ public class OI {
 		int dMoveArmUp = 0;
 		int dMoveArmDown = 4;
 		int bSmallLauncher = 5;
+		int bRaiseLauncher = 9;
+		int bLowerLauncher = 12;
 		
 
 		/*
@@ -78,7 +80,7 @@ public class OI {
 		// Joystick 1
 
 		// Arm
-		double armSpeed = .6;
+		double armSpeed = .4;
 		
 		/*
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
@@ -109,6 +111,12 @@ public class OI {
 		pneumaticLaunchCube.whenPressed(new PneumaticLaunchCube());
 		JoystickButton  pneumaticSmallLaunch = addButton(getJoystick(), bSmallLauncher, "Pneumatic Small Launch Cube");
 		pneumaticSmallLaunch.whenPressed(new PneumaticSmallLaunchCube());
+		
+		//raise and lower launcher
+		JoystickButton RaiseLauncher = addButton(getJoystick(), bRaiseLauncher, "Raise Launcher");
+		RaiseLauncher.whenPressed(new ExtendCubeLauncher(false));
+		JoystickButton LowerLauncher = addButton(getJoystick(), bLowerLauncher, "Lower Launcher");
+		LowerLauncher.whenPressed(new RetractCubeLauncher());
 		
 		
 		// Ball Shifter

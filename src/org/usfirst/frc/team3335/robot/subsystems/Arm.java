@@ -53,6 +53,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		motorRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		motorRight.setSensorPhase(false);
 		motorLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+
 		motorLeft.setSensorPhase(false);
 		//_tal.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		//_tal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);

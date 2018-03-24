@@ -12,9 +12,12 @@ public class AutoDecideMiddle extends CommandGroup {
 	public AutoDecideMiddle() {
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == null || gameData.isEmpty() || gameData.length() < 3) {
+			return;
+		}
 		char ourSwitch = gameData.charAt(0);
-		char Scale = gameData.charAt(1);
-		char theirSwitch = gameData.charAt(2);
+		//char Scale = gameData.charAt(1);
+		//char theirSwitch = gameData.charAt(2);
 		
 		
 		//crossing autoline command

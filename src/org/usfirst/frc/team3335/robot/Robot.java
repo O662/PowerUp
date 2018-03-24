@@ -35,6 +35,15 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<String> autoChooser = new SendableChooser<String>();
+
+	final String AUTO_NONE = "None";
+	final String AUTO_DRIVE_STRAIGHT = "Auto Drive Straight";
+	final String AUTO_DECIDE_LEFT = "Auto Decide Left";
+	final String AUTO_DECIDE_RIGHT = "Auto Decide Right";
+	final String AUTO_DECIDE_MIDDLE = "Auto Decide Middle";
+	final String AUTO_DRIVE_STRAIGHT_LOWER_ARMS = "Auto Drive Straight Lower Arms";
+	
 
 	// List of subsystems, convenient for logging, etc.
 	private ArrayList<LoggableSubsystem> subsystemsList = new ArrayList<LoggableSubsystem>();
@@ -53,6 +62,7 @@ public class Robot extends IterativeRobot {
 	public static Arm arm;
 	public static Glove glove;
 	public static DoubleUltrasonic doubleUltrasonic;
+	public static SingleUltrasonic singleUltrasonic;
 
 	public static PowerDistributionPanel pdp;
 
@@ -108,6 +118,9 @@ public class Robot extends IterativeRobot {
 		doubleUltrasonic = new DoubleUltrasonic();
 		subsystemsList.add(doubleUltrasonic);
 
+		//singleUltrasonic = new SingleUltrasonic();
+		//subsystemsList.add(singleUltrasonic);
+
 
 		// Autonomous
 		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
@@ -136,17 +149,26 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
 		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
-		double distance = 36;
-		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(distance, 0.3));
-		SmartDashboard.putData("Auto Mode", chooser);
-		chooser.addObject("Auto Drive Straight NAVX", new AutoDriveStraightNavx(distance, 0.3));
-		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance, 0.3));
-		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90, 0.4));
-		chooser.addObject("Auto Drive To Scale and Turn", new AutoDriveToScaleTurn(distance, 0.5, 90.0, 0.5));
-		chooser.addObject("Auto Decide Left", new AutoDecideLeft());
-		chooser.addObject("Auto Decide middle", new AutoDecideMiddle());
-		chooser.addObject("Auto Decide Right", new AutoDecideRight());
+//		double distance = 36;
+//		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(110, 0.3));
+//		SmartDashboard.putData("Auto Mode", chooser);
+//		chooser.addObject("Auto Drive Straight NAVX", new AutoDriveStraightNavx(distance, 0.3));
+//		chooser.addObject("Auto Drive Straight NAVX PID", new AutoDriveStraightNavxPID(distance, 0.3));
+//		chooser.addObject("Auto Drive Turn to Scale", new AutoDriveTurnToScale(90, 0.4));
+//		chooser.addObject("Auto Drive To Scale and Turn", new AutoDriveToScaleTurn(distance, 0.5, 90.0, 0.5));
+//		//chooser.addObject("Auto Decide Left", new AutoDecideLeft());
+//		//chooser.addObject("Auto Decide middle", new AutoDecideMiddle());
+//		//chooser.addObject("Auto Decide Right", new AutoDecideRight());
+//		chooser.addObject("Auto Middle Go Right", new AutoMiddle());
 
+		// New string-based chooser for auto
+		autoChooser.addDefault(AUTO_NONE, AUTO_NONE);
+		autoChooser.addObject(AUTO_DRIVE_STRAIGHT, AUTO_DRIVE_STRAIGHT);
+		autoChooser.addObject(AUTO_DECIDE_LEFT, AUTO_DECIDE_LEFT);
+		autoChooser.addObject(AUTO_DECIDE_RIGHT, AUTO_DECIDE_RIGHT);
+		autoChooser.addObject(AUTO_DECIDE_MIDDLE, AUTO_DECIDE_MIDDLE);
+		autoChooser.addObject(AUTO_DRIVE_STRAIGHT_LOWER_ARMS, AUTO_DRIVE_STRAIGHT_LOWER_ARMS);
+		SmartDashboard.putData("Auto (String) Mode", autoChooser);
 
 		// Preferences
 		Preferences prefs = Preferences.getInstance();
@@ -203,6 +225,30 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
+
+		
+		switch(autoChooser.getSelected()) {
+		case AUTO_DECIDE_LEFT:
+			autonomousCommand = new AutoDecideLeft();
+			break;
+		case AUTO_DECIDE_RIGHT:
+			autonomousCommand = new AutoDecideRight();
+			break;
+		case AUTO_DECIDE_MIDDLE:
+			autonomousCommand = new AutoDecideMiddle();
+			break;
+		case AUTO_DRIVE_STRAIGHT:
+			autonomousCommand = new AutoDriveStraight(110,.3);
+			break;
+		case AUTO_DRIVE_STRAIGHT_LOWER_ARMS:
+			autonomousCommand = new AutoDriveStraightLowerArms();
+			break;
+		case AUTO_NONE:
+		default:
+			autonomousCommand = new AutoNone();
+			break;
+		}
+		
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)

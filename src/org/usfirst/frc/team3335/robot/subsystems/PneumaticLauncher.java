@@ -20,13 +20,19 @@ public class PneumaticLauncher extends Subsystem implements LoggableSubsystem{
 	}
 
 	public void open(boolean small) {
-		if (small) solenoid2.set(Value.kForward);
+		if (small) {
+			solenoid2.set(Value.kForward);
+			solenoid1.set(Value.kForward);
+		}
 		else {
 			solenoid1.set(Value.kForward);
 			solenoid2.set(Value.kForward);
 		solenoid3.set(Value.kForward);
 		}
 		
+	}
+	public void open2() {
+		solenoid2.set(Value.kForward);
 	}
 
 	public void close() {

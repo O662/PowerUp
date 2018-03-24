@@ -51,9 +51,9 @@ public class Launcher extends Subsystem implements LoggableSubsystem {
 	@Override
 	public void log() {
 		SmartDashboard.putNumber("Launcher: right current", launcherMotorRight.getOutputCurrent());
-		SmartDashboard.putNumber("Launcher: right current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_LAUNCHER_RIGHT));
+		//SmartDashboard.putNumber("Launcher: right current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_LAUNCHER_RIGHT));
 		SmartDashboard.putNumber("Launcher: left current", launcherMotorLeft.getOutputCurrent());
-		SmartDashboard.putNumber("Launcher: left current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_LAUNCHER_LEFT));
+		//SmartDashboard.putNumber("Launcher: left current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_LAUNCHER_LEFT));
 	}
 	
 }

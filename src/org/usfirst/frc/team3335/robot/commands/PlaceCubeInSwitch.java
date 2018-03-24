@@ -11,9 +11,11 @@ public class PlaceCubeInSwitch extends CommandGroup {
 	public PlaceCubeInSwitch(String name) {
 		super(name);
 		addSequential(new Hand(false));
-		addSequential(new ArmMoveToPosition(70,-.3));
+		addSequential(new ArmMoveToPosition(70,-.2));
 		addSequential(new Hand(true));
-		addSequential(new ArmMoveBack(180,.3));
+		addSequential(new ArmMoveBack(150,.2), 2);
+		
+		
 	}
 
 }
