@@ -29,13 +29,13 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 	//get the cantalons at http://www.ctr-electronics.com/downloads/installers/CTRE%20Toolsuite%20v4.4.1.9-nonadmin.zip for windows,
 	//http://www.ctr-electronics.com//downloads/lib/CTRE_FRCLibs_NON-WINDOWS_v4.4.1.9.zip for other
 	// Grayhill 63R256 encoder optical
-	private final WPI_TalonSRX motorLeft1, motorLeft2, motorLeft3;
-	private final WPI_TalonSRX motorRight1, motorRight2, motorRight3;
+	private final WPI_TalonSRX /*motorLeft1,*/ motorLeft2, motorLeft3;
+	private final WPI_TalonSRX /*motorRight1,*/ motorRight2, motorRight3;
 	private final DifferentialDrive drive;
 	private final Encoder leftEncoder;
 	private final Encoder rightEncoder;
 	private final boolean useTankDrive = false;
-	private final double deadzone = .1;
+	private final double deadzone = 0.1;
 	private final double trainingSpeedMax = 1;
 	private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION; // Mark2 = 1; Mark3 = -1
 	//private final double joystickScalar = 1/(1-deadzone);
@@ -64,14 +64,14 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 
 	public DriveTrain() {
 		super();
-		motorLeft1 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_LEFT1);
+		//motorLeft1 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_LEFT1);
 		motorLeft2 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_LEFT2);
 		motorLeft3 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_LEFT3);
-		motorRight1 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_RIGHT1);
+		//motorRight1 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_RIGHT1);
 		motorRight2 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_RIGHT2);
 		motorRight3 = new WPI_TalonSRX(RobotMap.MOTOR_DRIVE_RIGHT3);
-		SpeedControllerGroup leftGroup = new SpeedControllerGroup(motorLeft1, motorLeft2, motorLeft3);
-		SpeedControllerGroup rightGroup = new SpeedControllerGroup(motorRight1, motorRight2, motorRight3);
+		SpeedControllerGroup leftGroup = new SpeedControllerGroup(/*motorLeft1, */motorLeft2, motorLeft3);
+		SpeedControllerGroup rightGroup = new SpeedControllerGroup(/*motorRight1, */motorRight2, motorRight3);
 
 		leftGroup.set(0);
 		rightGroup.set(0);
@@ -109,10 +109,10 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 		// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
 		NeutralMode mode = brake ? NeutralMode.Brake : NeutralMode.Coast;
 
-		motorLeft1.setNeutralMode(mode);
+		//motorLeft1.setNeutralMode(mode);
 		motorLeft2.setNeutralMode(mode);
 		motorLeft3.setNeutralMode(mode);
-		motorRight1.setNeutralMode(mode);
+		//motorRight1.setNeutralMode(mode);
 		motorRight2.setNeutralMode(mode);
 		motorRight3.setNeutralMode(mode);
 	}
@@ -122,10 +122,10 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 		// TODO also see section on limiting current rate, both peak and continuous
 		// TODO which will be useful for climbing motors
 		// (2, 0) ramps from neutral to full voltage in 2 sec, with no timeout
-		motorLeft1.configOpenloopRamp(secondsFromNeutralToFull, 0);
+		//motorLeft1.configOpenloopRamp(secondsFromNeutralToFull, 0);
 		motorLeft2.configOpenloopRamp(secondsFromNeutralToFull, 0);
 		motorLeft3.configOpenloopRamp(secondsFromNeutralToFull, 0);
-		motorRight1.configOpenloopRamp(secondsFromNeutralToFull, 0);
+		//motorRight1.configOpenloopRamp(secondsFromNeutralToFull, 0);
 		motorRight2.configOpenloopRamp(secondsFromNeutralToFull, 0);
 		motorRight3.configOpenloopRamp(secondsFromNeutralToFull, 0);
 	}
@@ -267,13 +267,13 @@ public class DriveTrain extends Subsystem implements LoggableSubsystem, PIDSourc
 		SmartDashboard.putNumber("DriveTrain: right distance", rightEncoder.getDistance());
 		SmartDashboard.putNumber("DriveTrain: right velocity", rightEncoder.getRate());
 		//SmartDashboard.putNumber("DriveTrain: right raw", rightEncoder.getRaw());
-		SmartDashboard.putNumber("DriveTrain: left1 (CIM) current", motorLeft1.getOutputCurrent());
+		//SmartDashboard.putNumber("DriveTrain: left1 (CIM) current", motorLeft1.getOutputCurrent());
 		//SmartDashboard.putNumber("DriveTrain: left1 (CIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_LEFT1));
 		SmartDashboard.putNumber("DriveTrain: left2 (MiniCIM) current", motorLeft2.getOutputCurrent());
 		//SmartDashboard.putNumber("DriveTrain: left2 (MiniCIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_LEFT2));
 		SmartDashboard.putNumber("DriveTrain: left3 (MiniCIM) current", motorLeft3.getOutputCurrent());
 		//SmartDashboard.putNumber("DriveTrain: left3 (MiniCIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_LEFT3));
-		SmartDashboard.putNumber("DriveTrain: right1 (CIM) current", motorRight1.getOutputCurrent());
+		//SmartDashboard.putNumber("DriveTrain: right1 (CIM) current", motorRight1.getOutputCurrent());
 		//SmartDashboard.putNumber("DriveTrain: right1 (CIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_RIGHT1));
 		SmartDashboard.putNumber("DriveTrain: right2 (MiniCIM) current", motorRight2.getOutputCurrent());
 		//SmartDashboard.putNumber("DriveTrain: right2 (MiniCIM) current pdp", Robot.pdp.getCurrent(RobotMap.PDP_MOTOR_DRIVE_RIGHT2));
