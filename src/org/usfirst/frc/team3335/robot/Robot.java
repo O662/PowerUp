@@ -75,6 +75,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// Instantiate subsystems and add to subsystem list (e.g., for logging to dashboard)
 		pdp = new PowerDistributionPanel();
+		// TODO test if disabling the telemetry on the pdp gets rid of the CAN timeout
+		// TODO messages on the console.  Also check CAN web page that pdp is on port 0.
+		// TODO see https://www.chiefdelphi.com/forums/showthread.php?t=161619
+		//LiveWindow.disableTelemetry(pdp);
 
 		//compressor = new Compressor();
 		//subsystemsList.add(compressor);
