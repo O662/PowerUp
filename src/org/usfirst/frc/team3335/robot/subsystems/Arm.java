@@ -1,12 +1,14 @@
 package org.usfirst.frc.team3335.robot.subsystems;
 
 import org.usfirst.frc.team3335.robot.RobotMap;
+import org.usfirst.frc.team3335.robot.commands.ArmWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -20,6 +22,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	private final WPI_TalonSRX motorRight, motorLeft;
 	private final Encoder leftEncoder, rightEncoder;
 	private final DigitalInput leftLimitSwitch, rightLimitSwitch;
+	private final double deadzone = 0.1;
 	// TODO fix for 2018 encoders
 	//private final double pulsesPerRevolution = 256;
 	//private final double encoderToShaftRatio = 3;
@@ -61,11 +64,15 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		motorLeft.setNeutralMode(NeutralMode.Brake);
 	}
 
+	public void moveArm(Joystick joystick) {
+		moveArm(map(joystick.getRawAxis(1)));
+	}
+
 	public void moveArm(double speed) {
 		motorRight.set(speed);
 		motorLeft.set(speed);
 		if(isSwitchClosed()) {
-			ResetArmPosition();
+			resetArmPosition();
 		}
 	}
 
@@ -77,12 +84,12 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	public boolean isSwitchClosed() {
 		boolean closed = leftLimitSwitch.get() || rightLimitSwitch.get();
 		if(closed) {
-			ResetArmPosition();
+			resetArmPosition();
 		}
 		return closed;
 	}
 	
-	public void ResetArmPosition() {
+	public void resetArmPosition() {
 		//leftEncoder.reset();
 		//rightEncoder.reset();
 		motorRight.setSelectedSensorPosition(0, 0, 0);
@@ -117,6 +124,21 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new ArmWithJoystick());
+	}
+
+	public double map(double input) {
+		double scalar = 0.5;
+		if (Math.abs(input) < deadzone) {
+			return 0;
+		}
+		if (input > 0) {
+			return scalar * (input - deadzone)/(1 - deadzone);
+		} else if (input < 0) {
+			return scalar * (input + deadzone)/(1 - deadzone);
+		} else {
+			return 0;
+		}
 	}
 
 	@Override

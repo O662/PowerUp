@@ -67,9 +67,7 @@ public class OI {
 		int dMoveArmDown = 4;
 		int bRaiseLauncher = 10;
 		int bLowerLauncher = 11;
-		
 
-		
         // Joystick 2
         int bArmRollersIn = 2;
         int bArmRollersOut = 3;
@@ -78,8 +76,8 @@ public class OI {
 		// Joystick 1
 
 		// Arm
-		double armSpeed = .4;
-		double intakeSpeed = .3;
+		double armSpeed = .6;//change to point 4
+		double intakeSpeed = 1;
 		
 		/*
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
@@ -99,17 +97,14 @@ public class OI {
 		Trigger moveDArmDown = new POVTrigger(joystick, dMoveArmDown);
 		moveDArmDown.whenActive(new ArmMove(-armSpeed));
 		moveDArmDown.whenInactive(new ArmMove(0));
-		
-		
-		
+
 		//Arm Intake
 		JoystickButton ArmIntake = addButton(getJoystick2(), bArmRollersIn, "Arm Intake In");
-		ArmIntake.whenPressed(new IntakeCube(intakeSpeed,true));
+		ArmIntake.whenPressed(new IntakeCube(-intakeSpeed, true));
 		ArmIntake.whenReleased(new IntakeCube(0,false));
 		JoystickButton ArmOuttake = addButton(getJoystick2(), bArmRollersOut, "Arm Intake In");
-		ArmOuttake.whenPressed(new IntakeCube(-intakeSpeed,true));
+		ArmOuttake.whenPressed(new IntakeCube(intakeSpeed, true));
 		ArmOuttake.whenReleased(new IntakeCube(0,false));
-		
 
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");

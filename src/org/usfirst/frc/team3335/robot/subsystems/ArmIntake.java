@@ -20,9 +20,8 @@ public class ArmIntake extends Subsystem implements LoggableSubsystem{
 		motorLeft.setNeutralMode(NeutralMode.Brake);
 	}
 
-	
 	public void moveArm(double speed) {
-		motorRight.set(speed);
+		motorRight.set(-speed);
 		motorLeft.set(speed);
 	}
 	
@@ -34,7 +33,7 @@ public class ArmIntake extends Subsystem implements LoggableSubsystem{
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 
