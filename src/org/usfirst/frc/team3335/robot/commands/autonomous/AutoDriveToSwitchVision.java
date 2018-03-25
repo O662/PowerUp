@@ -5,8 +5,15 @@ import org.usfirst.frc.team3335.robot.commands.autonomous.test.AutoDriveAtAngleN
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+//Deprecated due to warning below
+@Deprecated
 public class AutoDriveToSwitchVision extends CommandGroup {
 	
+	/**
+	 * TODO: WARNING - this command group will not function as expected, due to
+	 * getting the vision target info at the time the command
+	 * is constructed, not at the time the command is started (running).
+	 */
 	public AutoDriveToSwitchVision() {
 		
 		requires(Robot.visionTarget);

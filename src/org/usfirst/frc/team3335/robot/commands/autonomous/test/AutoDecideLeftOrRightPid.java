@@ -16,7 +16,15 @@ import org.usfirst.frc.team3335.robot.commands.autonomous.AutoDriveTurnToScale;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+//Deprecated due to warning below
+@Deprecated
 public class AutoDecideLeftOrRightPid extends CommandGroup {
+
+	/*
+	 * TODO: WARNING - this command group will not function as expected, due to
+	 * getting the ultrasonic distance at the time the command is constructed,
+	 * not at the time the command is started (running).
+	 */
 
 	/**
 	 * Auto decide left or right

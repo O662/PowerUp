@@ -5,12 +5,19 @@ import org.usfirst.frc.team3335.robot.subsystems.DoubleUltrasonic;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+//Deprecated due to warning below
+@Deprecated
 public class AutoWillWeTurn extends Command {
 
 	public boolean willTurn = false;
 	public double differnce;
 	public boolean isRight; //if right distance is greater than this will be true
 	
+	/**
+	 * TODO: WARNING - this command group will not function as expected, due to
+	 * getting the ultrasonic distance at the time the command is constructed,
+	 * not at the time the command is started (running).
+	 */
 	public AutoWillWeTurn() {
 	requires(Robot.doubleUltrasonic);
 	

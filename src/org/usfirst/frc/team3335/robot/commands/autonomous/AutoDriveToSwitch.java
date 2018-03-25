@@ -4,21 +4,25 @@ import org.usfirst.frc.team3335.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+//Deprecated due to warning below
+@Deprecated
 public class AutoDriveToSwitch extends CommandGroup {
-	
-	
 
+	/**
+	 * TODO: WARNING - this command group will not function as expected, due to
+	 * getting the ultrasonic distance at the time the command is constructed,
+	 * not at the time the command is started (running).
+	 */
 	public AutoDriveToSwitch() {
-		requires(Robot.doubleUltrasonic);
-		
-		double distance = Robot.doubleUltrasonic.getDistanceFront()-10;
-		addSequential(new AutoDriveStraight(distance,.3));
-		// TODO Auto-generated constructor stub
+		this("AutoDriveToSwitch");
 	}
 
 	public AutoDriveToSwitch(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		requires(Robot.doubleUltrasonic);
+		
+		double distance = Robot.doubleUltrasonic.getDistanceFront()-10;
+		addSequential(new AutoDriveStraight(distance,.3));
 	}
 
 }

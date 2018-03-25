@@ -11,10 +11,15 @@ import org.usfirst.frc.team3335.robot.commands.autonomous.test.AutoDriveAtAngleN
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+//Deprecated due to warning below
+@Deprecated
 public class AutoDecideMiddleVision extends CommandGroup {
 	
-	//avoid going to color of our side and go to opposite side to cross line
-	
+	/**
+	 * TODO: WARNING - this command group will not function as expected, due to
+	 * getting the vision target info and the navx yaw angle at the time the command
+	 * is constructed, not at the time the command is started (running).
+	 */
 	public AutoDecideMiddleVision() {
 		requires(Robot.visionTarget);
 		requires(Robot.navx);
@@ -56,7 +61,7 @@ public class AutoDecideMiddleVision extends CommandGroup {
 			//addSequential(new PlaceCubeInSwitch());
 			addSequential(new LaunchCubeSmall());
 		} else {
-			//addSequential(new AutoDriveStraight(24, 0.3), 2);
+			addSequential(new AutoDriveStraight(24, 0.3), 2);
 		}
 	}
 
