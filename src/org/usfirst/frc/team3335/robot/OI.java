@@ -92,19 +92,23 @@ public class OI {
 		//JoystickButton moveDArmUp = addButton()
 		
 		Trigger moveDArmUp = new POVTrigger(joystick, dMoveArmUp);
-		moveDArmUp.whenActive(new ArmMove(armSpeed));
-		moveDArmUp.whenInactive(new ArmMove(0));
+		//moveDArmUp.whenActive(new ArmMove(armSpeed));
+		//moveDArmUp.whenInactive(new ArmMove(0));
+		moveDArmUp.whileActive(new ArmMove(armSpeed));
 		Trigger moveDArmDown = new POVTrigger(joystick, dMoveArmDown);
-		moveDArmDown.whenActive(new ArmMove(-armSpeed));
-		moveDArmDown.whenInactive(new ArmMove(0));
+		//moveDArmDown.whenActive(new ArmMove(-armSpeed));
+		//moveDArmDown.whenInactive(new ArmMove(0));
+		moveDArmDown.whileActive(new ArmMove(-armSpeed));
 
 		//Arm Intake
 		JoystickButton ArmIntake = addButton(getJoystick2(), bArmRollersIn, "Arm Intake In");
-		ArmIntake.whenPressed(new IntakeCube(-intakeSpeed, true));
-		ArmIntake.whenReleased(new IntakeCube(0,false));
+		//ArmIntake.whenPressed(new IntakeCube(-intakeSpeed, true));
+		//ArmIntake.whenReleased(new IntakeCube(0,false));
+		ArmIntake.whileHeld(new IntakeCube(-intakeSpeed, true));
 		JoystickButton ArmOuttake = addButton(getJoystick2(), bArmRollersOut, "Arm Intake In");
-		ArmOuttake.whenPressed(new IntakeCube(intakeSpeed, true));
-		ArmOuttake.whenReleased(new IntakeCube(0,false));
+		//ArmOuttake.whenPressed(new IntakeCube(intakeSpeed, true));
+		//ArmOuttake.whenReleased(new IntakeCube(0,false));
+		ArmOuttake.whileHeld(new IntakeCube(intakeSpeed, true));
 
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");

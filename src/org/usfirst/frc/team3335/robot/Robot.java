@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 		// TODO test if disabling the telemetry on the pdp gets rid of the CAN timeout
 		// TODO messages on the console.  Also check CAN web page that pdp is on port 0.
 		// TODO see https://www.chiefdelphi.com/forums/showthread.php?t=161619
-		//LiveWindow.disableTelemetry(pdp);
+		LiveWindow.disableTelemetry(pdp);
 
 		//compressor = new Compressor();
 		//subsystemsList.add(compressor);

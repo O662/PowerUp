@@ -16,7 +16,6 @@ public class IntakeCube extends Command {
 		finished = isFinished;
 	}
 
-	
 	@Override
 	protected void execute() {
 		Robot.armIntake.moveArm(speed);
@@ -24,7 +23,7 @@ public class IntakeCube extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		if(!finished) {
+		if(!finished || Robot.armIntake.isCurrentExceeded()) {
 			return true;
 		}
 		return false;
