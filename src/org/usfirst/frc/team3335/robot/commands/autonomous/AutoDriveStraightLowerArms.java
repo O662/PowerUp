@@ -10,9 +10,9 @@ public class AutoDriveStraightLowerArms extends CommandGroup {
 
 	public AutoDriveStraightLowerArms() {
 		double armSpeed = 0.3;
-		addSequential(new ArmMove(-armSpeed),2);
-		addSequential(new ArmMoveBack(150,armSpeed),2);
-		addSequential(new AutoDriveStraight(110,.5));
+		addSequential(new ArmMove(-armSpeed), 2);
+		addSequential(new ArmMoveBack(150, armSpeed), 2);
+		addSequential(new AutoDriveStraight(110, 0.5));
 	}
 
 }

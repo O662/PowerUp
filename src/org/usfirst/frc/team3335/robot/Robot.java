@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team3335.robot.commands.autonomous.*;
+import org.usfirst.frc.team3335.robot.commands.autonomous.test.AutoDecideLeftOrRightPid;
+import org.usfirst.frc.team3335.robot.commands.autonomous.test.AutoDecideMiddlePid;
 import org.usfirst.frc.team3335.robot.subsystems.*;
 import org.usfirst.frc.team3335.robot.subsystems.vision.VisionTarget;
 
@@ -44,7 +46,10 @@ public class Robot extends IterativeRobot {
 	final String AUTO_DECIDE_RIGHT = "Auto Decide Right";
 	final String AUTO_DECIDE_MIDDLE = "Auto Decide Middle";
 	final String AUTO_DRIVE_STRAIGHT_LOWER_ARMS = "Auto Drive Straight Lower Arms";
-	
+	final String AUTO_DECIDE_MIDDLE_VISION = "Auto Decide Middle Vision";
+	final String AUTO_DECIDE_LEFT_PID_TEST = "TEST Auto Decide Left PID";
+	final String AUTO_DECIDE_RIGHT_PID_TEST = "TEST Auto Decide Right PID";
+	final String AUTO_DECIDE_MIDDLE_PID_TEST = "TEST Auto Decide Middle PID";
 
 	// List of subsystems, convenient for logging, etc.
 	private ArrayList<LoggableSubsystem> subsystemsList = new ArrayList<LoggableSubsystem>();
@@ -127,31 +132,6 @@ public class Robot extends IterativeRobot {
 
 
 		// Autonomous
-		//chooser.addObject("AutoDriveToPeg", new AutoDriveToPeg(60));
-		//chooser.addObject("Auto Drive Straight 9ft", new AutoPlaceGear(108, 0, 0));
-		//chooser.addObject("Auto Place Gear Turn Right", new AutoPlaceGear(90, 60, 60));
-		//chooser.addObject("Auto Drive Straight 6ft", new AutoPlaceGear(80, 0, 0));
-		//chooser.addObject("Auto Place Gear Turn Left", new AutoPlaceGear(90, -60, 60));
-		//chooser.addObject("Auto Place and Drop Gear Straight", 
-		//		new AutoPlaceDropGear(70/*110*/, 0, 0, -20, 0.5)); // ~108in dist minus ~29in robot length
-		//chooser.addObject("Auto Turn using Vision", new AutoTurnByVision());
-		//chooser.addObject("Auto Turn using Vision Simple", new AutoTurnByVisionSimple());
-		//chooser.addObject("Auto Place Gear using Vision Simple Turn Right", new AutoPlaceDropGearVision(80, 60, 66, -20, 0.5));
-		//chooser.addObject("Auto Place Gear using Vision Simple Straight", new AutoPlaceDropGearVision(0, 0, 80, -20, 0.5));
-		//chooser.addObject("Auto Place Gear using Vision Simple Turn Left", new AutoPlaceDropGearVision(80, -60, 66, -20, 0.5));
-		//chooser.addObject("Auto Place Gear using Vision Simple", new AutoPlaceDropGearVision(1, 60, 0, -20, 0.5));
-		/**/
-//		chooser.addObject("Auto Turn To Peg", new AutoTurnToPeg());
-//		chooser.addObject("Auto Turn Right & Drive To Peg (Vision Target)", new AutoPlaceDropGearVisionTurnPID(76, 58, 66, -20, 0.5));
-//		chooser.addObject("Auto Turn Straight & Drive To Peg (Vision Target)", new AutoPlaceDropGearVisionTurnPID(0, 0, 80, -20, 0.5));
-//		chooser.addObject("Auto Turn Left & Drive To Peg (Vision Target)", new AutoPlaceDropGearVisionTurnPID(76, -48/*?*/, 66, -20, 0.5));
-//		chooser.addObject("Auto Turn Right & Drive To Peg (new Vision Target)", new AutoPlaceDropGearVisionTurnPID3(72, 58, 66, -20, 0.5));
-//		chooser.addObject("Auto Turn Straight & Drive To Peg (new Vision Target)", new AutoPlaceDropGearVisionTurnPID3(0, 0, 80, -20, 0.5));
-//		chooser.addObject("Auto Turn Left & Drive To Peg (new Vision Target)", new AutoPlaceDropGearVisionTurnPID3(72, -48, 66, -20, 0.5));
-		/**/
-		//chooser.addObject("Auto Turn To Peg Simple", new AutoTurnToPegSimple(60, 0.5));
-		//chooser.addObject("Auto Turn To Peg Encoder", new AutoTurnToPegEncoders(-60, 0.5));
-		//chooser.addObject("Auto Drive Distance", new AutoDriveDistance(108, 10000));
 		chooser.addDefault("None", new AutoNone());
 //		double distance = 36;
 //		chooser.addObject("Auto Drive Straight", new AutoDriveStraight(110, 0.3));
@@ -172,6 +152,10 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject(AUTO_DECIDE_RIGHT, AUTO_DECIDE_RIGHT);
 		autoChooser.addObject(AUTO_DECIDE_MIDDLE, AUTO_DECIDE_MIDDLE);
 		autoChooser.addObject(AUTO_DRIVE_STRAIGHT_LOWER_ARMS, AUTO_DRIVE_STRAIGHT_LOWER_ARMS);
+		autoChooser.addObject(AUTO_DECIDE_MIDDLE_VISION, AUTO_DECIDE_MIDDLE_VISION);
+		//autoChooser.addObject(AUTO_DECIDE_LEFT_PID_TEST, AUTO_DECIDE_LEFT_PID_TEST);
+		//autoChooser.addObject(AUTO_DECIDE_RIGHT_PID_TEST, AUTO_DECIDE_RIGHT_PID_TEST);
+		//autoChooser.addObject(AUTO_DECIDE_MIDDLE_PID_TEST, AUTO_DECIDE_MIDDLE_PID_TEST);
 		SmartDashboard.putData("Auto (String) Mode", autoChooser);
 
 		// Preferences
@@ -241,16 +225,14 @@ public class Robot extends IterativeRobot {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
 			if (counter > 100) {
 				break;
 			}
 		}
-		
+
 		autonomousCommand = chooser.getSelected();
 
-		
 		switch(autoChooser.getSelected()) {
 		case AUTO_DECIDE_LEFT:
 			autonomousCommand = new AutoDecideLeft();
@@ -262,17 +244,28 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new AutoDecideMiddle();
 			break;
 		case AUTO_DRIVE_STRAIGHT:
-			autonomousCommand = new AutoDriveStraight(110,.3);
+			autonomousCommand = new AutoDriveStraight(110, 0.5);
 			break;
 		case AUTO_DRIVE_STRAIGHT_LOWER_ARMS:
 			autonomousCommand = new AutoDriveStraightLowerArms();
+			break;
+		case AUTO_DECIDE_MIDDLE_VISION:
+			autonomousCommand = new AutoDecideMiddleVision();
+			break;
+		case AUTO_DECIDE_LEFT_PID_TEST:
+			autonomousCommand = new AutoDecideLeftOrRightPid('L');
+			break;
+		case AUTO_DECIDE_RIGHT_PID_TEST:
+			autonomousCommand = new AutoDecideLeftOrRightPid('R');
+			break;
+		case AUTO_DECIDE_MIDDLE_PID_TEST:
+			autonomousCommand = new AutoDecideMiddlePid();
 			break;
 		case AUTO_NONE:
 		default:
 			autonomousCommand = new AutoNone();
 			break;
 		}
-		
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)

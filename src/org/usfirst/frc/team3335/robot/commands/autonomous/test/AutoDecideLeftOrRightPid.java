@@ -1,10 +1,16 @@
 package org.usfirst.frc.team3335.robot.commands.autonomous.test;
 
 import org.usfirst.frc.team3335.robot.Robot;
+import org.usfirst.frc.team3335.robot.commands.ArmMove;
+import org.usfirst.frc.team3335.robot.commands.ArmMoveBack;
 import org.usfirst.frc.team3335.robot.commands.ArmMoveToPosition;
 import org.usfirst.frc.team3335.robot.commands.Hand;
+import org.usfirst.frc.team3335.robot.commands.LaunchCubeSmall;
 import org.usfirst.frc.team3335.robot.commands.PneumaticSmallLaunchCube;
+import org.usfirst.frc.team3335.robot.commands.PneumaticSmallestLaunchCube;
+import org.usfirst.frc.team3335.robot.commands.autonomous.AutoDriveStraight;
 import org.usfirst.frc.team3335.robot.commands.autonomous.AutoDriveStraightNavxPID;
+import org.usfirst.frc.team3335.robot.commands.autonomous.AutoDriveToSwitch;
 import org.usfirst.frc.team3335.robot.commands.autonomous.AutoDriveTurnToScale;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,16 +36,17 @@ public class AutoDecideLeftOrRightPid extends CommandGroup {
 		requires(Robot.navx);
 		requires(Robot.doubleUltrasonic);
 
+		double armSpeed = 0.3;
 		char ourSide = 'R';
-		double turnAngle = 80;
+		double turnAngle = 75;
 		double setPointAngle = 90;
 		if (leftOrRight == 'L' || leftOrRight == 'l') {
 			ourSide = 'L';
-			turnAngle = 80;
+			turnAngle = 75;
 			setPointAngle = 90;
 		} else {
 			ourSide = 'R';
-			turnAngle = -80;
+			turnAngle = -75;
 			setPointAngle = -90;
 		}
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -56,19 +63,21 @@ public class AutoDecideLeftOrRightPid extends CommandGroup {
 			//addSequential(new AutoDriveStraightPlaceCube());
 
 			//if not straight on
-			addSequential(new AutoDriveStraightNavxPID(/*153*/144, 0.3));
+			addSequential(new ArmMove(-armSpeed), 2);
+			addSequential(new ArmMoveBack(150,armSpeed), 2);
+			addSequential(new AutoDriveStraightNavxPID(148, 0.5, true, 30, 0.25));
 			addSequential(new AutoDriveTurnToScale(turnAngle, 0.5));
 
 			// After turning, drive to switch
-			double distance = Robot.doubleUltrasonic.getDistanceLeft() - 10;
+			double distance = Robot.doubleUltrasonic.getDistanceFront() - 10;
 			addSequential(new AutoDriveAtAngleNavxPID(distance, 0.3, setPointAngle));
 
-			addSequential(new Hand(true));
-			addSequential(new ArmMoveToPosition(70, -0.2));
-			addSequential(new PneumaticSmallLaunchCube());
+			addSequential(new LaunchCubeSmall());
 		} else {
 			//robot drives across autoline
-			addSequential(new AutoDriveStraightNavxPID(80, 0.3));
+			addSequential(new ArmMove(-armSpeed), 2);
+			addSequential(new ArmMoveBack(150, armSpeed), 2);
+			addSequential(new AutoDriveStraightNavxPID(110, 0.5));
 		}
 	}
 }

@@ -31,10 +31,10 @@ public class VisionTarget extends Subsystem implements LoggableSubsystem, PIDSou
 	private static final int IMG_HEIGHT = 240;
 
 	/** Camera offset: positive=camera to right of center, negative=camera to left of center */
-	private final double cameraOffset = -12; // inches - Mark 2
+	private final double cameraOffset = 0; //-12; // inches - Mark 2
 
 	/** Distance offset for peg target: peg is ~4in less that distance to target */
-	private final double distanceOffset = -10.0; //-4.0;
+	private final double distanceOffset = 0.0; //-10.0; //-4.0;
 
 	/** Target contour ratio */
 	//private final double targetRatio = 0.4; // STEAMworks

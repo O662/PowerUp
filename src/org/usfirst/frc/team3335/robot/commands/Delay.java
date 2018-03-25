@@ -15,6 +15,7 @@ public class Delay extends Command {
 	}
 
 	public Delay(long delayTimeMillis, boolean setDriveBrake) {
+		requires(Robot.driveTrain);
 		timeDelay = delayTimeMillis;
 		this.setDriveBrake = setDriveBrake;
 	}
