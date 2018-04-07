@@ -15,7 +15,7 @@ public class AutoDecideMiddle extends CommandGroup {
 	
 	//avoid going to color of our side and go to opposite side to cross line
 	
-	public AutoDecideMiddle() {
+	public AutoDecideMiddle() throws InterruptedException {
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if (gameData == null || gameData.isEmpty() || gameData.length() < 3) {
@@ -27,24 +27,33 @@ public class AutoDecideMiddle extends CommandGroup {
 		double armSpeed = 0.3;
 		addSequential(new ArmMove(-armSpeed), 2);
 		addSequential(new ArmMoveBack(150, armSpeed), 2);
-
+		addSequential(new Hand(true));
+		
+		//the middle will be slightly shifted to the right
 		//crossing autoline command
+		
 		if (ourSwitch == 'L') {
 			//goes to the left
-			addSequential(new AutoDriveTurnToScale(-20, 0.5));
-			addSequential(new AutoDriveStraight(90, 0.5, true, 30, 0.25));
-			addSequential(new AutoDriveTurnToScale(20, 0.3));
+			addSequential(new AutoDriveTurnToScale(-20, .5));
+			addSequential(new AutoDriveStraight(80, 0.7, true, 30, .3));
+			addSequential(new AutoDriveTurnToScale(32, 0.3));
 		} else if(ourSwitch == 'R') {
 			//goes to the Right
-			addSequential(new AutoDriveTurnToScale(20, 0.5));
-			addSequential(new AutoDriveStraight(90, 0.5, true, 30, 0.25));
-			addSequential(new AutoDriveTurnToScale(-20, 0.3));
+			//values do not need to be changed with this if testing anything make new test lines;
+			//addSequential(new AutoDriveTurnToScale(18, 0.5));
+			//addSequential(new AutoDriveStraight(74, 0.7, true, 30, .3));
+			//addSequential(new AutoDriveTurnToScale(-30, 0.3));
+			
+			//testing values for left
+			addSequential(new AutoDriveTurnToScale(20, .5));
+			addSequential(new AutoDriveStraight(80, 0.7, true, 30, .3));
+			addSequential(new AutoDriveTurnToScale(-36, 0.3));
 		} else {
 			return;
 		}
-		addSequential(new AutoDriveStraight(12, 0.3), 2);
-		//addSequential(new PlaceCubeInSwitch());
-		addSequential(new LaunchCubeSmall());
+		addSequential(new AutoDriveStraight(62, 0.4), 2);
+		addSequential(new PlaceCubeInSwitch(4));
+		//addSequential(new LaunchCubeSmall());
 	}
 
 }

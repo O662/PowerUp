@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 	final String AUTO_DECIDE_LEFT_PID_TEST = "TEST Auto Decide Left PID";
 	final String AUTO_DECIDE_RIGHT_PID_TEST = "TEST Auto Decide Right PID";
 	final String AUTO_DECIDE_MIDDLE_PID_TEST = "TEST Auto Decide Middle PID";
-
+	
 	// List of subsystems, convenient for logging, etc.
 	private ArrayList<LoggableSubsystem> subsystemsList = new ArrayList<LoggableSubsystem>();
 
@@ -69,6 +69,7 @@ public class Robot extends IterativeRobot {
 	public static DoubleUltrasonic doubleUltrasonic;
 	public static SingleUltrasonic singleUltrasonic;
 	public static ArmIntake armIntake;
+	public static Climber climber;
 
 	public static PowerDistributionPanel pdp;
 
@@ -126,7 +127,10 @@ public class Robot extends IterativeRobot {
 		
 		armIntake = new ArmIntake();
 		subsystemsList.add(armIntake);
-
+		
+		climber = new Climber();
+		subsystemsList.add(climber);
+		
 		//singleUltrasonic = new SingleUltrasonic();
 		//subsystemsList.add(singleUltrasonic);
 
@@ -176,7 +180,12 @@ public class Robot extends IterativeRobot {
 
 		//Instantiate after all subsystems and preferences - or the world will die
 		//We don't want that, do we?
-		oi = new OI();
+		try {
+			oi = new OI();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		//TODO uncomment to see subsystems on dashboard
 		//addSubsystemsToDashboard(subsystemsList);
@@ -235,16 +244,31 @@ public class Robot extends IterativeRobot {
 
 		switch(autoChooser.getSelected()) {
 		case AUTO_DECIDE_LEFT:
-			autonomousCommand = new AutoDecideLeft();
+			try {
+				autonomousCommand = new AutoDecideLeft();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		case AUTO_DECIDE_RIGHT:
-			autonomousCommand = new AutoDecideRight();
+			try {
+				autonomousCommand = new AutoDecideRight();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		case AUTO_DECIDE_MIDDLE:
-			autonomousCommand = new AutoDecideMiddle();
+			try {
+				autonomousCommand = new AutoDecideMiddle();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case AUTO_DRIVE_STRAIGHT:
-			autonomousCommand = new AutoDriveStraight(110, 0.5);
+			autonomousCommand = new AutoDriveStraight(110, 0.5, true, 30, .25);
 			break;
 		case AUTO_DRIVE_STRAIGHT_LOWER_ARMS:
 			autonomousCommand = new AutoDriveStraightLowerArms();

@@ -27,7 +27,9 @@ public class AutoBackToWall extends CommandGroup {
 		super(name);
 		requires(Robot.driveTrain);
 		requires(Robot.doubleUltrasonic);
-		
+	}
+	
+	public void willTurn() {
 		if (getStraight() > 0) {
 			willTurn = false;
 		} else {

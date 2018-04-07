@@ -139,7 +139,7 @@ public class AutoDriveStraightNavxPID extends Command {
 		end();
 	}
 
-	private class MyPidOutput implements PIDOutput {
+	public class MyPidOutput implements PIDOutput {
 		@Override
 		public void pidWrite(double output) {
 			//myRobot.drive(output, 0);

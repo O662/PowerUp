@@ -24,7 +24,13 @@ public class AutoConditionalCommand extends Command {
 		if (msg == null || msg.isEmpty() || msg.length() < 3) {
 			return;
 		}
-		Command cmd = new AutoDecideLeft();
+		Command cmd = null;
+		try {
+			cmd = new AutoDecideLeft();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (cmd != null) {
 			cmd.start();
 		}

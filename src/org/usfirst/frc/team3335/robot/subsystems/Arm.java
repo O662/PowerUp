@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3335.robot.subsystems;
 
+import org.usfirst.frc.team3335.robot.Robot;
 import org.usfirst.frc.team3335.robot.RobotMap;
 import org.usfirst.frc.team3335.robot.commands.ArmWithJoystick;
 
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,7 +35,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	int gearRatio = 125;
 	double ticksPerDeg = 4096.0 / 360;
 	double encoderscalar = gearRatio * ticksPerDeg;
-	
+	Value handValue;
 
 	public Arm() {
 		motorRight = new WPI_TalonSRX(RobotMap.ARM_RIGHT_MOTOR);
@@ -62,6 +64,7 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 		//_tal.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		motorRight.setNeutralMode(NeutralMode.Brake);
 		motorLeft.setNeutralMode(NeutralMode.Brake);
+		
 	}
 
 	public void moveArm(Joystick joystick) {
@@ -128,11 +131,23 @@ public class Arm extends Subsystem implements LoggableSubsystem, PIDSource {
 	}
 
 	public double map(double input) {
-		double scalar = 0.5;
+		handValue = Robot.glove.getValue();
+		double scalar = .3;
+		if (handValue == Value.kReverse) {
+			scalar = .3;
+		}
+		else if (handValue == Value.kForward) {
+			scalar = .4;
+		}
+		
 		if (Math.abs(input) < deadzone) {
 			return 0;
 		}
 		if (input > 0) {
+			if(pidGet() > 70) {
+				return 0;
+			}
+			else
 			return scalar * (input - deadzone)/(1 - deadzone);
 		} else if (input < 0) {
 			return scalar * (input + deadzone)/(1 - deadzone);

@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climber extends Subsystem implements LoggableSubsystem {
 	//this subsystem is used for the climber and employs a single motor that is used extend the climber
 	//in order for it to reach up and grab the bar
-	private final WPI_TalonSRX climberMotorRight;
+	//private final WPI_TalonSRX climberMotorRight;
 	private final WPI_TalonSRX climberMotorLeft;
 	//private final AnalogInput climberPhnumatic1;
    
     public Climber() {
     	
-    	climberMotorRight = new WPI_TalonSRX(RobotMap.CLIMBER_RIGHT_MOTOR);
+    	//climberMotorRight = new WPI_TalonSRX(RobotMap.CLIMBER_RIGHT_MOTOR);
     	climberMotorLeft = new WPI_TalonSRX(RobotMap.CLIMBER_LEFT_MOTOR);
     }
     protected void initDefaultCommand() {
@@ -24,13 +24,18 @@ public class Climber extends Subsystem implements LoggableSubsystem {
     }
     
     public void turn() {
-    	climberMotorRight.set(1);
+    	//climberMotorRight.set(1);
     	climberMotorLeft.set(1);
     }
 
     public void stop() {
-    	climberMotorRight.set(0);
+    	//climberMotorRight.set(0);
     	climberMotorLeft.set(0);
+    }
+    
+    public void move(double speed) {
+    	//climberMotorRight.set(speed);
+    	climberMotorLeft.set(speed);
     }
     
     @Override

@@ -29,6 +29,11 @@ public class Glove extends Subsystem implements LoggableSubsystem {
 	public void close() {
 		switchPos(Value.kForward);
 	}
+	
+	public Value getValue() {
+		Value v = solenoid1.get();
+		return v;
+	}
 
 	public void toggle() {
 		Value val = solenoid1.get().equals(Value.kForward) ? Value.kReverse : Value.kForward;

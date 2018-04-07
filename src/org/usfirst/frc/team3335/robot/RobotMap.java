@@ -51,7 +51,7 @@ public class RobotMap {
 	public static final int ARM_INTAKE_LEFT_MOTOR = 10;
 
 	/** Right climber 775 motor */
-	public static final int CLIMBER_RIGHT_MOTOR = 4;
+	//public static final int CLIMBER_RIGHT_MOTOR = 44;
 	/** Left climber 775 motor */
 	public static final int CLIMBER_LEFT_MOTOR = 3;
 
@@ -112,6 +112,6 @@ public class RobotMap {
 	public static final int PDP_MOTOR_ARM_LEFT = isMark3 ? 8 : 5;
 	public static final int PDP_MOTOR_LAUNCHER_RIGHT = isMark3 ? 12 : 13;
 	public static final int PDP_MOTOR_LAUNCHER_LEFT = isMark3 ? 3 : 12;
-	public static final int PDP_MOTOR_CLIMBER_RIGHT = isMark3 ? 9 : 11;
-	public static final int PDP_MOTOR_CLIMBER_LEFT = isMark3 ? 6 : 10;
+	public static final int PDP_MOTOR_CLIMBER_RIGHT = isMark3 ? 9 : 3;
+	public static final int PDP_MOTOR_CLIMBER_LEFT = isMark3 ? 6 : 2;
 }

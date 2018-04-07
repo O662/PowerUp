@@ -11,10 +11,16 @@ public class AutoDriveStraight extends Command {
 	private double speedForward;
 	private double limitDistance;
 	private double limitSpeedForward;
+	private double beginSpeed;
+	private double beginDistance;
 	private long timeFinished = 0;
 	private final long TIME_MAX = 5000;//milliseconds
 	private long driveTime;
+	private double scalar;
 	private final boolean limitSpeedByDistance;
+	private boolean accel = false;
+	
+	
 	//private final double FINISH_DRIVE_DIST_ULTRAS_MAX = 0.5* Double.MAX_VALUE;
 	//private double finishDriveDistUltras = FINISH_DRIVE_DIST_ULTRAS_MAX;
 	
@@ -47,6 +53,28 @@ public class AutoDriveStraight extends Command {
 	        // end TODO
 	        if (driveTime > TIME_MAX) driveTime = TIME_MAX;
 	    }
+	    
+	    public AutoDriveStraight(double distance, double speed, boolean limit,boolean accel,double limitDistance, double limitSpeed, double beginDistance, double beginSpeed) {
+	        requires(Robot.driveTrain);
+
+	        //requires(Robot.visionTest);
+	        
+
+	        this.speedForward = Math.abs(speed);
+	        this.distance = distance;
+	        this.limitSpeedByDistance = limit;
+	        this.limitDistance = limitDistance;
+	        this.limitSpeedForward = limitSpeed;
+	        this.accel = accel;
+	        this.beginDistance = beginDistance;
+	        this.beginSpeed = beginSpeed;
+	        this.scalar = beginSpeed;
+	        driveTime = (long)(Math.abs(distance) / feetPerSecond / 12.0 * 1000);
+	        // TODO remove after testing
+	        driveTime *= 1.5;
+	        // end TODO
+	        if (driveTime > TIME_MAX) driveTime = TIME_MAX;
+	    }
 
 	protected void initialize() {
     	Robot.driveTrain.setBrake(true);
@@ -57,18 +85,31 @@ public class AutoDriveStraight extends Command {
 	 protected void execute() {
 	    	double speed = Math.signum(distance) * speedForward;
 	    	double limitSpeed = Math.signum(distance) * limitSpeedForward;
+	    	
+	    	//increments the speed 
 	    	if (limitSpeedByDistance) {
-	    		speed = limitSpeedByDistance(speed, distance, limitDistance, limitSpeed);
-	    	}
+	    			speed = limitSpeedByDistance(speed, distance, limitDistance, limitSpeed,scalar,accel);
+	    		}
+	    		
+	    		
+	    		
+	    	
 	    	//if (Math.abs(finishDriveDistUltras) >= Math.abs(FINISH_DRIVE_DIST_ULTRAS_MAX)) {
 	    		//finishDriveDistUltras = finishDriveDistanceUltrasonics(36);
 	    	//}
 	        Robot.driveTrain.drive(speed, speed);
 	    }
 	 //slows down the speed at end 
-	 private double limitSpeedByDistance(double speedIn, double maxDistance, double limitDistance, double limitSpeed) {
+	 private double limitSpeedByDistance(double speedIn, double maxDistance, double limitDistance, double limitSpeed, double scalar, boolean accelerate) {
 	    	if (Math.abs(Robot.driveTrain.getDistance()) > Math.abs(maxDistance) - Math.abs(limitDistance)) {
 	    		return limitSpeed;
+	    	}
+	    	else if( Math.abs(Robot.driveTrain.getDistance()) < Math.abs(maxDistance) - Math.abs(limitDistance) && accelerate == true) {
+	    		scalar = scalar + .1;
+	    		speedIn = scalar;
+	    	}
+	    	else if (speedIn > speedForward ) {
+	    		speedIn = speedForward;
 	    	}
 	    	return speedIn;
 	    }

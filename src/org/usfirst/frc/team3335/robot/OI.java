@@ -41,7 +41,7 @@ public class OI {
 		}
 	}
 
-	public OI() {
+	public OI() throws InterruptedException {
 		joystick = new Joystick(0);
 		joystick2 = new Joystick(1);
 
@@ -69,15 +69,19 @@ public class OI {
 		int bLowerLauncher = 11;
 
         // Joystick 2
-        int bArmRollersIn = 2;
-        int bArmRollersOut = 3;
+        int bArmRollersIn = 3;
+        int bArmRollersOut = 2;
 		int bSmallestLauncher = 6;
+		int bRaiseClimber = 4;
+		int bLowerClimber = 5;
+		
 
 		// Joystick 1
 
 		// Arm
-		double armSpeed = .6;//change to point 4
+		double armSpeed = .4;//change to point 4
 		double intakeSpeed = 1;
+		
 		
 		/*
 		JoystickButton moveArmUp = addButton(getJoystick(), bMoveArmUp, "Move Arm Up");
@@ -109,6 +113,12 @@ public class OI {
 		//ArmOuttake.whenPressed(new IntakeCube(intakeSpeed, true));
 		//ArmOuttake.whenReleased(new IntakeCube(0,false));
 		ArmOuttake.whileHeld(new IntakeCube(intakeSpeed, true));
+		
+		//Climber
+		JoystickButton ClimberRaise = addButton(getJoystick2(), bRaiseClimber, "Raise the Climber");
+		ClimberRaise.whileHeld(new ClimberRaise());
+		JoystickButton ClimberLower = addButton(getJoystick2(), bLowerClimber, "Lower the Climber");
+		ClimberLower.whileHeld(new ClimberLower());
 
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
@@ -141,6 +151,8 @@ public class OI {
 		//if (useToggle ) {
 		JoystickButton toggleHand = addButton(getJoystick(), bToggleHand, "Toggle Hand");
 		toggleHand.whenPressed(new HandToggle());
+		//JoystickButton toggleHand2 = addButton(getJoystick2(), bToggleHand, "Toggle Hand 2");
+		//toggleHand2.whenPressed(new HandToggle());
 		//}
 		//else {
 		JoystickButton closeHand = addButton(getJoystick(), bCloseHand, "Close Hand");
@@ -151,7 +163,7 @@ public class OI {
 
 		// Place Cube in Switch
 		JoystickButton placeCubeSwitch = addButton(getJoystick(), bPlaceCubeSwitch, "Place Cube in Switch");
-		placeCubeSwitch.whenPressed(new PlaceCubeInSwitch());
+		placeCubeSwitch.whenPressed(new PlaceCubeInSwitch(1));
 
 		// Drive Mode: Front is Forward vs Back is Forward
 		/*
