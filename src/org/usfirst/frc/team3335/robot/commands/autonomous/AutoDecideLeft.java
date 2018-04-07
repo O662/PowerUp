@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3335.robot.commands.autonomous;
 
+import org.usfirst.frc.team3335.robot.Robot;
 import org.usfirst.frc.team3335.robot.commands.ArmMove;
 import org.usfirst.frc.team3335.robot.commands.ArmMoveBack;
 import org.usfirst.frc.team3335.robot.commands.ArmMoveToPosition;
@@ -42,6 +43,7 @@ public class AutoDecideLeft extends CommandGroup {
 			addSequential(new ArmMoveBack(150, armSpeed), 2);
 			addSequential(new Hand(true));
 			addSequential(new AutoDriveStraight(110, 0.5, true, 30, 0.25));
+			Robot.navx.zeroYaw();
 			addSequential(new AutoDriveTurnToScale(73, 0.5));
 			distance = AutoDriveToSwitch.GetDistance();
 			addSequential(new AutoDriveStraight(distance,.5, true, 30, .25));

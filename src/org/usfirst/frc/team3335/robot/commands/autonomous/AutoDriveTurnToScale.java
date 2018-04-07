@@ -6,6 +6,7 @@ import org.usfirst.frc.team3335.robot.commands.BallShiftLow;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoDriveTurnToScale extends Command {
 	
@@ -65,6 +66,8 @@ public class AutoDriveTurnToScale extends Command {
     	double speed = Math.signum(setPointAngle) * rotateRate;
         //Robot.driveTrain.drive(speed, -speed);  //Mark 1
     	Robot.driveTrain.driveArcade(0, -speed, false); //Mark 2
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -80,7 +83,10 @@ public class AutoDriveTurnToScale extends Command {
     		}
     	}
     	if (System.currentTimeMillis() > timeFinished) {
-    		return true;
+    		if(timeFinished > 0) {
+    			return true;
+    		}
+    		
     	}
         return false; // Runs until interrupted
     }
@@ -98,6 +104,9 @@ public class AutoDriveTurnToScale extends Command {
     protected void interrupted() {
         end();
     }
+    
+   
+    
 
 }
 

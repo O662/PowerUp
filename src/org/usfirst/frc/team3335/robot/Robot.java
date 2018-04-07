@@ -274,7 +274,12 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new AutoDriveStraightLowerArms();
 			break;
 		case AUTO_DECIDE_MIDDLE_VISION:
-			autonomousCommand = new AutoDecideMiddleVision();
+			try {
+				autonomousCommand = new AutoDecideMiddleVision();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case AUTO_DECIDE_LEFT_PID_TEST:
 			autonomousCommand = new AutoDecideLeftOrRightPid('L');

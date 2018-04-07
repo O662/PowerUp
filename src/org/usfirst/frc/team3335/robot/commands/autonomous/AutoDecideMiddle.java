@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3335.robot.commands.autonomous;
 
+import org.usfirst.frc.team3335.robot.Robot;
 import org.usfirst.frc.team3335.robot.commands.ArmMove;
 import org.usfirst.frc.team3335.robot.commands.ArmMoveBack;
 import org.usfirst.frc.team3335.robot.commands.ArmMoveToPosition;
@@ -34,25 +35,34 @@ public class AutoDecideMiddle extends CommandGroup {
 		
 		if (ourSwitch == 'L') {
 			//goes to the left
-			addSequential(new AutoDriveTurnToScale(-20, .5));
+			Robot.navx.zeroYaw();
+			
+			addSequential(new AutoDriveTurnToScale(-20, .3));
+			
+			
+			if(Robot.navx.getYaw() > -1 && Robot.navx.getYaw() < 1) {
+				DriverStation.reportWarning("Robot Did not turn",true);
+			}
+			
 			addSequential(new AutoDriveStraight(80, 0.7, true, 30, .3));
 			addSequential(new AutoDriveTurnToScale(32, 0.3));
 		} else if(ourSwitch == 'R') {
 			//goes to the Right
 			//values do not need to be changed with this if testing anything make new test lines;
-			//addSequential(new AutoDriveTurnToScale(18, 0.5));
-			//addSequential(new AutoDriveStraight(74, 0.7, true, 30, .3));
-			//addSequential(new AutoDriveTurnToScale(-30, 0.3));
+			addSequential(new AutoDriveTurnToScale(18, 0.5));
+			addSequential(new AutoDriveStraight(74, 0.7, true, 30, .3));
+			addSequential(new AutoDriveTurnToScale(-30, 0.3));
 			
 			//testing values for left
-			addSequential(new AutoDriveTurnToScale(20, .5));
-			addSequential(new AutoDriveStraight(80, 0.7, true, 30, .3));
-			addSequential(new AutoDriveTurnToScale(-36, 0.3));
+			Robot.navx.zeroYaw();
+			//addSequential(new AutoDriveTurnToScale(20, .5));
+			//addSequential(new AutoDriveStraight(80, 0.7, true, 30, .3));
+			//addSequential(new AutoDriveTurnToScale(-36, 0.3));
 		} else {
 			return;
 		}
-		addSequential(new AutoDriveStraight(62, 0.4), 2);
-		addSequential(new PlaceCubeInSwitch(4));
+		//addSequential(new AutoDriveStraight(62, 0.4), 2);
+		//addSequential(new PlaceCubeInSwitch(4));
 		//addSequential(new LaunchCubeSmall());
 	}
 
