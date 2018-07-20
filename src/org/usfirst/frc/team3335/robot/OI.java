@@ -115,11 +115,12 @@ public class OI {
 		ArmOuttake.whileHeld(new IntakeCube(intakeSpeed, true));
 		
 		//Climber
+		/*
 		JoystickButton ClimberRaise = addButton(getJoystick2(), bRaiseClimber, "Raise the Climber");
 		ClimberRaise.whileHeld(new ClimberRaise());
 		JoystickButton ClimberLower = addButton(getJoystick2(), bLowerClimber, "Lower the Climber");
 		ClimberLower.whileHeld(new ClimberLower());
-
+*/
 		// Launcher
 		//JoystickButton launchCube = addButton(getJoystick(), bLaunchCube, "Launch Cube");
 		//launchCube.whenPressed(new LaunchCube(true));

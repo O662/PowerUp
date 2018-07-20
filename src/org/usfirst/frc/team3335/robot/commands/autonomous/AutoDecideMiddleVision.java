@@ -8,12 +8,14 @@ import org.usfirst.frc.team3335.robot.commands.Hand;
 import org.usfirst.frc.team3335.robot.commands.LaunchCubeSmall;
 import org.usfirst.frc.team3335.robot.commands.PlaceCubeInSwitch;
 import org.usfirst.frc.team3335.robot.commands.autonomous.test.AutoDriveAtAngleNavxPID;
+import org.usfirst.frc.team3335.robot.subsystems.vision.VisionTarget;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 //Deprecated due to warning below
 //@Deprecated
+/*
 public class AutoDecideMiddleVision extends CommandGroup {
 	
 	/**
@@ -22,6 +24,7 @@ public class AutoDecideMiddleVision extends CommandGroup {
 	 * is constructed, not at the time the command is started (running).
 	 * @throws InterruptedException 
 	 */
+/*
 	public AutoDecideMiddleVision() throws InterruptedException {
 		requires(Robot.visionTarget);
 		requires(Robot.navx);
@@ -55,14 +58,18 @@ public class AutoDecideMiddleVision extends CommandGroup {
 		} else {
 			return;
 		}
+		/*
 		addSequential(new Delay(500, true));
 		if (Robot.visionTarget.isTargetDetected()) {
-			double targetDist = AutoGetValues.visionDistance();
-			double setPointAngle = AutoGetValues.visionPID();
+			double targetDist = VisionTarget.getTargetDistance();
+			double setPointAngle = VisionTarget.pidGet();
 			setPointAngle += Robot.navx.getYaw();
 			addSequential(new AutoDriveAtAngleNavxPID(targetDist, 0.5, true, 30, 0.25, setPointAngle), 5);
 			addSequential(new PlaceCubeInSwitch(3));
 			//addSequential(new LaunchCubeSmall());
+			 * 
+			 
+			 
 		} else {
 			addSequential(new AutoDriveStraight(44, 0.3), 2);
 			addSequential(new PlaceCubeInSwitch(3));
@@ -70,3 +77,4 @@ public class AutoDecideMiddleVision extends CommandGroup {
 	}
 
 }
+*/

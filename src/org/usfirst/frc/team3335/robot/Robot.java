@@ -273,6 +273,7 @@ public class Robot extends IterativeRobot {
 		case AUTO_DRIVE_STRAIGHT_LOWER_ARMS:
 			autonomousCommand = new AutoDriveStraightLowerArms();
 			break;
+			/*
 		case AUTO_DECIDE_MIDDLE_VISION:
 			try {
 				autonomousCommand = new AutoDecideMiddleVision();
@@ -281,6 +282,7 @@ public class Robot extends IterativeRobot {
 				e.printStackTrace();
 			}
 			break;
+			*/
 		case AUTO_DECIDE_LEFT_PID_TEST:
 			autonomousCommand = new AutoDecideLeftOrRightPid('L');
 			break;
